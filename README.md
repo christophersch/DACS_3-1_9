@@ -1,3 +1,3 @@
 # Programming interfaces for non-experts
 
-t
+Group members: Christophe Raso, Christopher Schiffmann, Gevorg Chakrian, Ingo Heijnens, Janis Eicher, Pepijn van der Meer
