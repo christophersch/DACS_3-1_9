@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <title>Blockly</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="python_compressed.js"></script>
     <script src="custom_blocks.js"></script>
+    <script src="web_client.js"></script>
     <style>
         body {
             background-color: #fff;
@@ -23,15 +25,28 @@
 
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
     <!-- Blocks go here -->
-    <block type="test_block"></block>
-    <block type="block_two"></block>
+    <block type="print"></block>
+    <block type="add"></block>
+    <block type="pi"></block>
+    <block type="loop count"></block>
 </xml>
 
 <script>
     var demoWorkspace = Blockly.inject('blocklyDiv',
         {renderer: 'zelos',
+            language: 'python',
             toolbox: document.getElementById('toolbox')});
 </script>
+
+<button onclick="sendRequest()">Send Code</button>
+
+<label for="token">Token: </label>
+<textarea id="token" rows="1" cols="50" style="font-size: small"></textarea>
+
+<div id="output">
+    Output:
+    <p id="outputText"></p>
+</div>
 
 </body>
 </html>
