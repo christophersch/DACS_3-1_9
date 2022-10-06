@@ -4,7 +4,7 @@ import sys
 import os
 import ssl
 
-SERVER = socket.gethostbyname(socket.gethostname())
+SERVER = socket.gethostbyname("0.0.0.0")
 PORT = 443
 
 print("Starting server on", SERVER, "port", PORT)
