@@ -21,7 +21,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s2:
                 with conn:
                     print(f"Connected by {addr}")
                     while True:
-                        data = conn.recv(1024)
+                        data = conn.recv(2147483647)
                         if data:
                             print(f"Received {data!r}")
                             if data.startswith(b"POST"):
