@@ -11,6 +11,13 @@ Blockly.Blocks['print'] = {
     }
 };
 
+Blockly.Python['print'] = function(block) {
+    var print = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
+    var code = "print(" + print + ")\n";
+    return code;
+}
+
+
 Blockly.Blocks['add'] = {
     init: function() {
         this.appendValueInput("A")
@@ -26,6 +33,14 @@ Blockly.Blocks['add'] = {
     }
 };
 
+Blockly.Python['add'] = function(block) {
+    var value_a = Blockly.Python.valueToCode(block, 'A', Blockly.Python.ORDER_ATOMIC);
+    var value_b = Blockly.Python.valueToCode(block, 'B', Blockly.Python.ORDER_ATOMIC);
+    var code = value_a + " + " + value_b;
+    return [code, Blockly.Python.ORDER_NONE];
+}
+
+
 Blockly.Blocks['pi'] = {
     init: function() {
         this.appendDummyInput()
@@ -36,6 +51,12 @@ Blockly.Blocks['pi'] = {
         this.setHelpUrl("");
     }
 }
+
+Blockly.Python['pi'] = function(block) {
+    var code = "3.14159265359";
+    return [code, Blockly.Python.ORDER_NONE];
+}
+
 
 Blockly.Blocks['loop count'] = {
     init: function() {
@@ -51,24 +72,6 @@ Blockly.Blocks['loop count'] = {
         this.setTooltip("");
         this.setHelpUrl("");
     }
-}
-
-Blockly.Python['print'] = function(block) {
-    var print = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
-    var code = "print(" + print + ")\n";
-    return code;
-}
-
-Blockly.Python['add'] = function(block) {
-    var value_a = Blockly.Python.valueToCode(block, 'A', Blockly.Python.ORDER_ATOMIC);
-    var value_b = Blockly.Python.valueToCode(block, 'B', Blockly.Python.ORDER_ATOMIC);
-    var code = value_a + " + " + value_b;
-    return [code, Blockly.Python.ORDER_NONE];
-}
-
-Blockly.Python['pi'] = function(block) {
-    var code = "3.14159265359";
-    return [code, Blockly.Python.ORDER_NONE];
 }
 
 Blockly.Python['loop count'] = function(block) {
