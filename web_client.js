@@ -1,6 +1,6 @@
 function sendRequest() {
     var request = new XMLHttpRequest();
-    request.open("POST", "http://blockly.ingoh.net", true);
+    request.open("POST", "https://blockly.ingoh.net", true);
     var workspace = Blockly.getMainWorkspace();
     var code = Blockly.Python.workspaceToCode(workspace);
     request.responseType = "text";
