@@ -2,7 +2,9 @@ function sendRequest() {
     var request = new XMLHttpRequest();
     request.open("POST", "https://blockly.ingoh.net:9393/", true);
     var workspace = Blockly.getMainWorkspace();
-    var code = Blockly.Python.workspaceToCode(workspace);
+    var codeOrig = Blockly.Python.workspaceToCode(workspace);
+    var code = workspaceToCodeDebug(workspace);
+
     request.responseType = "text";
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
