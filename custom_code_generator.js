@@ -1,3 +1,39 @@
+var origFuncs = {};
+
+window.onload = function () {
+    var toolbox = document.getElementById('toolbox');
+    var blocks = toolbox.getElementsByTagName('block');
+    for (var i = 0; i < blocks.length; i++) {
+        var func = Blockly.Python[blocks[i].getAttribute('type')];
+        origFuncs[blocks[i].getAttribute('type')] = func;
+        if (typeof func === 'function') {
+            Blockly.Python[blocks[i].getAttribute('type')] = withDebugCode();
+        }
+    }
+}
+
+function withDebugCode() {
+    return function (block) {
+        var code = origFuncs[block.type](block);
+        if (typeof code === 'string') {
+            code = (getDebugPrefix(block) + code + getDebugSuffix(block));
+        }
+        return code;
+    }
+}
+
+
+function getDebugPrefix(block) {
+    // Get index of block in current workspace
+    var index = block.workspace.getAllBlocks().indexOf(block);
+    return "\nprint('starting block: " + block.type + " at index: " + index + "')\n";
+}
+
+function getDebugSuffix(block) {
+    // Get index of block in current workspace
+    var index = block.workspace.getAllBlocks().indexOf(block);
+    return "\nprint('finished block: " + block.type + " at index: " + index + "')\n";
+}
 
 function workspaceToCodeDebug(workspace) {
     if (!workspace) {
@@ -45,9 +81,9 @@ function workspaceToCodeDebug(workspace) {
     code = code.replace(/\n\s+$/, '\n');
     code = code.replace(/[ \t]+\n/g, '\n');
 
-    code = code.replace(/^ /gm, ' \u00A0');
-    code = code.replace(/\n/g, '<br>');
-    document.getElementById("debugText1").innerHTML = code;
+    var code2 = code.replace(/^ /gm, ' \u00A0');
+    code2 = code2.replace(/\n/g, '<br>');
+    document.getElementById("debugText1").innerHTML = code2;
 
     return code;
 }
