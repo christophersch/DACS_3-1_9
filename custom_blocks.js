@@ -1,3 +1,100 @@
+Blockly.Blocks['Grab'] = {
+    init: function() {
+        this.appendValueInput("OBJECT")
+            .setCheck(null)
+            .appendField("Grab");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['Box'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Box");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['Egg'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Egg");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['AGV'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("AGV");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['Adult'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Adult");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['MoveTo'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Move To")
+            .appendField(new Blockly.FieldTextInput('Coordinates'));
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['Feed'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Feed Box")
+            .appendField(new Blockly.FieldTextInput('1'));
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['MoveItemTo'] = {
+    init: function() {
+        this.appendValueInput("Object")
+            .appendField("Move");
+        this.appendDummyInput()
+            .appendField("To")
+            .appendField(new Blockly.FieldTextInput('Coordinates'));
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['ChangePopulationOfBox'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Change population of box")
+            .appendField(new Blockly.FieldTextInput('1'));
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
 // Blockly.Blocks['print'] = {
 //     init: function() {
 //         this.appendValueInput("VALUE")
