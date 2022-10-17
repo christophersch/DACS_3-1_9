@@ -1,3 +1,194 @@
+Blockly.Blocks['Grab'] = {
+    init: function() {
+        this.appendValueInput("OBJECT")
+            .setCheck(null)
+            .appendField("Grab");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("grabs the item");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['Drop'] = {
+    init: function() {
+        this.appendValueInput("OBJECT")
+            .setCheck(null)
+            .appendField("Drop");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("drops the item");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['Feed'] = {
+    init: function() {
+        this.appendValueInput("OBJECT")
+            .setCheck(null)
+            .appendField("Feed");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("Feeds the box");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['Box'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Box1");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['Egg'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Egg");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['AGV'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("AGV");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['Adult'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Adult");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['Compartment'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Compartment");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['MoveTo'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Move To")
+            .appendField(new Blockly.FieldTextInput('Coordinates'));
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("Moves the coordinates");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['MoveToItem'] = {
+    init: function() {
+        this.appendValueInput("Object")
+            .appendField("Move To")
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("Moves towards the item");
+        this.setHelpUrl("");
+    }
+}
+Blockly.Blocks['MoveItemTo'] = {
+    init: function() {
+        this.appendValueInput("Object")
+            .appendField("Move");
+        this.appendDummyInput()
+            .appendField("To")
+            .appendField(new Blockly.FieldTextInput('Coordinates'));
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("grabs the item and moves it to the coordinates");
+        this.setHelpUrl("");
+    }
+}
+
+Blockly.Blocks['MoveItemToItem'] = {
+    init: function() {
+        this.appendValueInput("OBJECT")
+            .setCheck(null)
+            .appendField("Move");
+        this.appendValueInput("Object")
+            .appendField("To");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("grabs the item and moves it to the box");
+        this.setHelpUrl("");
+    }
+}
+//
+//Blockly.Blocks['ChangePopulationOfBox'] = {
+//    init: function() {
+//        this.appendDummyInput()
+//            .appendField("Change population of box")
+//            .appendField(new Blockly.FieldTextInput('1'));
+//        this.setOutput(true, null);
+//        this.setColour(150);
+//        this.setTooltip("");
+//        this.setHelpUrl("");
+//    }
+//}
+
+Blockly.Blocks['Put'] = {
+    init: function() {
+        this.appendValueInput("OBJECT")
+            .setCheck(null)
+            .appendField("Put");
+        this.appendValueInput("Object")
+            .appendField("To");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("");
+        this.setHelpUrl("Puts an item in the box");
+    }
+}
+Blockly.Blocks['Take'] = {
+    init: function() {
+        this.appendValueInput("OBJECT")
+            .setCheck(null)
+            .appendField("Take");
+        this.appendValueInput("Object")
+            .appendField("From");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("Takes an item from the box");
+        this.setHelpUrl("");
+    }
+}
+
+Blockly.Blocks['ChangeBoxOfItem'] = {
+    init: function() {
+        this.appendValueInput("OBJECT")
+            .setCheck(null)
+            .appendField("Move");
+        this.appendValueInput("Object")
+            .appendField("From");
+        this.appendValueInput("Object")
+            .appendField("To");
+        this.setOutput(true, null);
+        this.setColour(150);
+        this.setTooltip("Relocates the item from box to box");
+        this.setHelpUrl("");
+    }
+}
+
+
+
+
+
 // Blockly.Blocks['print'] = {
 //     init: function() {
 //         this.appendValueInput("VALUE")
