@@ -17,6 +17,69 @@
             font-weight: normal;
             font-size: 140%;
         }
+
+        @keyframes fade_in {
+            0% {opacity: 0%}
+            100% {opacity: 100%}
+        }
+
+        #skill_level_selection_back {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            opacity: 50%;
+            z-index: 100;
+        }
+
+        #skill_level_selection {
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            
+            margin: auto;
+            padding: 5px;
+            text-align: center;
+            
+            width: 500px;
+            height: 250px;
+
+            font-size:larger;
+
+            background-color: rgb(199, 199, 199);
+            opacity: 100%;
+
+            z-index: 200;
+        }
+
+        .answer {
+            padding: 10px;
+            margin: 20px;
+            background-color: rgb(219, 219, 219);
+        }
+
+        .answer:hover {
+            filter: contrast(150%);
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .tip {
+            position: absolute;
+            top: 0;
+            width: 200px;
+            left: 110%;
+            visibility: hidden;
+        }
+
+        .answer:hover .tip {
+            visibility: visible;
+            animation: fade_in 0.5s forwards;
+        }
     </style>
 </head>
 <body>
@@ -24,7 +87,7 @@
 
 <div style="display:flex">
 
-    <div id="blocklyDiv" style="height: 480px; width: 1200px;"></div>
+    <div id="blocklyDiv" style="height: 600px; width: 1100px;"></div>
 
     <xml id="toolbox" style="display: none">
         <category id="catLogic" colour="210" name="Logic">
@@ -325,11 +388,24 @@
                 </value>
             </block>
         </category> -->
+
         <sep></sep>
         <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
         <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
         <sep></sep>
-        <category colour="290" name="ROS Functions">
+        <category colour="330" name="Insect Farm Elements">
+            <block type="Box">
+            </block>
+            <block type="Egg">
+            </block>
+            <block type="AGV">
+            </block>
+            <block type="Adult">
+            </block>
+            <block type="Compartment">
+            </block>
+        </category>
+        <category colour="290" name="Insect Farm Functions">
             <block type="Grab">
             </block>
             <block type="Drop">
@@ -346,7 +422,7 @@
             <block type="Take">
             </block>
         </category>
-        <category colour="290" name="ROS Complex Functions">
+        <category colour="290" name="Insect Farm Complex Functions">
             <block type="MoveItemTo">
             </block>
             <block type="MoveItemToItem">
@@ -354,19 +430,6 @@
 <!--            <block type="ChangePopulationOfBox">-->
 <!--            </block>-->
             <block type="ChangeBoxOfItem">
-            </block>
-        </category>
-
-        <category colour="330" name="ROS Variables">
-            <block type="Box">
-            </block>
-            <block type="Egg">
-            </block>
-            <block type="AGV">
-            </block>
-            <block type="Adult">
-            </block>
-            <block type="Compartment">
             </block>
         </category>
     </xml>
@@ -383,6 +446,24 @@
     <div id="debug" style="display: flex">
         <p id="debugText1", style="width: 400px; height: auto">ABC</p>
         <p id="debugText2", style="width: 400px; height: auto">DEF</p>
+    </div>
+</div>
+
+<div id="skill_level_selection_back">
+</div>
+<div id="skill_level_selection">
+    <p>How familiar are you with programming?</p>
+    <div class="answer" onclick="setComplexityLevel(SKILL_LEVELS.BEGINNER, true)">
+        I am a beginner
+        <div class="tip">Only the basics.</div>
+    </div>
+    <div class="answer" onclick="setComplexityLevel(SKILL_LEVELS.INTERMEDIATE, true)">
+        I am a little familiar
+        <div class="tip">You will have access to math, text, and lists.</div>
+    </div>
+    <div class="answer" onclick="setComplexityLevel(SKILL_LEVELS.EXPERT, true)">
+        I am an expert
+        <div class="tip">You will have access to variables and functions.</div>
     </div>
 </div>
 
@@ -428,17 +509,26 @@ const categories = new Map();
 class TabCategory {
     constructor(id) {
         this.id = id;
+        this.DOM_element = document.getElementById(id);
+        this.DOM_element_default_height = this.DOM_element.style.height;
+        this.visible = true;
     }
 
     hide = function() {
-        var el = document.getElementById(this.id);
-        el.style.visibility = "hidden";
-        
-        console.log(el);
+        this.DOM_element.style.visibility = "hidden";
+        this.DOM_element.style.height = "0px";
+        this.visible = false;
     }
 
     show = function() {
-        document.getElementById(this.id).style.visibility = "visible";
+        this.DOM_element.style.visibility = "visible";
+        this.DOM_element.style.height = this.DOM_element_default_height;
+        if (!this.visible) {
+            this.DOM_element.style.animation = null;
+            this.DOM_element.offsetHeight;
+            this.DOM_element.style.animation = "fade_in .5s forwards"
+        }
+        this.visible = true;
     }
 }
 
@@ -449,12 +539,19 @@ categories.set("text",      new TabCategory("blockly-3"));
 categories.set("lists",     new TabCategory("blockly-4"));
 categories.set("variables", new TabCategory("blockly-6"));
 categories.set("functions", new TabCategory("blockly-7"));
+categories.set("farm_elements", new TabCategory("blockly-9"));
+categories.set("farm_funcs", new TabCategory("blockly-a"));
+categories.set("farm_complex_funcs", new TabCategory("blockly-b"));
+
+categories.forEach((vals, keys) => {
+    vals.hide();
+});
 
 function refreshCategories() {
     switch(skill_level) {
         case SKILL_LEVELS.BEGINNER:
                 categories.get("logic")         .show();
-                categories.get("loops")         .hide();
+                categories.get("loops")         .show();
                 categories.get("math")          .hide();
                 categories.get("text")          .hide();
                 categories.get("lists")         .hide();
@@ -464,9 +561,9 @@ function refreshCategories() {
 
         case SKILL_LEVELS.INTERMEDIATE:
                 categories.get("logic")         .show();
-                categories.get("loops")         .hide();
-                categories.get("math")          .hide();
-                categories.get("text")          .hide();
+                categories.get("loops")         .show();
+                categories.get("math")          .show();
+                categories.get("text")          .show();
                 categories.get("lists")         .hide();
                 categories.get("variables")     .hide();
                 categories.get("functions")     .hide();
@@ -483,13 +580,34 @@ function refreshCategories() {
                 categories.get("functions")     .show();
             break;
     }
+
+    categories.get("farm_elements") .show();
+    categories.get("farm_funcs")    .show();
+    categories.get("farm_complex_funcs").show();
 }
 
-refreshCategories();
+function setComplexityLevel(level, intro_screen=false) {
+    skill_level = level;
+    refreshCategories();
+
+    if (intro_screen) {
+        removeIntroScreen();
+    }
+}
+
+function removeIntroScreen() {
+    var skill_level_back = document.getElementById("skill_level_selection_back");
+    var skill_level = document.getElementById("skill_level_selection");
+
+    document.body.removeChild(skill_level_back);
+    document.body.removeChild(skill_level);
+}
 
 </script>
 
-<button onclick="fuckerBooger()">gay porn</button>
+<button onclick="setComplexityLevel(SKILL_LEVELS.BEGINNER)">Beginner</button>
+<button onclick="setComplexityLevel(SKILL_LEVELS.INTERMEDIATE)">Intermediate</button>
+<button onclick="setComplexityLevel(SKILL_LEVELS.EXPERT)">Expert</button>
 
 <button onclick="sendRequest()">Send Code</button>
 
