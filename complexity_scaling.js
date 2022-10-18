@@ -3,6 +3,7 @@ const SKILL_LEVELS = {
     INTERMEDIATE: 1,
     EXPERT: 2
 }
+
 let skill_level = SKILL_LEVELS.BEGINNER;
 
 /*
@@ -61,23 +62,23 @@ class TabCategory {
     }
 }
 
-function setUpCategories() {
-    categories.set("logic",     new TabCategory("blockly-0"));
-    categories.set("loops",     new TabCategory("blockly-1"));
-    categories.set("math",      new TabCategory("blockly-2"));
-    categories.set("text",      new TabCategory("blockly-3"));
-    categories.set("lists",     new TabCategory("blockly-4"));
-    categories.set("variables", new TabCategory("blockly-6"));
-    categories.set("functions", new TabCategory("blockly-7"));
-    categories.set("farm_elements", new TabCategory("blockly-9"));
-    categories.set("farm_funcs", new TabCategory("blockly-a"));
-    categories.set("farm_complex_funcs", new TabCategory("blockly-b"));
-}
+var cats = [
+    ["logic",               "blockly-0"],
+    ["loops",               "blockly-1"],
+    ["math",                "blockly-2"],
+    ["text",                "blockly-3"],
+    ["lists",               "blockly-4"],
+    ["variables",           "blockly-6"],
+    ["functions",           "blockly-7"],
+    ["farm_elements",       "blockly-9"],
+    ["farm_funcs",          "blockly-a"],
+    ["farm_complex_funcs",  "blockly-b"]
+]
 
-setUpCategories()
-
-categories.forEach((vals, keys) => {
-    vals.hide();
+cats.forEach(cat => {
+    var cat_object = new TabCategory(cat[1]);
+    cat_object.hide();
+    categories.set(cat[0], cat_object);
 });
 
 function refreshCategories() {
@@ -114,6 +115,7 @@ function refreshCategories() {
             break;
     }
 
+    // Insect farm stuff will always be shown
     categories.get("farm_elements") .show();
     categories.get("farm_funcs")    .show();
     categories.get("farm_complex_funcs").show();
