@@ -84,7 +84,7 @@ Blockly.Blocks['Compartment'] = {
 Blockly.Blocks['MoveTo'] = {
     init: function() {
         this.appendDummyInput()
-            .appendField("Move To")
+            .appendField("Move AGV to")
             .appendField(new Blockly.FieldTextInput('Coordinates'));
         this.setOutput(true, null);
         this.setColour(150);
@@ -95,7 +95,7 @@ Blockly.Blocks['MoveTo'] = {
 Blockly.Blocks['MoveToItem'] = {
     init: function() {
         this.appendValueInput("Object")
-            .appendField("Move To")
+            .appendField("Move AGV to")
         this.setOutput(true, null);
         this.setColour(150);
         this.setTooltip("Moves towards the item");
