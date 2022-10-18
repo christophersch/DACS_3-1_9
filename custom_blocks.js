@@ -4,6 +4,8 @@ Blockly.Blocks['Grab'] = {
             .setCheck(null)
             .appendField("Grab");
         this.setOutput(true, null);
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
         this.setColour(150);
         this.setTooltip("grabs the item");
         this.setHelpUrl("");
@@ -15,6 +17,8 @@ Blockly.Blocks['Drop'] = {
             .setCheck(null)
             .appendField("Drop");
         this.setOutput(true, null);
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
         this.setColour(150);
         this.setTooltip("drops the item");
         this.setHelpUrl("");
@@ -26,6 +30,8 @@ Blockly.Blocks['Feed'] = {
             .setCheck(null)
             .appendField("Feed");
         this.setOutput(true, null);
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
         this.setColour(150);
         this.setTooltip("Feeds the box");
         this.setHelpUrl("");
@@ -87,6 +93,8 @@ Blockly.Blocks['MoveTo'] = {
             .appendField("Move AGV to")
             .appendField(new Blockly.FieldTextInput('Coordinates'));
         this.setOutput(true, null);
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
         this.setColour(150);
         this.setTooltip("Moves the coordinates");
         this.setHelpUrl("");
@@ -97,6 +105,8 @@ Blockly.Blocks['MoveToItem'] = {
         this.appendValueInput("Object")
             .appendField("Move AGV to")
         this.setOutput(true, null);
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
         this.setColour(150);
         this.setTooltip("Moves towards the item");
         this.setHelpUrl("");
@@ -110,6 +120,8 @@ Blockly.Blocks['MoveItemTo'] = {
             .appendField("To")
             .appendField(new Blockly.FieldTextInput('Coordinates'));
         this.setOutput(true, null);
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
         this.setColour(150);
         this.setTooltip("grabs the item and moves it to the coordinates");
         this.setHelpUrl("");
@@ -124,6 +136,8 @@ Blockly.Blocks['MoveItemToItem'] = {
         this.appendValueInput("Object")
             .appendField("To");
         this.setOutput(true, null);
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
         this.setColour(150);
         this.setTooltip("grabs the item and moves it to the box");
         this.setHelpUrl("");
@@ -150,6 +164,8 @@ Blockly.Blocks['Put'] = {
         this.appendValueInput("Object")
             .appendField("To");
         this.setOutput(true, null);
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
         this.setColour(150);
         this.setTooltip("");
         this.setHelpUrl("Puts an item in the box");
@@ -163,6 +179,8 @@ Blockly.Blocks['Take'] = {
         this.appendValueInput("Object")
             .appendField("From");
         this.setOutput(true, null);
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
         this.setColour(150);
         this.setTooltip("Takes an item from the box");
         this.setHelpUrl("");
@@ -179,6 +197,8 @@ Blockly.Blocks['ChangeBoxOfItem'] = {
         this.appendValueInput("Object")
             .appendField("To");
         this.setOutput(true, null);
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
         this.setColour(150);
         this.setTooltip("Relocates the item from box to box");
         this.setHelpUrl("");
