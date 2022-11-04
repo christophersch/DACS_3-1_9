@@ -83,11 +83,29 @@ function workspaceToCodeDebug(workspace) {
 
     var code2 = document.getElementById("debugText1").innerHTML.replace(/^ /gm, ' \u00A0');
     code2 = code2.replace(/\n/g, '<br>');
+
+    var regex = /print\('starting block: (.+?) at index: (\d+?)'\)/g;
+    code2 = code2.replace(regex, function (match, p1) {
+        return "<span title='" + p1 + "' style='color: " + getColor(workspace, p1) + "'>" + match;
+    });
+
+    var regex = /print\('finished block: (.+?) at index: (\d+?)'\)/g;
+    code2 = code2.replaceAll(regex, "$&</span>");
+
     document.getElementById("debugText1").innerHTML = code2;
 
     return code;
 }
 
+function getColor(workspace, block) {
+    var blocks = workspace.getAllBlocks();
+    for (var i = 0; i < blocks.length; i++) {
+        if (blocks[i].type == block) {
+            return blocks[i].getColour();
+        }
+    }
+    return "#000000";
+}
 
 function blockToCodeDebug(block, opt_thisOnly) {
     if (Blockly.Python.isInitialized === false) {
@@ -125,9 +143,7 @@ function blockToCodeDebug(block, opt_thisOnly) {
         }
         var c = [Blockly.Python.scrub_(block, code[0], opt_thisOnly), code[1]];
 
-        var fullDebugCode = "<span title='" + block.type + "' style='color:" + block.getColour() + "'>" + c[0] + "</span>";
-
-        document.getElementById("debugText1").innerHTML += fullDebugCode + "<br>";
+        document.getElementById("debugText1").innerHTML += c[0] + "<br>";
         document.getElementById("debugText2").innerHTML += block + "<br>";
         return c;
     } else if (typeof code === 'string') {
@@ -145,9 +161,7 @@ function blockToCodeDebug(block, opt_thisOnly) {
             currentBlock = currentBlock.getNextBlock();
         }
 
-        var fullDebugCode = "<span title='" + block.type + "' style='color:" + block.getColour() + "'>" + c + "</span>";
-
-        document.getElementById("debugText1").innerHTML += fullDebugCode + "<br>";
+        document.getElementById("debugText1").innerHTML += c + "<br>";
         document.getElementById("debugText2").innerHTML += block + "<br>";
 
         return c;
