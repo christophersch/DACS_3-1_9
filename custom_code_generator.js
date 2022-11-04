@@ -81,7 +81,7 @@ function workspaceToCodeDebug(workspace) {
     code = code.replace(/\n\s+$/, '\n');
     code = code.replace(/[ \t]+\n/g, '\n');
 
-    var code2 = code.replace(/^ /gm, ' \u00A0');
+    var code2 = document.getElementById("debugText1").innerHTML.replace(/^ /gm, ' \u00A0');
     code2 = code2.replace(/\n/g, '<br>');
     document.getElementById("debugText1").innerHTML = code2;
 
@@ -124,7 +124,10 @@ function blockToCodeDebug(block, opt_thisOnly) {
             throw TypeError('Expecting string from statement block: ' + block.type);
         }
         var c = [Blockly.Python.scrub_(block, code[0], opt_thisOnly), code[1]];
-        document.getElementById("debugText1").innerHTML += c[0] + "<br>";
+
+        var fullDebugCode = "<span title='" + block.type + "' style='color:" + block.getColour() + "'>" + c[0] + "</span>";
+
+        document.getElementById("debugText1").innerHTML += fullDebugCode + "<br>";
         document.getElementById("debugText2").innerHTML += block + "<br>";
         return c;
     } else if (typeof code === 'string') {
@@ -137,10 +140,15 @@ function blockToCodeDebug(block, opt_thisOnly) {
         var c = Blockly.Python.scrub_(block, code, opt_thisOnly);
 
         var currentBlock = block;
+
         while (currentBlock != null) {
-            document.getElementById("debugText2").innerHTML += currentBlock + "<br>";
             currentBlock = currentBlock.getNextBlock();
         }
+
+        var fullDebugCode = "<span title='" + block.type + "' style='color:" + block.getColour() + "'>" + c + "</span>";
+
+        document.getElementById("debugText1").innerHTML += fullDebugCode + "<br>";
+        document.getElementById("debugText2").innerHTML += block + "<br>";
 
         return c;
     } else if (code === null) {
