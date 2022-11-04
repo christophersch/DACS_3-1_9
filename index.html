@@ -394,6 +394,14 @@
 <br>
 <script>
     function changeRenderer() {
+        if (demoWorkspace.getAllBlocks().length > 0) {
+            var answer = confirm("Changing the renderer will clear your workspace. " +
+                "Are you sure you want to continue?");
+            if (!answer) {
+                document.getElementById('renderer').value = demoWorkspace.getRenderer().name;
+                return;
+            }
+        }
         var renderer = document.getElementById('renderer').value;
         demoWorkspace.dispose();
         demoWorkspace = Blockly.inject('blocklyDiv',
