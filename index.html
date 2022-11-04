@@ -384,7 +384,27 @@
         <p id="debugText1", style="width: 300px; height: 550">ABC</p>
         <p id="debugText2", style="width: 300px; height: 550">DEF</p>
     </div>
-</div>
+</div
+<label for="renderer">Renderer:</label>
+<select name="renderer" id="renderer" onchange="changeRenderer()">
+    <option value="zelos">zelos</option>
+    <option value="geras">geras</option>
+    <option value="thrasos">thrasos</option>
+</select>
+<br>
+<script>
+    function changeRenderer() {
+        var renderer = document.getElementById('renderer').value;
+        demoWorkspace.dispose();
+        demoWorkspace = Blockly.inject('blocklyDiv',
+            {renderer: renderer,
+                language: 'python',
+                toolbox: document.getElementById('toolbox')});
+        demoWorkspace.addChangeListener(function(event) {
+            workspaceToCodeDebug(demoWorkspace);
+        });
+    }
+</script>
 
 <button id="send_code_request" onclick="sendRequest()">Send Code</button>
 
