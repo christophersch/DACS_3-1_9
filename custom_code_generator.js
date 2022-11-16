@@ -46,7 +46,6 @@ function workspaceToCodeDebug(workspace) {
         Blockly.Python.init(workspace);
     }
     document.getElementById("debugText1").innerHTML = "";
-    document.getElementById("debugText2").innerHTML = "";
     let code = [];
     const blocks = workspace.getTopBlocks(true);
     for (let i = 0, block; (block = blocks[i]); i++) {
@@ -85,8 +84,8 @@ function workspaceToCodeDebug(workspace) {
     code2 = code2.replace(/\n/g, '<br>');
 
     var regex = /print\('starting block: (.+?) at index: (\d+?)'\)/g;
-    code2 = code2.replace(regex, function (match, p1) {
-        return "<span title='" + p1 + "' style='color: " + getColor(workspace, p1) + "'>" + match;
+    code2 = code2.replace(regex, function (match, p1, p2) {
+        return "<span title='" + p1 + "' style='color: " + getColor(workspace, p1) + "' onmouseover='highlight(" + p2 + "), this.style.backgroundColor = \"" + brighter(getColor(workspace, p1)) + "\"' onmouseout='highlight(-1), this.style.backgroundColor = \"white\"'>" + match;
     });
 
     var regex = /print\('finished block: (.+?) at index: (\d+?)'\)/g;
@@ -97,6 +96,25 @@ function workspaceToCodeDebug(workspace) {
     return code;
 }
 
+var blocked = false;
+
+function highlight(index) {
+    if (blocked && index !== -1) return;
+    if (index !== -1) blocked = true;
+    else blocked = false;
+    var workspace = Blockly.getMainWorkspace();
+    var blocks = workspace.getAllBlocks();
+    for (var i = 0; i < blocks.length; i++) {
+        if (i == index) {
+            blocks[i].setHighlighted(true);
+            workspace.centerOnBlock(blocks[i].id);
+        } else {
+            blocks[i].setHighlighted(false);
+        }
+    }
+    workspace.render();
+}
+
 function getColor(workspace, block) {
     var blocks = workspace.getAllBlocks();
     for (var i = 0; i < blocks.length; i++) {
@@ -105,6 +123,16 @@ function getColor(workspace, block) {
         }
     }
     return "#000000";
+}
+
+function brighter(hex) {
+    var r = parseInt(hex.substr(1, 2), 16);
+    var g = parseInt(hex.substr(3, 2), 16);
+    var b = parseInt(hex.substr(5, 2), 16);
+    r = Math.min(255, Math.round(r * 2));
+    g = Math.min(255, Math.round(g * 2));
+    b = Math.min(255, Math.round(b * 2));
+    return "#" + r.toString(16) + g.toString(16) + b.toString(16);
 }
 
 function blockToCodeDebug(block, opt_thisOnly) {
@@ -144,7 +172,6 @@ function blockToCodeDebug(block, opt_thisOnly) {
         var c = [Blockly.Python.scrub_(block, code[0], opt_thisOnly), code[1]];
 
         document.getElementById("debugText1").innerHTML += c[0] + "<br>";
-        document.getElementById("debugText2").innerHTML += block + "<br>";
         return c;
     } else if (typeof code === 'string') {
         if (Blockly.Python.STATEMENT_PREFIX && !block.suppressPrefixSuffix) {
@@ -162,7 +189,6 @@ function blockToCodeDebug(block, opt_thisOnly) {
         }
 
         document.getElementById("debugText1").innerHTML += c + "<br>";
-        document.getElementById("debugText2").innerHTML += block + "<br>";
 
         return c;
     } else if (code === null) {
