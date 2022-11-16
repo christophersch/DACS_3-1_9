@@ -88,10 +88,44 @@ function workspaceToCodeDebug(workspace) {
         return "<span id='debug" + p2 + "' title='" + p1 + "' style='color: " + getColor(workspace, p1) + "' onmouseover='highlight(" + p2 + ")' onmouseout='highlight(-1)'>" + match;
     });
 
-    var regex = /print\('finished block: (.+?) at index: (\d+?)'\)/g;
-    code2 = code2.replaceAll(regex, "$&</span>");
+    var regex2 = /print\('finished block: (.+?) at index: (\d+?)'\)/g;
+    code2 = code2.replaceAll(regex2, "$&</span>");
 
     document.getElementById("debugText1").innerHTML = code2;
+
+    // For each line, if it is not empty, add a breakpoint indicator. If it is empty, add a blank line.
+    var lines = code2.split('<br>');
+    var code3 = "";
+    var currentBlockStack = []
+    var currentBlockNames = []
+    var currentLengths = []
+    for (var i = 0; i < lines.length; i++) {
+        var isStart = regex.exec(lines[i]);
+        var isEnd = regex2.exec(lines[i]);
+        if (isStart) {
+            currentBlockStack.push(isStart[2]);
+            currentBlockNames.push(isStart[1]);
+            currentLengths.push(0);
+        }
+        if (isEnd) {
+            currentBlockStack.pop();
+            currentBlockNames.pop();
+            currentLengths.pop();
+        }
+        if (currentBlockStack.length > 0 && lines[i].trim().length > 0) {
+            if (currentLengths[currentBlockStack.length-1] == 0) {
+                code3 += "<br><breakpoint style='color: black'" + currentBlockStack.length + " id='breakpoint" + currentBlockStack[currentBlockStack.length-1] + "'><span title='" + currentBlockNames[currentBlockStack.length-1] + "'  onclick='toggleBreakpoint(" + currentBlockStack[currentBlockStack.length-1] + ")' onmouseover='this.style.cursor=\"pointer\"' onmouseout='this.style.cursor=\"default\"'>\u25CF</span>";
+            } else {
+                code3 += "<br>";
+            }
+            currentLengths[currentBlockStack.length-1]++;
+        } else {
+            code3 += "<br>";
+        }
+    }
+    document.getElementById("breakpoints").innerHTML = code3;
+
+    renderExistingBreakpoints();
 
     return code;
 }
@@ -200,6 +234,35 @@ function brighter(color, multiplier) {
     return "#" + rr + gg + bb;
 }
 
+var breakpoints = [];
+
+function toggleBreakpoint(index) {
+    var workspace = Blockly.getMainWorkspace();
+    var blocks = workspace.getAllBlocks();
+    var block = blocks[index];
+    if (block) {
+        if (!block.isBreakpoint) {
+            block.isBreakpoint = true;
+            breakpoints.push(block);
+            document.getElementById("breakpoint" + index).style.color = brighter(block.getColour(), 1.5);
+        } else {
+            block.isBreakpoint = false;
+            breakpoints.splice(breakpoints.indexOf(block), 1);
+            document.getElementById("breakpoint" + index).style.color = "#000000";
+        }
+    }
+}
+
+function renderExistingBreakpoints() {
+    var workspace = Blockly.getMainWorkspace();
+    var blocks = workspace.getAllBlocks();
+    for (var i = 0; i < blocks.length; i++) {
+        if (blocks[i].isBreakpoint) {
+            document.getElementById("breakpoint" + i).style.color = brighter(blocks[i].getColour(), 1.5);
+        }
+    }
+}
+
 function blockToCodeDebug(block, opt_thisOnly) {
     if (Blockly.Python.isInitialized === false) {
         console.warn(
@@ -261,4 +324,18 @@ function blockToCodeDebug(block, opt_thisOnly) {
         return '';
     }
     throw SyntaxError('Invalid code generated: ' + code);
+}
+
+function scrollDebugText() {
+    var from = document.getElementById("debugText1");
+    var to = document.getElementById("breakpoints");
+    to.scrollTop = from.scrollTop;
+    highlight(-1);
+}
+
+function scrollBreakpoints() {
+    var from = document.getElementById("breakpoints");
+    var to = document.getElementById("debugText1");
+    to.scrollTop = from.scrollTop;
+    highlight(-1);
 }

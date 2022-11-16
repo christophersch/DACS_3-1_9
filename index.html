@@ -384,9 +384,11 @@
     </script>
 
     <div id="debug" style="display: flex">
-        <p id="debugText1", style="width: 300px; height: 550">ABC</p>
+        <p id="breakpoints", style="width: 12px; height: 550px; overflow-y: hidden" onscroll="scrollBreakpoints()"></p>
+        <p id="debugText1", style="width: 600px; height: 550px; overflow-y: auto" onscroll="scrollDebugText()"></p>
     </div>
 </div>
+<br>
 <label for="renderer">Renderer:</label>
 <select name="renderer" id="renderer" onchange="changeRenderer()">
     <option value="zelos">zelos</option>
