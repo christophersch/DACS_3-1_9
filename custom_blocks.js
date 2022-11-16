@@ -232,8 +232,8 @@ Blockly.Python['MoveItemTo'] = function(block) {
 
 Blockly.Python['MoveItemToItem'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.moveItemToItem(' + value_object + ', ' + value_object + ')\n';
+    var value_object_2 = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var code = 'ROS.moveItemToItem(' + value_object + ', ' + value_object_2 + ')\n';
     Blockly.Python.definitions_['import_ros'] = 'import ROS';
     return code;
 }
@@ -277,8 +277,8 @@ Blockly.Blocks['Put'] = {
 
 Blockly.Python['Put'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.put(' + value_object + ', ' + value_object + ')\n';
+    var value_object_2 = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var code = 'ROS.put(' + value_object + ', ' + value_object_2 + ')\n';
     Blockly.Python.definitions_['import_ros'] = 'import ROS';
     return code;
 }
@@ -302,8 +302,8 @@ Blockly.Blocks['Take'] = {
 
 Blockly.Python['Take'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.take(' + value_object + ', ' + value_object + ')\n';
+    var value_object_2 = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var code = 'ROS.take(' + value_object + ', ' + value_object_2 + ')\n';
     Blockly.Python.definitions_['import_ros'] = 'import ROS';
     return code;
 }
@@ -330,9 +330,9 @@ Blockly.Blocks['ChangeBoxOfItem'] = {
 
 Blockly.Python['ChangeBoxOfItem'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.changeBoxOfItem(' + value_object + ', ' + value_object + ', ' + value_object + ')\n';
+    var value_object_2 = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var value_object_3 = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var code = 'ROS.changeBoxOfItem(' + value_object + ', ' + value_object_2 + ', ' + value_object_3 + ')\n';
     Blockly.Python.definitions_['import_ros'] = 'import ROS';
     return code;
 }
