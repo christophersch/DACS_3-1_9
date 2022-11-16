@@ -85,7 +85,7 @@ function workspaceToCodeDebug(workspace) {
 
     var regex = /print\('starting block: (.+?) at index: (\d+?)'\)/g;
     code2 = code2.replace(regex, function (match, p1, p2) {
-        return "<span title='" + p1 + "' style='color: " + getColor(workspace, p1) + "' onmouseover='highlight(" + p2 + "), this.style.backgroundColor = \"" + brighter(getColor(workspace, p1)) + "\"' onmouseout='highlight(-1), this.style.backgroundColor = \"white\"'>" + match;
+        return "<span id='debug" + p2 + "' title='" + p1 + "' style='color: " + getColor(workspace, p1) + "' onmouseover='highlight(" + p2 + ")' onmouseout='highlight(-1)'>" + match;
     });
 
     var regex = /print\('finished block: (.+?) at index: (\d+?)'\)/g;
@@ -104,15 +104,71 @@ function highlight(index) {
     else blocked = false;
     var workspace = Blockly.getMainWorkspace();
     var blocks = workspace.getAllBlocks();
-    for (var i = 0; i < blocks.length; i++) {
+    for (var i = blocks.length - 1; i >= 0; i--) {
+        var debug = document.getElementById("debug" + i);
         if (i == index) {
             blocks[i].setHighlighted(true);
             workspace.centerOnBlock(blocks[i].id);
+            if (debug) {
+                debug.style.backgroundColor = brighter(blocks[i].getColour(), 2.5);
+                var rect = debug.getBoundingClientRect();
+
+                var canvas = document.getElementById("full_screen_canvas");
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                var ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.beginPath();
+                ctx.rect(rect.left - 3, rect.top - 3, rect.width + 6, rect.height + 6);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = brighter(blocks[i].getColour(), 1.5);
+                ctx.stroke();
+
+                var blocklyPath = document.querySelector("path[filter^='url(#blocklyEmbossFilter']");
+                var blockRect = blocklyPath.getBoundingClientRect();
+                blockRect.left += 3;
+
+                ctx.beginPath();
+                ctx.rect(blockRect.left - 3, blockRect.top - 3, blockRect.width + 6, blockRect.height + 6);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.setLineDash([5, 3]);
+                ctx.strokeStyle = brighter(blocks[i].getColour(), 1.5) + "20";
+                ctx.moveTo(blockRect.left - 3, blockRect.top - 3);
+                ctx.lineTo(rect.left - 3, rect.top - 3);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(blockRect.left - 3, blockRect.top + blockRect.height + 3);
+                ctx.lineTo(rect.left - 3, rect.top + rect.height + 3);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(blockRect.left + blockRect.width + 3, blockRect.top - 3);
+                ctx.lineTo(rect.left + rect.width + 3, rect.top - 3);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(blockRect.left + blockRect.width + 3, blockRect.top + blockRect.height + 3);
+                ctx.lineTo(rect.left + rect.width + 3, rect.top + rect.height + 3);
+                ctx.stroke();
+
+            }
         } else {
+            if (debug) {
+                debug.style.backgroundColor = "#ffffff";
+            }
             blocks[i].setHighlighted(false);
         }
     }
+    if (index === -1) {
+        var canvas = document.getElementById("full_screen_canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
     workspace.render();
+
 }
 
 function getColor(workspace, block) {
@@ -125,14 +181,23 @@ function getColor(workspace, block) {
     return "#000000";
 }
 
-function brighter(hex) {
-    var r = parseInt(hex.substr(1, 2), 16);
-    var g = parseInt(hex.substr(3, 2), 16);
-    var b = parseInt(hex.substr(5, 2), 16);
-    r = Math.min(255, Math.round(r * 2));
-    g = Math.min(255, Math.round(g * 2));
-    b = Math.min(255, Math.round(b * 2));
-    return "#" + r.toString(16) + g.toString(16) + b.toString(16);
+function brighter(color, multiplier) {
+    var r = parseInt(color.substring(1, 3), 16);
+    var g = parseInt(color.substring(3, 5), 16);
+    var b = parseInt(color.substring(5, 7), 16);
+    r = Math.round(r * multiplier);
+    g = Math.round(g * multiplier);
+    b = Math.round(b * multiplier);
+    if (r > 255) r = 255;
+    if (g > 255) g = 255;
+    if (b > 255) b = 255;
+    var rr = r.toString(16);
+    var gg = g.toString(16);
+    var bb = b.toString(16);
+    if (rr.length == 1) rr = "0" + rr;
+    if (gg.length == 1) gg = "0" + gg;
+    if (bb.length == 1) bb = "0" + bb;
+    return "#" + rr + gg + bb;
 }
 
 function blockToCodeDebug(block, opt_thisOnly) {
