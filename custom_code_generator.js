@@ -26,13 +26,13 @@ function withDebugCode() {
 function getDebugPrefix(block) {
     // Get index of block in current workspace
     var index = block.workspace.getAllBlocks().indexOf(block);
-    return "\nprint('starting block: " + block.type + " at index: " + index + "')\n";
+    return "\n# s: " + block.type + " at: " + index + ".\n";
 }
 
 function getDebugSuffix(block) {
     // Get index of block in current workspace
     var index = block.workspace.getAllBlocks().indexOf(block);
-    return "\nprint('finished block: " + block.type + " at index: " + index + "')\n";
+    return "\n# f: " + block.type + " at: " + index + ".\n";
 }
 
 function workspaceToCodeDebug(workspace) {
@@ -80,31 +80,33 @@ function workspaceToCodeDebug(workspace) {
     code = code.replace(/\n\s+$/, '\n');
     code = code.replace(/[ \t]+\n/g, '\n');
 
-    var code2 = document.getElementById("debugText1").innerHTML.replace(/^ /gm, ' \u00A0');
+    var code2 = document.getElementById("debugText1").innerHTML.replace(/^ /gm, '\u00A0');
+    while (code2.match(/\u00A0 /gm)) {
+        code2 = code2.replace(/\u00A0 /gm, '\u00A0\u00A0');
+    }
     code2 = code2.replace(/\n/g, '<br>');
 
-    var regex = /print\('starting block: (.+?) at index: (\d+?)'\)/g;
+    var regex = /# s: (.+?) at: (\d+?)\./g;
     code2 = code2.replace(regex, function (match, p1, p2) {
-        return "<span id='debug" + p2 + "' title='" + p1 + "' style='color: " + getColor(workspace, p1) + "' onmouseover='highlight(" + p2 + ")' onmouseout='highlight(-1)'>" + match;
+        return "<dbb><span id='debug" + p2 + "' title='" + p1 + "' style='color: " + getColor(workspace, p1) + "' onmouseover='highlight(" + p2 + ")' onmouseout='highlight(-1)'>";
     });
 
-    var regex2 = /print\('finished block: (.+?) at index: (\d+?)'\)/g;
-    code2 = code2.replaceAll(regex2, "$&</span>");
+    var regex2 = /# f: (.+?) at: (\d+?)\./g;
+    code2 = code2.replaceAll(regex2, "</span></dbb>");
 
     document.getElementById("debugText1").innerHTML = code2;
 
-    // For each line, if it is not empty, add a breakpoint indicator. If it is empty, add a blank line.
     var lines = code2.split('<br>');
     var code3 = "";
     var currentBlockStack = []
     var currentBlockNames = []
     var currentLengths = []
     for (var i = 0; i < lines.length; i++) {
-        var isStart = regex.exec(lines[i]);
-        var isEnd = regex2.exec(lines[i]);
+        var isStart = lines[i].match(/<dbb><span id='debug(\d+)' title='(.+?)'/);
+        var isEnd = lines[i].match(/<\/dbb>/);
         if (isStart) {
-            currentBlockStack.push(isStart[2]);
-            currentBlockNames.push(isStart[1]);
+            currentBlockStack.push(isStart[1]);
+            currentBlockNames.push(isStart[2]);
             currentLengths.push(0);
         }
         if (isEnd) {
@@ -112,7 +114,7 @@ function workspaceToCodeDebug(workspace) {
             currentBlockNames.pop();
             currentLengths.pop();
         }
-        if (currentBlockStack.length > 0 && lines[i].trim().length > 0) {
+        if (currentBlockStack.length > 0 && lines[i].replace(/\u00A0/g," ").trim().length > 0) {
             if (currentLengths[currentBlockStack.length-1] == 0) {
                 code3 += "<br><breakpoint style='color: black'" + currentBlockStack.length + " id='breakpoint" + currentBlockStack[currentBlockStack.length-1] + "'><span title='" + currentBlockNames[currentBlockStack.length-1] + "'  onclick='toggleBreakpoint(" + currentBlockStack[currentBlockStack.length-1] + ")' onmouseover='this.style.cursor=\"pointer\"' onmouseout='this.style.cursor=\"default\"'>\u25CF</span>";
             } else {
@@ -124,6 +126,25 @@ function workspaceToCodeDebug(workspace) {
         }
     }
     document.getElementById("breakpoints").innerHTML = code3;
+
+    var ll = document.getElementById("debugText1").innerHTML.split('<br>');
+    var bp = document.getElementById("breakpoints").innerHTML.split('<br>');
+    var newLL = [];
+    var newBP = [];
+    for (var i = 0; i < ll.length; i++) {
+        var trimmed = ll[i].replaceAll(/\u00A0/g," ").replaceAll("&nbsp;"," ").trim();
+        if (trimmed.length > 0) {
+            if ((!trimmed.startsWith("<") || !trimmed.endsWith(">"))) {
+                newLL.push(ll[i]);
+                newBP.push(bp[i]);
+            } else {
+                newLL.push(ll[i].replaceAll(/\u00A0/g," ").replaceAll("&nbsp;"," ").trim() + "<nobreak>");
+                newBP.push(bp[i].replaceAll(/\u00A0/g," ").replaceAll("&nbsp;"," ").trim() + "<nobreak>");
+            }
+        }
+    }
+    document.getElementById("debugText1").innerHTML = newLL.join('<br>').replaceAll(/<nobreak><br>/g,"");
+    document.getElementById("breakpoints").innerHTML = newBP.join('<br>').replaceAll(/<nobreak><br>/g,"");
 
     renderExistingBreakpoints();
 
