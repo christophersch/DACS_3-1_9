@@ -373,14 +373,14 @@
         </category>
     </xml>
     <script>
-        var theme = Blockly.Theme.defineTheme('themeName', {
-            'base': Blockly.Themes.Classic,
-            'startHats': true
+        Blockly.Theme.defineTheme('custom', {
+                'base': Blockly.Themes.Classic,
+                'startHats': true
         });
         var demoWorkspace = Blockly.inject('blocklyDiv',
             {renderer: 'zelos',
                 language: 'python',
-                theme: theme,
+                theme: 'custom',
                 toolbox: document.getElementById('toolbox')});
         demoWorkspace .addChangeListener(function(event) {
             if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
@@ -415,14 +415,10 @@
         }
         var renderer = document.getElementById('renderer').value;
         demoWorkspace.dispose();
-        var theme = Blockly.Theme.defineTheme('themeName', {
-            'base': Blockly.Themes.Classic,
-            'startHats': true
-        });
         demoWorkspace = Blockly.inject('blocklyDiv',
             {renderer: renderer,
                 language: 'python',
-                theme: theme,
+                theme: 'custom',
                 toolbox: document.getElementById('toolbox')});
         demoWorkspace.addChangeListener(function(event) {
             if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
