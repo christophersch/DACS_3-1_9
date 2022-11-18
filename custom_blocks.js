@@ -149,12 +149,15 @@ Blockly.Python['Compartment'] = function(block) {
 
 Blockly.Blocks['MoveTo'] = {
     init: function() {
-        this.appendDummyInput()
-            .appendField("Move AGV to")
-            .appendField(new Blockly.FieldTextInput('Coordinates'));
+        this.appendDummyInput("COORDINATES")
+            .appendField("Move AVG to x")
+            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CX')
+            .appendField("y")
+            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CY');
         this.setOutput(false, null);
         this.setNextStatement(true);
         this.setPreviousStatement(true);
+        this.setInputsInline(true);
         this.setColour(MOVEMENT_COLOR);
         this.setTooltip("Moves the coordinates");
         this.setHelpUrl("");
@@ -162,7 +165,7 @@ Blockly.Blocks['MoveTo'] = {
 }
 
 Blockly.Python['MoveTo'] = function(block) {
-    var text_coordinates = block.getFieldValue('Coordinates');
+    var text_coordinates = block.getFieldValue('CX') + "," + block.getFieldValue('CY');
     var code = 'ROS.moveTo(' + text_coordinates + ')\n';
     Blockly.Python.definitions_['import_ros'] = 'import ROS';
     return code;
@@ -193,9 +196,11 @@ Blockly.Blocks['MoveItemTo'] = {
     init: function() {
         this.appendValueInput("Object")
             .appendField("Move");
-        this.appendDummyInput()
-            .appendField("To")
-            .appendField(new Blockly.FieldTextInput('Coordinates'));
+        this.appendDummyInput("COORDINATES")
+            .appendField("To x")
+            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CX')
+            .appendField("y")
+            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CY');
         this.setOutput(false, null);
         this.setNextStatement(true);
         this.setPreviousStatement(true);
@@ -207,7 +212,7 @@ Blockly.Blocks['MoveItemTo'] = {
 
 Blockly.Python['MoveItemTo'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var text_coordinates = block.getFieldValue('Coordinates');
+    var text_coordinates = block.getFieldValue('CX') + "," + block.getFieldValue('CY');
     var code = 'ROS.moveItemTo(' + value_object + ', ' + text_coordinates + ')\n';
     Blockly.Python.definitions_['import_ros'] = 'import ROS';
     return code;
@@ -231,7 +236,7 @@ Blockly.Python['MoveItemTo'] = function(block) {
 }
 
 Blockly.Python['MoveItemToItem'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'OBJECT', Blockly.Python.ORDER_ATOMIC);
     var value_object_2 = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
     var code = 'ROS.moveItemToItem(' + value_object + ', ' + value_object_2 + ')\n';
     Blockly.Python.definitions_['import_ros'] = 'import ROS';
@@ -276,7 +281,7 @@ Blockly.Blocks['Put'] = {
 }
 
 Blockly.Python['Put'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'OBJECT', Blockly.Python.ORDER_ATOMIC);
     var value_object_2 = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
     var code = 'ROS.put(' + value_object + ', ' + value_object_2 + ')\n';
     Blockly.Python.definitions_['import_ros'] = 'import ROS';
@@ -301,7 +306,7 @@ Blockly.Blocks['Take'] = {
 }
 
 Blockly.Python['Take'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'OBJECT', Blockly.Python.ORDER_ATOMIC);
     var value_object_2 = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
     var code = 'ROS.take(' + value_object + ', ' + value_object_2 + ')\n';
     Blockly.Python.definitions_['import_ros'] = 'import ROS';
@@ -316,7 +321,7 @@ Blockly.Blocks['ChangeBoxOfItem'] = {
         this.appendValueInput("Object")
             .setCheck("Box")
             .appendField("From");
-        this.appendValueInput("Object")
+        this.appendValueInput("Object3")
             .setCheck("Box")
             .appendField("To");
         this.setOutput(false, null);
@@ -329,9 +334,9 @@ Blockly.Blocks['ChangeBoxOfItem'] = {
 }
 
 Blockly.Python['ChangeBoxOfItem'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'OBJECT', Blockly.Python.ORDER_ATOMIC);
     var value_object_2 = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var value_object_3 = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var value_object_3 = Blockly.Python.valueToCode(block, 'Object3', Blockly.Python.ORDER_ATOMIC);
     var code = 'ROS.changeBoxOfItem(' + value_object + ', ' + value_object_2 + ', ' + value_object_3 + ')\n';
     Blockly.Python.definitions_['import_ros'] = 'import ROS';
     return code;
