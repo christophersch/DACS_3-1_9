@@ -355,6 +355,8 @@
 <!--            </block>-->
             <block type="ChangeBoxOfItem">
             </block>
+            <block type="OnEvent">
+            </block>
         </category>
 
         <category colour="70" name="ROS Variables">
@@ -371,9 +373,14 @@
         </category>
     </xml>
     <script>
+        var theme = Blockly.Theme.defineTheme('themeName', {
+            'base': Blockly.Themes.Classic,
+            'startHats': true
+        });
         var demoWorkspace = Blockly.inject('blocklyDiv',
             {renderer: 'zelos',
                 language: 'python',
+                theme: theme,
                 toolbox: document.getElementById('toolbox')});
         demoWorkspace .addChangeListener(function(event) {
             if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
@@ -408,9 +415,14 @@
         }
         var renderer = document.getElementById('renderer').value;
         demoWorkspace.dispose();
+        var theme = Blockly.Theme.defineTheme('themeName', {
+            'base': Blockly.Themes.Classic,
+            'startHats': true
+        });
         demoWorkspace = Blockly.inject('blocklyDiv',
             {renderer: renderer,
                 language: 'python',
+                theme: theme,
                 toolbox: document.getElementById('toolbox')});
         demoWorkspace.addChangeListener(function(event) {
             if (event.type == Blockly.Events.VIEWPORT_CHANGE) {

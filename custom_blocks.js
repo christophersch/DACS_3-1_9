@@ -342,6 +342,26 @@ Blockly.Python['ChangeBoxOfItem'] = function(block) {
     return code;
 }
 
+Blockly.Blocks['OnEvent'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("When")
+            .appendField(new Blockly.FieldDropdown([["Event1", "event_1"], ["Event2", "event_2"]]), "EVENT");
+        this.appendStatementInput("NAME")
+            .setCheck(null);
+        this.setColour(0);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+
+Blockly.Python['OnEvent'] = function(block) {
+    var st = Blockly.Python.statementToCode(block, 'NAME');
+    var value_event = block.getFieldValue('EVENT');
+    var code = "def on_" + value_event + "():\n" + st + "\n";
+    return code;
+}
+
 // Blockly.Blocks['print'] = {
 //     init: function() {
 //         this.appendValueInput("VALUE")
