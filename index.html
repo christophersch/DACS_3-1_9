@@ -355,6 +355,8 @@
 <!--            </block>-->
             <block type="ChangeBoxOfItem">
             </block>
+            <block type="OnEvent">
+            </block>
         </category>
 
         <category colour="70" name="ROS Variables">
@@ -371,20 +373,29 @@
         </category>
     </xml>
     <script>
+        Blockly.Theme.defineTheme('custom', {
+                'base': Blockly.Themes.Classic,
+                'startHats': true
+        });
         var demoWorkspace = Blockly.inject('blocklyDiv',
             {renderer: 'zelos',
                 language: 'python',
+                theme: 'custom',
                 toolbox: document.getElementById('toolbox')});
         demoWorkspace .addChangeListener(function(event) {
+            if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
+                return;
+            }
             workspaceToCodeDebug(demoWorkspace);
         });
     </script>
 
     <div id="debug" style="display: flex">
-        <p id="debugText1", style="width: 300px; height: 550">ABC</p>
-        <p id="debugText2", style="width: 300px; height: 550">DEF</p>
+        <p id="breakpoints", style="width: 12px; height: 550px; overflow-y: hidden" onscroll="scrollBreakpoints()"></p>
+        <p id="debugText1", style="width: 600px; height: 550px; overflow-y: auto" onscroll="scrollDebugText()"></p>
     </div>
 </div>
+<br>
 <label for="renderer">Renderer:</label>
 <select name="renderer" id="renderer" onchange="changeRenderer()">
     <option value="zelos">zelos</option>
@@ -407,22 +418,29 @@
         demoWorkspace = Blockly.inject('blocklyDiv',
             {renderer: renderer,
                 language: 'python',
+                theme: 'custom',
                 toolbox: document.getElementById('toolbox')});
         demoWorkspace.addChangeListener(function(event) {
+            if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
+                return;
+            }
             workspaceToCodeDebug(demoWorkspace);
         });
     }
 </script>
-
+<span>
+<label for="token" style="vertical-align: middle">Token:</label>
+<textarea id="token" rows="1" cols="50" style="font-size: small; vertical-align: middle"></textarea>
+</span>
+<br>
 <button id="send_code_request" onclick="sendRequest()">Send Code</button>
-
-<label for="token">Token: </label>
-<textarea id="token" rows="1" cols="50" style="font-size: small"></textarea>
 
 <div id="output">
     Output:
     <p id="outputText"></p>
 </div>
+
+<canvas id="full_screen_canvas" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1000000; pointer-events: none;"></canvas>
 
 </body>
 </html>

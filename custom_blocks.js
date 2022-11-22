@@ -151,12 +151,15 @@ Blockly.Python['Compartment'] = function(block) {
 
 Blockly.Blocks['MoveTo'] = {
     init: function() {
-        this.appendDummyInput()
-            .appendField("Move AGV to")
-            .appendField(new Blockly.FieldTextInput('Coordinates'));
+        this.appendDummyInput("COORDINATES")
+            .appendField("Move AVG to x")
+            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CX')
+            .appendField("y")
+            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CY');
         this.setOutput(false, null);
         this.setNextStatement(true);
         this.setPreviousStatement(true);
+        this.setInputsInline(true);
         this.setColour(MOVEMENT_COLOR);
         this.setTooltip("Moves the coordinates");
         this.setHelpUrl("");
@@ -164,7 +167,7 @@ Blockly.Blocks['MoveTo'] = {
 }
 
 Blockly.Python['MoveTo'] = function(block) {
-    var text_coordinates = block.getFieldValue('Coordinates');
+    var text_coordinates = block.getFieldValue('CX') + "," + block.getFieldValue('CY');
     var code = 'ROS.moveTo(' + text_coordinates + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
@@ -195,9 +198,11 @@ Blockly.Blocks['MoveItemTo'] = {
     init: function() {
         this.appendValueInput("Object")
             .appendField("Move");
-        this.appendDummyInput()
-            .appendField("To")
-            .appendField(new Blockly.FieldTextInput('Coordinates'));
+        this.appendDummyInput("COORDINATES")
+            .appendField("To x")
+            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CX')
+            .appendField("y")
+            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CY');
         this.setOutput(false, null);
         this.setNextStatement(true);
         this.setPreviousStatement(true);
@@ -209,7 +214,7 @@ Blockly.Blocks['MoveItemTo'] = {
 
 Blockly.Python['MoveItemTo'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var text_coordinates = block.getFieldValue('Coordinates');
+    var text_coordinates = block.getFieldValue('CX') + "," + block.getFieldValue('CY');
     var code = 'ROS.moveItemTo(' + value_object + ', ' + text_coordinates + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
@@ -318,7 +323,7 @@ Blockly.Blocks['ChangeBoxOfItem'] = {
         this.appendValueInput("Object")
             .setCheck("Box")
             .appendField("From");
-        this.appendValueInput("Object")
+        this.appendValueInput("Object3")
             .setCheck("Box")
             .appendField("To");
         this.setOutput(false, null);
@@ -336,6 +341,26 @@ Blockly.Python['ChangeBoxOfItem'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
     var code = 'ROS.changeBoxOfItem(' + value_object + ', ' + value_object + ', ' + value_object + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
+    return code;
+}
+
+Blockly.Blocks['OnEvent'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("When")
+            .appendField(new Blockly.FieldDropdown([["Event1", "event_1"], ["Event2", "event_2"]]), "EVENT");
+        this.appendStatementInput("NAME")
+            .setCheck(null);
+        this.setColour(0);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+}
+
+Blockly.Python['OnEvent'] = function(block) {
+    var st = Blockly.Python.statementToCode(block, 'NAME');
+    var value_event = block.getFieldValue('EVENT');
+    var code = "def on_" + value_event + "():\n" + st + "\n";
     return code;
 }
 

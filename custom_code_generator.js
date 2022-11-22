@@ -26,13 +26,13 @@ function withDebugCode() {
 function getDebugPrefix(block) {
     // Get index of block in current workspace
     var index = block.workspace.getAllBlocks().indexOf(block);
-    return "\nprint('starting block: " + block.type + " at index: " + index + "')\n";
+    return "\n# s: " + block.type + " at: " + index + ".\n";
 }
 
 function getDebugSuffix(block) {
     // Get index of block in current workspace
     var index = block.workspace.getAllBlocks().indexOf(block);
-    return "\nprint('finished block: " + block.type + " at index: " + index + "')\n";
+    return "\n# f: " + block.type + " at: " + index + ".\n";
 }
 
 function workspaceToCodeDebug(workspace) {
@@ -46,7 +46,6 @@ function workspaceToCodeDebug(workspace) {
         Blockly.Python.init(workspace);
     }
     document.getElementById("debugText1").innerHTML = "";
-    document.getElementById("debugText2").innerHTML = "";
     let code = [];
     const blocks = workspace.getTopBlocks(true);
     for (let i = 0, block; (block = blocks[i]); i++) {
@@ -81,20 +80,150 @@ function workspaceToCodeDebug(workspace) {
     code = code.replace(/\n\s+$/, '\n');
     code = code.replace(/[ \t]+\n/g, '\n');
 
-    var code2 = document.getElementById("debugText1").innerHTML.replace(/^ /gm, ' \u00A0');
+    var code2 = document.getElementById("debugText1").innerHTML.replace(/^ /gm, '\u00A0');
+    while (code2.match(/\u00A0 /gm)) {
+        code2 = code2.replace(/\u00A0 /gm, '\u00A0\u00A0');
+    }
     code2 = code2.replace(/\n/g, '<br>');
 
-    var regex = /print\('starting block: (.+?) at index: (\d+?)'\)/g;
-    code2 = code2.replace(regex, function (match, p1) {
-        return "<span title='" + p1 + "' style='color: " + getColor(workspace, p1) + "'>" + match;
+    var regex = /# s: (.+?) at: (\d+?)\./g;
+    code2 = code2.replace(regex, function (match, p1, p2) {
+        return "<dbb><span id='debug" + p2 + "' title='" + p1 + "' style='color: " + getColor(workspace, p1) + "' onmouseover='highlight(" + p2 + ")' onmouseout='highlight(-1)'>";
     });
 
-    var regex = /print\('finished block: (.+?) at index: (\d+?)'\)/g;
-    code2 = code2.replaceAll(regex, "$&</span>");
+    var regex2 = /# f: (.+?) at: (\d+?)\./g;
+    code2 = code2.replaceAll(regex2, "</span></dbb>");
 
     document.getElementById("debugText1").innerHTML = code2;
 
+    var lines = code2.split('<br>');
+    var code3 = "";
+    var currentBlockStack = []
+    var currentBlockNames = []
+    var currentLengths = []
+    for (var i = 0; i < lines.length; i++) {
+        var isStart = lines[i].match(/<dbb><span id='debug(\d+)' title='(.+?)'/);
+        var isEnd = lines[i].match(/<\/dbb>/);
+        if (isStart) {
+            currentBlockStack.push(isStart[1]);
+            currentBlockNames.push(isStart[2]);
+            currentLengths.push(0);
+        }
+        if (isEnd) {
+            currentBlockStack.pop();
+            currentBlockNames.pop();
+            currentLengths.pop();
+        }
+        if (currentBlockStack.length > 0 && lines[i].replace(/\u00A0/g," ").trim().length > 0) {
+            if (currentLengths[currentBlockStack.length-1] == 0) {
+                code3 += "<br><breakpoint style='color: black'" + currentBlockStack.length + " id='breakpoint" + currentBlockStack[currentBlockStack.length-1] + "'><span title='" + currentBlockNames[currentBlockStack.length-1] + "'  onclick='toggleBreakpoint(" + currentBlockStack[currentBlockStack.length-1] + ")' onmouseover='this.style.cursor=\"pointer\"' onmouseout='this.style.cursor=\"default\"'>\u25CF</span>";
+            } else {
+                code3 += "<br>";
+            }
+            currentLengths[currentBlockStack.length-1]++;
+        } else {
+            code3 += "<br>";
+        }
+    }
+    document.getElementById("breakpoints").innerHTML = code3;
+
+    var ll = document.getElementById("debugText1").innerHTML.split('<br>');
+    var bp = document.getElementById("breakpoints").innerHTML.split('<br>');
+    var newLL = [];
+    var newBP = [];
+    for (var i = 0; i < ll.length; i++) {
+        var trimmed = ll[i].replaceAll(/\u00A0/g," ").replaceAll("&nbsp;"," ").trim();
+        if (trimmed.length > 0) {
+            if ((!trimmed.startsWith("<") || !trimmed.endsWith(">"))) {
+                newLL.push(ll[i]);
+                newBP.push(bp[i]);
+            } else {
+                newLL.push(ll[i].replaceAll(/\u00A0/g," ").replaceAll("&nbsp;"," ").trim() + "<nobreak>");
+                newBP.push(bp[i].replaceAll(/\u00A0/g," ").replaceAll("&nbsp;"," ").trim() + "<nobreak>");
+            }
+        }
+    }
+    document.getElementById("debugText1").innerHTML = newLL.join('<br>').replaceAll(/<nobreak><br>/g,"");
+    document.getElementById("breakpoints").innerHTML = newBP.join('<br>').replaceAll(/<nobreak><br>/g,"");
+
+    renderExistingBreakpoints();
+
     return code;
+}
+
+var blocked = false;
+
+function highlight(index) {
+    if (blocked && index !== -1) return;
+    if (index !== -1) blocked = true;
+    else blocked = false;
+    var workspace = Blockly.getMainWorkspace();
+    var blocks = workspace.getAllBlocks();
+    for (var i = blocks.length - 1; i >= 0; i--) {
+        var debug = document.getElementById("debug" + i);
+        if (i == index) {
+            blocks[i].setHighlighted(true);
+            workspace.centerOnBlock(blocks[i].id);
+            if (debug) {
+                debug.style.backgroundColor = brighter(blocks[i].getColour(), 2.5);
+                var rect = debug.getBoundingClientRect();
+
+                var canvas = document.getElementById("full_screen_canvas");
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                var ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.beginPath();
+                ctx.rect(rect.left - 3, rect.top - 3, rect.width + 6, rect.height + 6);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = brighter(blocks[i].getColour(), 1.5);
+                ctx.stroke();
+
+                var blocklyPath = document.querySelector("path[filter^='url(#blocklyEmbossFilter']");
+                var blockRect = blocklyPath.getBoundingClientRect();
+                blockRect.left += 3;
+
+                ctx.beginPath();
+                ctx.rect(blockRect.left - 3, blockRect.top - 3, blockRect.width + 6, blockRect.height + 6);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.setLineDash([5, 3]);
+                ctx.strokeStyle = brighter(blocks[i].getColour(), 1.5) + "20";
+                ctx.moveTo(blockRect.left - 3, blockRect.top - 3);
+                ctx.lineTo(rect.left - 3, rect.top - 3);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(blockRect.left - 3, blockRect.top + blockRect.height + 3);
+                ctx.lineTo(rect.left - 3, rect.top + rect.height + 3);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(blockRect.left + blockRect.width + 3, blockRect.top - 3);
+                ctx.lineTo(rect.left + rect.width + 3, rect.top - 3);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(blockRect.left + blockRect.width + 3, blockRect.top + blockRect.height + 3);
+                ctx.lineTo(rect.left + rect.width + 3, rect.top + rect.height + 3);
+                ctx.stroke();
+
+            }
+        } else {
+            if (debug) {
+                debug.style.backgroundColor = "#ffffff";
+            }
+            blocks[i].setHighlighted(false);
+        }
+    }
+    if (index === -1) {
+        var canvas = document.getElementById("full_screen_canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    workspace.render();
+
 }
 
 function getColor(workspace, block) {
@@ -105,6 +234,54 @@ function getColor(workspace, block) {
         }
     }
     return "#000000";
+}
+
+function brighter(color, multiplier) {
+    var r = parseInt(color.substring(1, 3), 16);
+    var g = parseInt(color.substring(3, 5), 16);
+    var b = parseInt(color.substring(5, 7), 16);
+    r = Math.round(r * multiplier);
+    g = Math.round(g * multiplier);
+    b = Math.round(b * multiplier);
+    if (r > 255) r = 255;
+    if (g > 255) g = 255;
+    if (b > 255) b = 255;
+    var rr = r.toString(16);
+    var gg = g.toString(16);
+    var bb = b.toString(16);
+    if (rr.length == 1) rr = "0" + rr;
+    if (gg.length == 1) gg = "0" + gg;
+    if (bb.length == 1) bb = "0" + bb;
+    return "#" + rr + gg + bb;
+}
+
+var breakpoints = [];
+
+function toggleBreakpoint(index) {
+    var workspace = Blockly.getMainWorkspace();
+    var blocks = workspace.getAllBlocks();
+    var block = blocks[index];
+    if (block) {
+        if (!block.isBreakpoint) {
+            block.isBreakpoint = true;
+            breakpoints.push(block);
+            document.getElementById("breakpoint" + index).style.color = brighter(block.getColour(), 1.5);
+        } else {
+            block.isBreakpoint = false;
+            breakpoints.splice(breakpoints.indexOf(block), 1);
+            document.getElementById("breakpoint" + index).style.color = "#000000";
+        }
+    }
+}
+
+function renderExistingBreakpoints() {
+    var workspace = Blockly.getMainWorkspace();
+    var blocks = workspace.getAllBlocks();
+    for (var i = 0; i < blocks.length; i++) {
+        if (blocks[i].isBreakpoint) {
+            document.getElementById("breakpoint" + i).style.color = brighter(blocks[i].getColour(), 1.5);
+        }
+    }
 }
 
 function blockToCodeDebug(block, opt_thisOnly) {
@@ -144,7 +321,6 @@ function blockToCodeDebug(block, opt_thisOnly) {
         var c = [Blockly.Python.scrub_(block, code[0], opt_thisOnly), code[1]];
 
         document.getElementById("debugText1").innerHTML += c[0] + "<br>";
-        document.getElementById("debugText2").innerHTML += block + "<br>";
         return c;
     } else if (typeof code === 'string') {
         if (Blockly.Python.STATEMENT_PREFIX && !block.suppressPrefixSuffix) {
@@ -162,7 +338,6 @@ function blockToCodeDebug(block, opt_thisOnly) {
         }
 
         document.getElementById("debugText1").innerHTML += c + "<br>";
-        document.getElementById("debugText2").innerHTML += block + "<br>";
 
         return c;
     } else if (code === null) {
@@ -170,4 +345,18 @@ function blockToCodeDebug(block, opt_thisOnly) {
         return '';
     }
     throw SyntaxError('Invalid code generated: ' + code);
+}
+
+function scrollDebugText() {
+    var from = document.getElementById("debugText1");
+    var to = document.getElementById("breakpoints");
+    to.scrollTop = from.scrollTop;
+    highlight(-1);
+}
+
+function scrollBreakpoints() {
+    var from = document.getElementById("breakpoints");
+    var to = document.getElementById("debugText1");
+    to.scrollTop = from.scrollTop;
+    highlight(-1);
 }
