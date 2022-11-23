@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/code')
 def receive():
     token = request.args.get('token', default = '', type = str)
-    code = request.args.get('code', default = '', type = str)
+    code = request.get_data()
     if token == open("token.txt", "r").read():
         with open("_blockly.py", "w") as f:
             f.write(code)
