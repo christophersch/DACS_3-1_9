@@ -7,6 +7,8 @@ const OTHER_COLOR = 310;
 
 const COROSECT_FARM_IMPORT = "from corosect import farm"
 
+// Grab item
+
 Blockly.Blocks['Grab'] = {
     init: function() {
         this.appendValueInput("OBJECT")
@@ -27,6 +29,9 @@ Blockly.Python['Grab'] = function(block) {
     return code;
 }
 
+
+// Drop item 
+
 Blockly.Blocks['Drop'] = {
     init: function() {
         this.appendValueInput("OBJECT")
@@ -40,13 +45,15 @@ Blockly.Blocks['Drop'] = {
         this.setHelpUrl("");
     }
 }
-
 Blockly.Python['Drop'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'OBJECT', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.drop(' + value_object + ')\n';
+    var code = 'farm.farm_data_test()\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }
+
+
+// Feed
 
 Blockly.Blocks['Feed'] = {
     init: function() {
@@ -61,13 +68,17 @@ Blockly.Blocks['Feed'] = {
         this.setHelpUrl("");
     }
 }
-
 Blockly.Python['Feed'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'OBJECT', Blockly.Python.ORDER_ATOMIC);
     var code = 'ROS.feed(' + value_object + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }
+
+
+// ITEMS
+
+// Item: Box
 
 Blockly.Blocks['Box'] = {
     init: function() {
@@ -79,11 +90,13 @@ Blockly.Blocks['Box'] = {
         this.setHelpUrl("");
     }
 }
-
 Blockly.Python['Box'] = function(block) {
     var code = '\'box1\'';
     return [code, Blockly.Python.ORDER_NONE];
 }
+
+
+// Item: Egg
 
 Blockly.Blocks['Egg'] = {
     init: function() {
@@ -95,11 +108,13 @@ Blockly.Blocks['Egg'] = {
         this.setHelpUrl("");
     }
 }
-
 Blockly.Python['Egg'] = function(block) {
     var code = '\'egg\'';
     return [code, Blockly.Python.ORDER_NONE];
 }
+
+
+// Item: AGV
 
 Blockly.Blocks['AGV'] = {
     init: function() {
@@ -111,11 +126,13 @@ Blockly.Blocks['AGV'] = {
         this.setHelpUrl("");
     }
 }
-
 Blockly.Python['AGV'] = function(block) {
     var code = '\'agv\'';
     return [code, Blockly.Python.ORDER_NONE];
 }
+
+
+// Item: Adult
 
 Blockly.Blocks['Adult'] = {
     init: function() {
@@ -127,11 +144,13 @@ Blockly.Blocks['Adult'] = {
         this.setHelpUrl("");
     }
 }
-
 Blockly.Python['Adult'] = function(block) {
     var code = '\'adult\'';
     return [code, Blockly.Python.ORDER_NONE];
 }
+
+
+// Item: Compartment
 
 Blockly.Blocks['Compartment'] = {
     init: function() {
@@ -143,7 +162,6 @@ Blockly.Blocks['Compartment'] = {
         this.setHelpUrl("");
     }
 }
-
 Blockly.Python['Compartment'] = function(block) {
     var code = '\'compartment\'';
     return [code, Blockly.Python.ORDER_NONE];
