@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/code')
+@app.route('/code', methods=['POST'])
 def receive():
     token = request.args.get('token', default = '', type = str)
     code = request.get_data()
