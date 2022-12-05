@@ -8,8 +8,6 @@
     <script src="custom_blocks.js"></script>
     <script src="custom_code_generator.js"></script>
     <script src="web_client.js"></script>
-    <!-- Blockly user's language -->
-    <!--    <script src="de.js" id="block_lang"></script>-->
     <style>
         body {
             background-color: #fff;
@@ -34,37 +32,22 @@
     <p></p>
 </div>
 <div id="language">
-    <script id="block_lang" src="en.js"></script>
+
 </div>
 <script>
     function changeLanguage(value) {
-
-        var firstScript = document.getElementsByTagName('script')[0];
-        document.getElementsByTagName('head')[0].removeChild(firstScript);
-        var secondScript = document.createElement('script');
-        secondScript.src = value + ".js";
-        document.getElementsByTagName('head')[0].appendChild(secondScript);
-
-        var renderer = document.getElementById('renderer').value;
-        demoWorkspace.dispose();
-        demoWorkspace = Blockly.inject('blocklyDiv',
-            {renderer: renderer,
-                language: 'python',
-                theme: 'custom',
-                toolbox: document.getElementById('toolbox')});
-        // var renderer = document.getElementById('renderer').value;
-        // demoWorkspace.dispose();
-        // demoWorkspace = Blockly.inject('blocklyDiv',
-        //     {renderer: renderer,
-        //         language: 'python',
-        //         theme: 'custom',
-        //         toolbox: document.getElementById('toolbox')});
-        // demoWorkspace.addChangeListener(function(event) {
-        //     if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
-        //         return;
-        //     }
-        //     workspaceToCodeDebug(demoWorkspace);
-        // });
+        if (Blockly.getMainWorkspace().getAllBlocks().length > 0) {
+            var answer = confirm("Changing the renderer will clear your workspace. " +
+                "Are you sure you want to continue?");
+            if (!answer) {
+                var langSelector = document.getElementById('langselector');
+                langSelector.value = document.getElementById('block_lang').src.split('/').pop().split('.')[0];
+                return;
+            }
+        }
+        var params = new URLSearchParams(window.location.search);
+        params.set('lang', value);
+        window.location.search = params.toString();
     }
 </script>
 
@@ -419,21 +402,35 @@
         </category>
     </xml>
     <script>
-        Blockly.Theme.defineTheme('custom', {
+        var langTag = document.getElementById("language");
+        var searchParams = new URLSearchParams(window.location.search);
+        var lang = searchParams.get('lang');
+        if (!lang) lang = "en";
+        var langScript = document.createElement("script");
+        langScript.id = "block_lang";
+        langScript.src = lang + ".js";
+        langTag.appendChild(langScript);
+
+        var langDropdown = document.getElementById("langselector");
+        langDropdown.value = lang;
+
+        setTimeout(function () {
+            Blockly.Theme.defineTheme('custom', {
                 'base': Blockly.Themes.Classic,
                 'startHats': true
-        });
-        var demoWorkspace = Blockly.inject('blocklyDiv',
-            {renderer: 'zelos',
-                language: 'python',
-                theme: 'custom',
-                toolbox: document.getElementById('toolbox')});
-        demoWorkspace .addChangeListener(function(event) {
-            if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
-                return;
-            }
-            workspaceToCodeDebug(demoWorkspace);
-        });
+            });
+            var demoWorkspace = Blockly.inject('blocklyDiv',
+                {renderer: 'zelos',
+                    language: 'python',
+                    theme: 'custom',
+                    toolbox: document.getElementById('toolbox')});
+            demoWorkspace .addChangeListener(function(event) {
+                if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
+                    return;
+                }
+                workspaceToCodeDebug(demoWorkspace);
+            });
+        }, 100);
     </script>
 
     <div id="debug" style="display: flex">
