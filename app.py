@@ -1,4 +1,5 @@
 from flask import Flask, request
+from waitress import serve
 from markupsafe import escape
 import subprocess
 import sys
@@ -25,3 +26,10 @@ def receive():
         return log
     else:
         return "Invalid token."
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return "Use POST to " + request.host + "/code with a token argument and the code in the body."
+
+serve(app, host='0.0.0.0', port=5000)
