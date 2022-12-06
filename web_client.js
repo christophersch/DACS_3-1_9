@@ -1,8 +1,12 @@
-const REQUEST_URL = "http://localhost:80/"
+const REQUEST_URL_LOCAL = "http://localhost:5000";
+const REQUEST_URL_SERVER  = "http://blockly.ingoh.net:5000"
 
 function sendRequest() {
+    var token = document.getElementById("token").value;
+    var local = document.getElementById("local").checked;
     var request = new XMLHttpRequest();
-    request.open("POST", REQUEST_URL, true);
+    if (local) request.open("POST", REQUEST_URL_LOCAL + "?token=" + token, true);
+    else request.open("POST", REQUEST_URL_SERVER + "?token=" + token, true);
     var workspace = Blockly.getMainWorkspace();
     var codeOrig = Blockly.Python.workspaceToCode(workspace);
     var code = workspaceToCodeDebug(workspace);
@@ -16,7 +20,5 @@ function sendRequest() {
             document.getElementById("outputText").innerHTML = response.replaceAll("\n", "<br>");
         }
     }
-    var token = document.getElementById("token").value;
-    request.send("<<blockly>>" + code + "<</blockly>><<token>>" + token + "<</token>>");
-    console.log("fuck");
+    request.send(code);
 }
