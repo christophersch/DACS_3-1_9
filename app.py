@@ -7,10 +7,11 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/code', methods=['POST'])
-def receive():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
     token = request.args.get('token', default = '', type = str)
-    code = request.get_data()
+    code = request.get_data().decode("utf-8")
     if token == open("token.txt", "r").read():
         with open("_blockly.py", "w") as f:
             f.write(code)
@@ -23,13 +24,21 @@ def receive():
         os.remove("_blockly.py")
         os.remove("_blockly.log")
         os.remove("_blockly.err")
-        return log
+        response = app.response_class(
+            response=log,
+            status=200,
+            mimetype='text/plain'
+        )
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        return response
     else:
-        return "Invalid token."
-
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def catch_all(path):
-    return "Use POST to " + request.host + "/code with a token argument and the code in the body."
-
+        msg = "Invalid token."
+        response = app.response_class(
+            response=msg,
+            status=403,
+            mimetype='text/plain'
+        )
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        return response
+        
 serve(app, host='0.0.0.0', port=5000)
