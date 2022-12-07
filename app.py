@@ -7,8 +7,8 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
+@app.route('/', defaults={'path': ''}, methods=['POST'])
+@app.route('/<path:path>', methods=['POST'])
 def catch_all(path):
     token = request.args.get('token', default = '', type = str)
     code = request.get_data().decode("utf-8")
