@@ -11,17 +11,24 @@ const COROSECT_FARM_IMPORT = "from corosect import farm"
 
 Blockly.Blocks['Grab'] = {
     init: function() {
-        this.appendValueInput("OBJECT")
-            .setCheck(["Item", "Box"])
-            .appendField("Grab");
-        this.setOutput(false, null);
-        this.setNextStatement(true);
-        this.setPreviousStatement(true);
-        this.setColour(ITEM_INTERACTION_COLOR);
-        this.setTooltip("grabs the item");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Grab",
+            "message0": "%{BKY_GRAB_TITLE}",
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": ["Item", "Box"]
+                }
+            ],
+            "colour": ITEM_INTERACTION_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "tooltip": "%{BKY_GRAB_TOOLTIP}"
+        });
     }
 }
+
 Blockly.Python['Grab'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'OBJECT', Blockly.Python.ORDER_ATOMIC);
     var code = 'ROS.grab(' + value_object + ')\n';
@@ -34,15 +41,21 @@ Blockly.Python['Grab'] = function(block) {
 
 Blockly.Blocks['Drop'] = {
     init: function() {
-        this.appendValueInput("OBJECT")
-            .setCheck(["Item", "Box"])
-            .appendField("Drop");
-        this.setOutput(false, null);
-        this.setNextStatement(true);
-        this.setPreviousStatement(true);
-        this.setColour(ITEM_INTERACTION_COLOR);
-        this.setTooltip("drops the item");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Drop",
+            "message0": '%{BKY_DROP_TITLE}',
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": ["Item", "Box"]
+                }
+            ],
+            "colour": ITEM_INTERACTION_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "tooltip": "%{BKY_DROP_TOOLTIP}"
+        });
     }
 }
 Blockly.Python['Drop'] = function(block) {
@@ -57,15 +70,21 @@ Blockly.Python['Drop'] = function(block) {
 
 Blockly.Blocks['Feed'] = {
     init: function() {
-        this.appendValueInput("OBJECT")
-            .setCheck("Box")
-            .appendField("Feed");
-        this.setOutput(false, null);
-        this.setNextStatement(true);
-        this.setPreviousStatement(true);
-        this.setColour(BOX_INTERACTION_COLOR);
-        this.setTooltip("Feeds the box");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Feed",
+            "message0": '%{BKY_FEED_TITLE}',
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": "Box"
+                }
+            ],
+            "colour": BOX_INTERACTION_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "tooltip": "%{BKY_FEED_TOOLTIP}"
+        });
     }
 }
 Blockly.Python['Feed'] = function(block) {
@@ -82,12 +101,13 @@ Blockly.Python['Feed'] = function(block) {
 
 Blockly.Blocks['Box'] = {
     init: function() {
-        this.appendDummyInput()
-            .appendField("Box1");
-        this.setOutput(true, "Box");
-        this.setColour(VARIABLE_COLOR);
-        this.setTooltip("");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Box",
+            "message0": '%{BKY_BOX1_TITLE}',
+            "output": "Box",
+            "colour": VARIABLE_COLOR,
+            "tooltip": "%{BKY_BOX1_TOOLTIP}"
+        });
     }
 }
 Blockly.Python['Box'] = function(block) {
@@ -100,12 +120,13 @@ Blockly.Python['Box'] = function(block) {
 
 Blockly.Blocks['Egg'] = {
     init: function() {
-        this.appendDummyInput()
-            .appendField("Egg");
-        this.setOutput(true, "Item");
-        this.setColour(VARIABLE_COLOR);
-        this.setTooltip("");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Egg",
+            "message0": '%{BKY_EGG_TITLE}',
+            "output": "Item",
+            "colour": VARIABLE_COLOR,
+            "tooltip": "%{BKY_EGG_TOOLTIP}"
+        });
     }
 }
 Blockly.Python['Egg'] = function(block) {
@@ -118,12 +139,13 @@ Blockly.Python['Egg'] = function(block) {
 
 Blockly.Blocks['AGV'] = {
     init: function() {
-        this.appendDummyInput()
-            .appendField("AGV");
-        this.setOutput(true, "AGV");
-        this.setColour(VARIABLE_COLOR);
-        this.setTooltip("");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "AGV",
+            "message0": '%{BKY_AGV_TITLE}',
+            "output": "AGV",
+            "colour": VARIABLE_COLOR,
+            "tooltip": "%{BKY_AGV_TOOLTIP}"
+        });
     }
 }
 Blockly.Python['AGV'] = function(block) {
@@ -136,12 +158,13 @@ Blockly.Python['AGV'] = function(block) {
 
 Blockly.Blocks['Adult'] = {
     init: function() {
-        this.appendDummyInput()
-            .appendField("Adult");
-        this.setOutput(true, "Item");
-        this.setColour(VARIABLE_COLOR);
-        this.setTooltip("");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Adult",
+            "message0": '%{BKY_ADULT_TITLE}',
+            "output": "Item",
+            "colour": VARIABLE_COLOR,
+            "tooltip": "%{BKY_ADULT_TOOLTIP}"
+        });
     }
 }
 Blockly.Python['Adult'] = function(block) {
@@ -154,12 +177,13 @@ Blockly.Python['Adult'] = function(block) {
 
 Blockly.Blocks['Compartment'] = {
     init: function() {
-        this.appendDummyInput()
-            .appendField("Compartment");
-        this.setOutput(true, "Item");
-        this.setColour(VARIABLE_COLOR);
-        this.setTooltip("");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Compartment",
+            "message0": '%{BKY_COMPARTMENT_TITLE}',
+            "output": "Item",
+            "colour": VARIABLE_COLOR,
+            "tooltip": "%{BKY_COMPARTMENT_TOOLTIP}"
+        });
     }
 }
 Blockly.Python['Compartment'] = function(block) {
@@ -169,18 +193,36 @@ Blockly.Python['Compartment'] = function(block) {
 
 Blockly.Blocks['MoveTo'] = {
     init: function() {
-        this.appendDummyInput("COORDINATES")
-            .appendField("Move AVG to x")
-            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CX')
-            .appendField("y")
-            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CY');
-        this.setOutput(false, null);
-        this.setNextStatement(true);
-        this.setPreviousStatement(true);
-        this.setInputsInline(true);
-        this.setColour(MOVEMENT_COLOR);
-        this.setTooltip("Moves the coordinates");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Move_To",
+            "message0": '%{BKY_MOVE_TO_TITLE}',
+            "args0": [
+                {
+                    "type": "field_number",
+                    "name": "VALUE",
+                    "value": 0,
+                    "min": -999,
+                    "max": 999,
+                    "precision": 0.001
+                }
+            ],
+            "message1": 'y%1',
+            "args1": [
+                {
+                    "type": "field_number",
+                    "name": "VALUE1",
+                    "value": 0,
+                    "min": -999,
+                    "max": 999,
+                    "precision": 0.001
+                }
+            ],
+            "colour": MOVEMENT_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "inputsInline": true,
+            "tooltip": "%{BKY_MOVE_TO_TOOLTIP}"
+        });
     }
 }
 
@@ -193,15 +235,21 @@ Blockly.Python['MoveTo'] = function(block) {
 
 Blockly.Blocks['MoveToItem'] = {
     init: function() {
-        this.appendValueInput("Object")
-            .appendField("Move AGV to")
-            .setCheck(["Item", "Box"]);
-        this.setOutput(false, null);
-        this.setNextStatement(true);
-        this.setPreviousStatement(true);
-        this.setColour(MOVEMENT_COLOR);
-        this.setTooltip("Moves towards the item");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Move_To_Item",
+            "message0": '%{BKY_MOVE_TO_ITEM_TITLE}',
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": ["Item", "Box"]
+                }
+            ],
+            "colour": MOVEMENT_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "tooltip": "%{BKY_MOVE_TO_ITEM_TOOLTIP}"
+        });
     }
 }
 
@@ -214,19 +262,44 @@ Blockly.Python['MoveToItem'] = function(block) {
 
 Blockly.Blocks['MoveItemTo'] = {
     init: function() {
-        this.appendValueInput("Object")
-            .appendField("Move");
-        this.appendDummyInput("COORDINATES")
-            .appendField("To x")
-            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CX')
-            .appendField("y")
-            .appendField(new Blockly.FieldNumber(0, -999, 999, 0.001), 'CY');
-        this.setOutput(false, null);
-        this.setNextStatement(true);
-        this.setPreviousStatement(true);
-        this.setColour(ITEM_MOVEMENT_COLOR);
-        this.setTooltip("grabs the item and moves it to the coordinates");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Move_Item_To",
+            "message0": '%{BKY_MOVE_ITEM_TO_TITLE}',
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": "Item"
+                }
+            ],
+            "message1": '%{BKY_MOVE_ITEM_TO_TITLE1}',
+            "args1": [
+                {
+                    "type": "field_number",
+                    "name": "CX",
+                    "value": 0,
+                    "min": -999,
+                    "max": 999,
+                    "precision": 0.001
+                }
+            ],
+            "message2": 'y %1',
+            "args2": [
+                {
+                    "type": "field_number",
+                    "name": "CY",
+                    "value": 0,
+                    "min": -999,
+                    "max": 999,
+                    "precision": 0.001
+                }
+            ],
+            "colour": ITEM_MOVEMENT_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "inputsInline": true,
+            "tooltip": "%{BKY_MOVE_ITEM_TO_TOOLTIP}"
+        });
     }
 }
 
@@ -238,20 +311,31 @@ Blockly.Python['MoveItemTo'] = function(block) {
     return code;
 }
 
-    Blockly.Blocks['MoveItemToItem'] = {
+Blockly.Blocks['MoveItemToItem'] = {
     init: function() {
-        this.appendValueInput("OBJECT")
-            .setCheck("Item")
-            .appendField("Move");
-        this.appendValueInput("Object")
-            .setCheck("Box")
-            .appendField("To");
-        this.setOutput(false, null);
-        this.setNextStatement(true);
-        this.setPreviousStatement(true);
-        this.setColour(ITEM_MOVEMENT_COLOR);
-        this.setTooltip("grabs the item and moves it to the box");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Move_Item_To_Item",
+            "message0": '%{BKY_MOVE_ITEM_TO_ITEM_TITLE}',
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": "Item"
+                }
+            ],
+            "message1": '%{BKY_MOVE_ITEM_TO_ITEM_TITLE1}',
+            "args1": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE1",
+                    "check": "Box"
+                }
+            ],
+            "colour": ITEM_MOVEMENT_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "tooltip": "%{BKY_MOVE_ITEM_TO_ITEM_TOOLTIP}"
+        });
     }
 }
 
@@ -285,18 +369,29 @@ Blockly.Python['MoveItemToItem'] = function(block) {
 
 Blockly.Blocks['Put'] = {
     init: function() {
-        this.appendValueInput("OBJECT")
-            .setCheck("Item")
-            .appendField("Put");
-        this.appendValueInput("Object")
-            .setCheck("Box")
-            .appendField("To");
-        this.setOutput(false, null);
-        this.setNextStatement(true);
-        this.setPreviousStatement(true);
-        this.setColour(ITEM_INTERACTION_COLOR);
-        this.setTooltip("");
-        this.setHelpUrl("Puts an item in the box");
+        this.jsonInit({
+            "type": "Put",
+            "message0": '%{BKY_PUT_TITLE}',
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": "Item"
+                }
+            ],
+            "message1": '%{BKY_PUT_TITLE1}',
+            "args1": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE1",
+                    "check": "Box"
+                }
+            ],
+            "colour": ITEM_INTERACTION_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "tooltip": "%{BKY_PUT_TOOLTIP}"
+        });
     }
 }
 
@@ -310,18 +405,29 @@ Blockly.Python['Put'] = function(block) {
 
 Blockly.Blocks['Take'] = {
     init: function() {
-        this.appendValueInput("OBJECT")
-            .setCheck("Item")
-            .appendField("Take");
-        this.appendValueInput("Object")
-            .setCheck("Box")
-            .appendField("From");
-        this.setOutput(false, null);
-        this.setNextStatement(true);
-        this.setPreviousStatement(true);
-        this.setColour(ITEM_INTERACTION_COLOR);
-        this.setTooltip("Takes an item from the box");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Take",
+            "message0": '%{BKY_TAKE_TITLE}',
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": "Item"
+                }
+            ],
+            "message1": '%{BKY_TAKE_TITLE1}',
+            "args1": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE1",
+                    "check": "Box"
+                }
+            ],
+            "colour": ITEM_INTERACTION_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "tooltip": "%{BKY_TAKE_TOOLTIP}"
+        });
     }
 }
 
@@ -335,21 +441,37 @@ Blockly.Python['Take'] = function(block) {
 
 Blockly.Blocks['ChangeBoxOfItem'] = {
     init: function() {
-        this.appendValueInput("OBJECT")
-            .setCheck("Item")
-            .appendField("Move");
-        this.appendValueInput("Object")
-            .setCheck("Box")
-            .appendField("From");
-        this.appendValueInput("Object3")
-            .setCheck("Box")
-            .appendField("To");
-        this.setOutput(false, null);
-        this.setNextStatement(true);
-        this.setPreviousStatement(true);
-        this.setColour(ITEM_INTERACTION_COLOR);
-        this.setTooltip("Relocates the item from box to box");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "Change_Box_Of_Item",
+            "message0": '%{BKY_CHANGE_BOX_OF_ITEM_TITLE}',
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": "Item"
+                }
+            ],
+            "message1": '%{BKY_CHANGE_BOX_OF_ITEM_TITLE1}',
+            "args1": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE1",
+                    "check": "Box"
+                }
+            ],
+            "message2": '%{BKY_CHANGE_BOX_OF_ITEM_TITLE2}',
+            "args2": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE2",
+                    "check": "Box"
+                }
+            ],
+            "colour": ITEM_INTERACTION_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "tooltip": "%{BKY_CHANGE_BOX_OF_ITEM_TOOLTIP}"
+        });
     }
 }
 
@@ -364,16 +486,29 @@ Blockly.Python['ChangeBoxOfItem'] = function(block) {
 
 Blockly.Blocks['OnEvent'] = {
     init: function() {
-        this.appendDummyInput()
-            .appendField("When")
-            .appendField(new Blockly.FieldDropdown([["Event1", "event_1"], ["Event2", "event_2"]]), "EVENT");
-        this.appendStatementInput("NAME")
-            .setCheck(null);
-        this.setColour(0);
-        this.setTooltip("");
-        this.setHelpUrl("");
+        this.jsonInit({
+            "type": "On_Event",
+            "message0": '%{BKY_ON_EVENT_TITLE}',
+            "args0": [
+                {
+                    "type": "field_dropdown",
+                    "name": "EVENT",
+                    "options": [
+                        [ "Event1", "event_1" ],
+                        [ "Event2", "event_2" ]
+                    ]
+                }
+            ],
+            "message1": "%1",
+            "args1": [
+                {"type": "input_statement", "name": "NAME"}
+            ],
+            "colour": 0,
+            "tooltip": "%{BKY_ON_EVENT_TOOLTIP}"
+        });
     }
 }
+
 
 Blockly.Python['OnEvent'] = function(block) {
     var st = Blockly.Python.statementToCode(block, 'NAME');

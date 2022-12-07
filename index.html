@@ -22,12 +22,41 @@
 <body>
 <h1>Blockly</h1>
 
+<div id="language_selection">
+    <select id="langselector" onchange="changeLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="nl">Nederlands</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">Francais</option>
+    </select>
+    <p></p>
+</div>
+<div id="language">
+
+</div>
+<script>
+    function changeLanguage(value) {
+        if (Blockly.getMainWorkspace().getAllBlocks().length > 0) {
+            var answer = confirm("Changing the renderer will clear your workspace. " +
+                "Are you sure you want to continue?");
+            if (!answer) {
+                var langSelector = document.getElementById('langselector');
+                langSelector.value = document.getElementById('block_lang').src.split('/').pop().split('.')[0];
+                return;
+            }
+        }
+        var params = new URLSearchParams(window.location.search);
+        params.set('lang', value);
+        window.location.search = params.toString();
+    }
+</script>
+
 <div style="display:flex">
 
     <div id="blocklyDiv" style="height: 550px; width: 700px;"></div>
 
     <xml id="toolbox" style="display: none">
-        <category id="catLogic" colour="210" name="Logic">
+        <category id="catLogic" colour="210" name="%{BKY_LOGIC_TITLE}">
             <block type="controls_if"></block>
             <block type="logic_compare"></block>
             <block type="logic_operation"></block>
@@ -36,7 +65,7 @@
             <block type="logic_null"></block>
             <block type="logic_ternary"></block>
         </category>
-        <category id="catLoops" colour="120" name="Loops">
+        <category id="catLoops" colour="120" name="%{BKY_LOOPS_TITLE}">
             <block type="controls_repeat_ext">
                 <value name="TIMES">
                     <shadow type="math_number">
@@ -65,7 +94,7 @@
             <block type="controls_forEach"></block>
             <block type="controls_flow_statements"></block>
         </category>
-        <category id="catMath" colour="230" name="Math">
+        <category id="catMath" colour="230" name="%{BKY_MATH_TITLE}">
             <block type="math_number"></block>
             <block type="math_arithmetic">
                 <value name="A">
@@ -159,7 +188,7 @@
             </block>
             <block type="math_random_float"></block>
         </category>
-        <category id="catText" colour="160" name="Text">
+        <category id="catText" colour="160" name="%{BKY_TEXT_TITLE}">
             <block type="text"></block>
             <block type="text_join"></block>
             <block type="text_append">
@@ -236,7 +265,7 @@
                 </value>
             </block>
         </category>
-        <category id="catLists" colour="260" name="Lists">
+        <category id="catLists" colour="260" name="%{BKY_LISTS_TITLE}">
             <block type="lists_create_with">
                 <mutation items="0"></mutation>
             </block>
@@ -287,7 +316,7 @@
             </block>
             <block type="lists_sort"></block>
         </category>
-        <category id="catColour" colour="20" name="Color">
+        <category id="catColour" colour="20" name="%{BKY_COLOR_TITLE}">
             <block type="colour_picker"></block>
             <block type="colour_random"></block>
             <block type="colour_rgb">
@@ -326,10 +355,10 @@
             </block>
         </category>
         <sep></sep>
-        <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
-        <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
+        <category id="catVariables" colour="330" custom="VARIABLE" name="%{BKY_VARIABLES_TITLE}"></category>
+        <category id="catFunctions" colour="290" custom="PROCEDURE" name="%{BKY_FUNCTIONS_TITLE}"></category>
         <sep></sep>
-        <category colour="190" name="ROS Functions">
+        <category colour="190" name="%{BKY_INSECT_FARM_FUNCTIONS_TITLE}">
             <block type="Grab">
             </block>
             <block type="Drop">
@@ -346,7 +375,7 @@
             <block type="Take">
             </block>
         </category>
-        <category colour="130" name="ROS Complex Functions">
+        <category colour="130" name="%{BKY_INSECT_FARM_COMPLEX_FUNCTIONS_TITLE}">
             <block type="MoveItemTo">
             </block>
             <block type="MoveItemToItem">
@@ -359,7 +388,7 @@
             </block>
         </category>
 
-        <category colour="70" name="ROS Variables">
+        <category colour="70" name="%{BKY_INSECT_FARM_ELEMENTS_TITLE}">
             <block type="Box">
             </block>
             <block type="Egg">
@@ -373,21 +402,35 @@
         </category>
     </xml>
     <script>
-        Blockly.Theme.defineTheme('custom', {
+        var langTag = document.getElementById("language");
+        var searchParams = new URLSearchParams(window.location.search);
+        var lang = searchParams.get('lang');
+        if (!lang) lang = "en";
+        var langScript = document.createElement("script");
+        langScript.id = "block_lang";
+        langScript.src = lang + ".js";
+        langTag.appendChild(langScript);
+
+        var langDropdown = document.getElementById("langselector");
+        langDropdown.value = lang;
+
+        setTimeout(function () {
+            Blockly.Theme.defineTheme('custom', {
                 'base': Blockly.Themes.Classic,
                 'startHats': true
-        });
-        var demoWorkspace = Blockly.inject('blocklyDiv',
-            {renderer: 'zelos',
-                language: 'python',
-                theme: 'custom',
-                toolbox: document.getElementById('toolbox')});
-        demoWorkspace .addChangeListener(function(event) {
-            if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
-                return;
-            }
-            workspaceToCodeDebug(demoWorkspace);
-        });
+            });
+            var demoWorkspace = Blockly.inject('blocklyDiv',
+                {renderer: 'zelos',
+                    language: 'python',
+                    theme: 'custom',
+                    toolbox: document.getElementById('toolbox')});
+            demoWorkspace .addChangeListener(function(event) {
+                if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
+                    return;
+                }
+                workspaceToCodeDebug(demoWorkspace);
+            });
+        }, 100);
     </script>
 
     <div id="debug" style="display: flex">
