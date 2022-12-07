@@ -5,8 +5,8 @@ function sendRequest() {
     var token = document.getElementById("token").value;
     var local = document.getElementById("local").checked;
     var request = new XMLHttpRequest();
-    if (local) request.open("GET", REQUEST_URL_LOCAL + "?token=" + token, true);
-    else request.open("GET", REQUEST_URL_SERVER + "?token=" + token, true);
+    if (local) request.open("POST", REQUEST_URL_LOCAL + "?token=" + token, true);
+    else request.open("POST", REQUEST_URL_SERVER + "?token=" + token, true);
     var workspace = Blockly.getMainWorkspace();
     var codeOrig = Blockly.Python.workspaceToCode(workspace);
     var code = workspaceToCodeDebug(workspace);
