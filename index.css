@@ -1,0 +1,125 @@
+#language_selection_intro {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+
+    width: 700px;
+    height: 525px;
+
+    font-size:larger;
+
+    background-color: rgb(199, 199, 255);
+    opacity: 100%;
+
+    z-index: 10000000;
+}
+
+button {
+    background-color: #00AAFF;
+    border: 1px solid #7F7FFF;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0088FF;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #0066FF;
+}
+
+.rendererselect {
+    background-color: #00AAFF;
+    border: 1px solid #7F7FFF;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.rendererselect:hover {
+    background-color: #0088FF;
+    cursor: pointer;
+}
+
+.rendererselect:active {
+    background-color: #0066FF;
+}
+
+.opt {
+    background-color: #00AAFF;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+textarea {
+    background-color: #DDDDFF;
+    border: 1px solid #7F7FFF;
+    color: #003F7F;
+    padding: 5px 5px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: monospace;
+}
+
+bottom {
+    background-color: #EEEEFF;
+    width: max-content;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+bottombox {
+    color: #003F7F;
+    background-color: #EEEEFF;
+    border: none;
+    padding: 10px;
+    text-align: left;
+    text-decoration: none;
+    font-size: 16px;
+    width: max-content;
+    display: block;
+    vertical-align: middle;
+}
+
+.lang_img {
+    border: 2px solid #003F7F;
+}
+
+body {
+    background-color: #DDDDFF;
+    color: #003F7F;
+}
+
+.blocklyFlyoutBackground {
+    fill: #BBBBFF;
+}
+
+.blocklyTreeSeparator {
+    border-bottom: 1px solid #7F7FFF;
+}
+
+.outputText {
+    color: #007F7F;
+}

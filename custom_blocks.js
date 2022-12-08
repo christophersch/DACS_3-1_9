@@ -484,18 +484,18 @@ Blockly.Python['ChangeBoxOfItem'] = function(block) {
     return code;
 }
 
-Blockly.Blocks['OnEvent'] = {
+Blockly.Blocks['OnGesture'] = {
     init: function() {
         this.jsonInit({
-            "type": "On_Event",
+            "type": "On_Gesture",
             "message0": '%{BKY_ON_EVENT_TITLE}',
             "args0": [
                 {
                     "type": "field_dropdown",
                     "name": "EVENT",
                     "options": [
-                        [ "Event1", "event_1" ],
-                        [ "Event2", "event_2" ]
+                        [ "Gesture1", "gesture_1" ],
+                        [ "Gesture2", "gesture_2" ]
                     ]
                 }
             ],
@@ -510,7 +510,7 @@ Blockly.Blocks['OnEvent'] = {
 }
 
 
-Blockly.Python['OnEvent'] = function(block) {
+Blockly.Python['OnGesture'] = function(block) {
     var st = Blockly.Python.statementToCode(block, 'NAME');
     var value_event = block.getFieldValue('EVENT');
     var code = "def on_" + value_event + "():\n" + st + "\n";

@@ -18,18 +18,16 @@
             font-size: 140%;
         }
     </style>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="complexity_scaling.css">
 </head>
 <body>
-<h1>Blockly</h1>
-
+<h1 style="font-family: 'Noto Sans', 'Noto Sans JP', 'Noto Sans KR', 'Noto Naskh Arabic', 'Noto Sans Thai', 'Noto Sans Hebrew', 'Noto Sans Bengali', sans-serif; font-size: 40px; margin-left: 10px;">Blockly</h1>
 <div id="language_selection">
-    <select id="langselector" onchange="changeLanguage(this.value)">
-        <option value="en">English</option>
-        <option value="nl">Nederlands</option>
-        <option value="de">Deutsch</option>
-        <option value="fr">Francais</option>
-    </select>
-    <p></p>
+    <img class="lang_img" src="images/flags/en.png" alt="English" onclick="changeLanguage('en')" style="cursor: pointer; width: 60px; height: 40px; margin-left: 10px;">
+    <img class="lang_img" src="images/flags/nl.png" alt="Nederlands" onclick="changeLanguage('nl')" style="cursor: pointer; width: 60px; height: 40px; margin-left: 10px;">
+    <img class="lang_img" src="images/flags/fr.png" alt="Français" onclick="changeLanguage('fr')" style="cursor: pointer; width: 60px; height: 40px; margin-left: 10px;">
+    <img class="lang_img" src="images/flags/de.png" alt="Deutsch" onclick="changeLanguage('de')" style="cursor: pointer; width: 60px; height: 40px; margin-left: 10px;">
 </div>
 <div id="language">
 
@@ -53,7 +51,7 @@
 
 <div style="display:flex">
 
-    <div id="blocklyDiv" style="height: 550px; width: 700px;"></div>
+    <div id="blocklyDiv" style="height: 600px; width: 60%; min-width: 900px; border: 2px solid #7F7FFF; margin-left: 10px; "></div>
 
     <xml id="toolbox" style="display: none">
         <category id="catLogic" colour="210" name="%{BKY_LOGIC_TITLE}">
@@ -384,7 +382,7 @@
 <!--            </block>-->
             <block type="ChangeBoxOfItem">
             </block>
-            <block type="OnEvent">
+            <block type="OnGesture">
             </block>
         </category>
 
@@ -402,35 +400,45 @@
         </category>
     </xml>
     <script>
-        var langTag = document.getElementById("language");
-        var searchParams = new URLSearchParams(window.location.search);
-        var lang = searchParams.get('lang');
-        if (!lang) lang = "en";
-        var langScript = document.createElement("script");
-        langScript.id = "block_lang";
-        langScript.src = lang + ".js";
-        langTag.appendChild(langScript);
+        window.onload = function () {
+            var langTag = document.getElementById("language");
+            var searchParams = new URLSearchParams(window.location.search);
+            var lang = searchParams.get('lang');
+            if (!lang) {
+                lang = "en";
+            }
+            else {
+                var intro = document.getElementById("language_selection_intro");
+                intro.style.display = "none";
+            }
+            var langScript = document.createElement("script");
+            langScript.id = "block_lang";
+            langScript.src = lang + ".js";
+            langTag.appendChild(langScript);
 
-        var langDropdown = document.getElementById("langselector");
-        langDropdown.value = lang;
-
-        setTimeout(function () {
-            Blockly.Theme.defineTheme('custom', {
-                'base': Blockly.Themes.Classic,
-                'startHats': true
-            });
-            var demoWorkspace = Blockly.inject('blocklyDiv',
-                {renderer: 'zelos',
-                    language: 'python',
-                    theme: 'custom',
-                    toolbox: document.getElementById('toolbox')});
-            demoWorkspace .addChangeListener(function(event) {
-                if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
-                    return;
-                }
-                workspaceToCodeDebug(demoWorkspace);
-            });
-        }, 100);
+            setTimeout(function () {
+                Blockly.Theme.defineTheme('custom', {
+                    'base': Blockly.Themes.Classic,
+                    'startHats': true
+                });
+                var demoWorkspace = Blockly.inject('blocklyDiv',
+                    {renderer: 'zelos',
+                        language: 'python',
+                        theme: 'custom',
+                        toolbox: document.getElementById('toolbox')});
+                demoWorkspace.addChangeListener(function(event) {
+                    if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
+                        return;
+                    }
+                    workspaceToCodeDebug(demoWorkspace);
+                });
+                initCategories();
+                var blocklyMainWorkspace = document.getElementsByClassName("blocklyMainBackground")[0];
+                blocklyMainWorkspace.style.fill = "#DDDDFF";
+                var blocklyMainWorkspace = document.getElementsByClassName("blocklyToolboxDiv")[0];
+                blocklyMainWorkspace.style.background = "#BBBBFF";
+            }, 250);
+        };
     </script>
 
     <div id="debug" style="display: flex">
@@ -438,16 +446,22 @@
         <p id="debugText1", style="width: 600px; height: 550px; overflow-y: auto" onscroll="scrollDebugText()"></p>
     </div>
 </div>
+<img src="images/um.png" alt="UM" width="350px" height="50px"; style="margin-left: 10px; margin-right: 50px; margin-top: 10px;">
+<img src="images/cs.svg" alt="CoRoSect" width="80px" height="50px">
 <br>
+
+<bottom>
+<bottombox>
 <label for="renderer">Renderer:</label>
-<select name="renderer" id="renderer" onchange="changeRenderer()">
-    <option value="zelos">zelos</option>
-    <option value="geras">geras</option>
-    <option value="thrasos">thrasos</option>
+<select class="rendererselect" name="renderer" id="renderer" onchange="changeRenderer()">
+    <option class="opt" value="zelos">zelos</option>
+    <option class="opt" value="geras">geras</option>
+    <option class="opt" value="thrasos">thrasos</option>
 </select>
-<br>
+</bottombox>
 <script>
     function changeRenderer() {
+        var demoWorkspace = Blockly.getMainWorkspace();
         if (demoWorkspace.getAllBlocks().length > 0) {
             var answer = confirm("Changing the renderer will clear your workspace. " +
                 "Are you sure you want to continue?");
@@ -469,24 +483,70 @@
             }
             workspaceToCodeDebug(demoWorkspace);
         });
+        //initCategories();
+        var blocklyMainWorkspace = document.getElementsByClassName("blocklyMainBackground")[0];
+        blocklyMainWorkspace.style.fill = "#DDDDFF";
+        var blocklyMainWorkspace = document.getElementsByClassName("blocklyToolboxDiv")[0];
+        blocklyMainWorkspace.style.background = "#BBBBFF";
     }
 </script>
-<span>
+<!-- Buttons to change skill level after the intro screen -->
+<bottombox>
+<span class="margin_left">Complexity Level:</span>
+<button onclick="setComplexityLevel(SKILL_LEVELS.BEGINNER)">Beginner</button>
+<button onclick="setComplexityLevel(SKILL_LEVELS.INTERMEDIATE)">Intermediate</button>
+<button onclick="setComplexityLevel(SKILL_LEVELS.EXPERT)">Expert</button>
+</bottombox>
+<bottombox>
 <label for="token" style="vertical-align: middle">Token:</label>
 <textarea id="token" rows="1" cols="50" style="font-size: small; vertical-align: middle"></textarea>
-</span>
-<br>
-<label for="local">Local</label>
+</bottombox>
+<bottombox>
+<label for="local">Local:</label>
 <input type="checkbox" id="local" name="local" value="local">
-<br>
+</bottombox>
+<bottombox>
 <button id="send_code_request" onclick="sendRequest()">Send Code</button>
-
+</bottombox>
+<bottombox>
 <div id="output">
     Output:
-    <p id="outputText"></p>
+    <p class="outputText" id="outputText">
+        No output yet.
+    </p>
+</div>
+</bottombox>
+</bottom>
+<canvas id="full_screen_canvas" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999999; pointer-events: none;"></canvas>
+
+<div id="language_selection_intro">
+    <p>Choose Language</p>
+    <img src="images/flags/en.png" onclick="changeLanguage('en')" style="width: 300px; height: 200px; margin: 10px; cursor: pointer">
+    <img src="images/flags/nl.png" onclick="changeLanguage('nl')" style="width: 300px; height: 200px; margin: 10px; cursor: pointer">
+    <img src="images/flags/fr.png" onclick="changeLanguage('fr')" style="width: 300px; height: 200px; margin: 10px; cursor: pointer">
+    <img src="images/flags/de.png" onclick="changeLanguage('de')" style="width: 300px; height: 200px; margin: 10px; cursor: pointer">
 </div>
 
-<canvas id="full_screen_canvas" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1000000; pointer-events: none;"></canvas>
+<!-- Intro screen where the user can select their skill level -->
+<div id="skill_level_selection_back">
+</div>
+<div id="skill_level_selection">
+    <p>How familiar are you with programming?</p>
+    <div class="answer" onclick="setComplexityLevel(SKILL_LEVELS.BEGINNER, true)">
+        I am a beginner
+        <div class="tip">Only the basics.</div>
+    </div>
+    <div class="answer" onclick="setComplexityLevel(SKILL_LEVELS.INTERMEDIATE, true)">
+        I am a little familiar
+        <div class="tip">You will have access to math, text, and lists.</div>
+    </div>
+    <div class="answer" onclick="setComplexityLevel(SKILL_LEVELS.EXPERT, true)">
+        I am an expert
+        <div class="tip">You will have access to variables and functions.</div>
+    </div>
+</div>
+
+<script src="complexity_scaling.js"></script>
 
 </body>
 </html>

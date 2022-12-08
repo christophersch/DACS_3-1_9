@@ -18,6 +18,12 @@ function sendRequest() {
             var response = request.responseText;
             console.log(response);
             document.getElementById("outputText").innerHTML = response.replaceAll("\n", "<br>");
+            document.getElementById("outputText").style.color = "";
+        } else if (request.readyState == 4 && request.status != 200) {
+            var response = request.responseText;
+            console.log(response);
+            document.getElementById("outputText").innerHTML = response.replaceAll("\n", "<br>");
+            document.getElementById("outputText").style.color = "red";
         }
     }
     request.send(code);

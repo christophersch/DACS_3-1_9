@@ -3,6 +3,11 @@
     100% {opacity: 100%}
 }
 
+@keyframes fade_out {
+    0% {opacity: 100%}
+    100% {opacity: 0%}
+}
+
 #skill_level_selection_back {
     position: absolute;
     left: 0;
@@ -11,7 +16,7 @@
     height: 100%;
     background-color: #fff;
     opacity: 50%;
-    z-index: 100;
+    z-index: 1000000;
 }
 
 #skill_level_selection {
@@ -30,16 +35,16 @@
 
     font-size:larger;
 
-    background-color: rgb(199, 199, 199);
+    background-color: rgb(199, 199, 255);
     opacity: 100%;
 
-    z-index: 200;
+    z-index: 1000000;
 }
 
 .answer {
     padding: 10px;
     margin: 20px;
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(219, 219, 255);
 }
 
 .answer:hover {
