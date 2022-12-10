@@ -554,17 +554,17 @@
 </div>
 <div id="skill_level_selection">
     <p localization-key="familiarQuestion" >How familiar are you with programming?</p>
-    <div localization-key="answerBeginner" class="answer" onclick="setComplexityLevel(SKILL_LEVELS.BEGINNER, true)">
-        I am a beginner
-        <div localization-key="beginnerTip" class="tip">Only the basics.</div>
+    <div class="answer" onclick="setComplexityLevel(SKILL_LEVELS.BEGINNER, true)">
+        <span localization-key="answerBeginner">I am a beginner</span>
+        <div class="tip" localization-key="beginnerTip" >Only the basics.</div>
     </div>
-    <div localization-key="answerIntermediate" class="answer" onclick="setComplexityLevel(SKILL_LEVELS.INTERMEDIATE, true)">
-        I am a little familiar
-        <div localization-key="intermediateTip" class="tip">You will have access to math, text, and lists.</div>
+    <div class="answer" onclick="setComplexityLevel(SKILL_LEVELS.INTERMEDIATE, true)">
+        <span localization-key="answerIntermediate">I am a little familiar</span>
+        <div class="tip" localization-key="intermediateTip" >You will have access to math, text, and lists.</div>
     </div>
-    <div localization-key="answerExpert" class="answer" onclick="setComplexityLevel(SKILL_LEVELS.EXPERT, true)">
-        I am an expert
-        <div localization-key="expertTip" class="tip">You will have access to variables and functions.</div>
+    <div class="answer" onclick="setComplexityLevel(SKILL_LEVELS.EXPERT, true)">
+        <span localization-key="answerExpert">I am an expert</span>
+        <div class="tip" localization-key="expertTip">You will have access to variables and functions.</div>
     </div>
 </div>
 
