@@ -5,6 +5,7 @@ const GUIDE_STEPS = [
         text: "Welcome to the guide!<br>This guide will help you get started with programming.<br>Click Next to continue.",
         next: true,
         action: function() {
+            var guide = document.getElementById("guide");
             guide.style.margin = "auto";
         }
     },
