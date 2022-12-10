@@ -105,6 +105,7 @@ Blockly.Msg.DELETE_PARAMETER = 'Verwijder parameter...';
 Blockly.Msg.DELETE_PARAMETER_TITLE =
     "Dit zal alle '%1' voorkomens van parameter wissen. Weet je het zeker?";
 Blockly.Msg.DELETE_X_BLOCKS = '%1 blokken verwijderen';
+Blockly.Msg.DELETE_VARIABLE = 'Verwijder de variabele "%1"';
 Blockly.Msg.DISABLE_BLOCK = 'Blok uitschakelen';
 Blockly.Msg.DUPLICATE_BLOCK = 'Dupliceer';
 Blockly.Msg.ENABLE_BLOCK = 'Blok inschakelen';
@@ -150,7 +151,9 @@ Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP =
     'Voeg een onderdeel toe aan de lijst.';
 Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP =
     'Maak een lijst met een willekeurig aantal objecten.';
+Blockly.Msg.LISTS_INLIST = 'In lijst';
 Blockly.Msg.LISTS_GET_INDEX_FIRST = 'eerste';
+Blockly.Msg.LISTS_GET_INDEX_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 Blockly.Msg.LISTS_GET_INDEX_FROM_END = '# vanaf het einde';
 Blockly.Msg.LISTS_GET_INDEX_FROM_START = '#';
 Blockly.Msg.LISTS_GET_INDEX_GET = 'pak';
@@ -161,35 +164,32 @@ Blockly.Msg.LISTS_GET_INDEX_REMOVE = 'verwijder';
 Blockly.Msg.LISTS_GET_INDEX_TAIL = '';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FIRST =
     'Geeft het eerste item in een lijst.';
-Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FROM_END =
-    'Geeft het item in een specifieke positie terug in een lijst. #1 is het laatste item.';
-Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FROM_START =
-    'Geeft het onderdeel op de opgegeven positie in een lijst. Nummer 1 is het eerste onderdeel.';
+Blockly.Msg.LISTS_INDEX_FROM_START_TOOLTIP = "Item %1 is het eerste item.";
+Blockly.Msg.LISTS_INDEX_FROM_END_TOOLTIP = "Item %1 is het laatste item.";
+Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FROM =
+    'Geeft het onderdeel op de opgegeven positie in een lijst.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_LAST =
     'Geeft het laatste item in een lijst.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_RANDOM =
     'Geeft een willekeurig onderdeel in een lijst.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FIRST =
     'Verwijdert en geeft het eerste onderdeel in een lijst.';
-Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FROM_END =
-    'Verwijdert en geeft het onderdeel op de opgegeven positie in de lijst. Nummer 1 is het laatste item.';
-Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FROM_START =
-    'Verwijdert en geeft het onderdeel op de opgegeven positie in een lijst. Nummer 1 is het eerste onderdeel.';
+Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FROM =
+    'Verwijdert en geeft het onderdeel op de opgegeven positie in een lijst.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_LAST =
     'Verwijdert en geeft het laatste onderdeel in een lijst.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_RANDOM =
     'Verwijdert en geeft een willekeurig onderdeel in een lijst.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_FIRST =
     'Verwijdert het eerste onderdeel in een lijst.';
-Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_FROM_END =
-    'Verwijdert een onderdeel op de opgegeven positie in een lijst. Nummer 1 is het laatste onderdeel.';
-Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_FROM_START =
-    'Verwijdert het onderdeel op de opgegeven positie in een lijst. Nummer 1 is het eerste onderdeel.';
+Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_FROM =
+    'Verwijdert een onderdeel op de opgegeven positie in een lijst.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_LAST =
     'Verwijdert het laatste onderdeel in een lijst.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_RANDOM =
     'Verwijdert een willekeurig onderdeel in een lijst.';
 Blockly.Msg.LISTS_GET_SUBLIST_END_FROM_END = 'naar nummer vanaf einde';
+Blockly.Msg.LISTS_GET_SUBLIST_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 Blockly.Msg.LISTS_GET_SUBLIST_END_FROM_START = 'naar #';
 Blockly.Msg.LISTS_GET_SUBLIST_END_LAST = 'naar laatste';
 Blockly.Msg.LISTS_GET_SUBLIST_HELPURL =
@@ -201,13 +201,13 @@ Blockly.Msg.LISTS_GET_SUBLIST_START_FROM_START = 'neem sublijst vanaf #';
 Blockly.Msg.LISTS_GET_SUBLIST_TAIL = '';
 Blockly.Msg.LISTS_GET_SUBLIST_TOOLTIP =
     'Maakt een kopie van het opgegeven deel van de lijst.';
+Blockly.Msg.LISTS_INDEX_OF_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 Blockly.Msg.LISTS_INDEX_OF_FIRST = 'vind eerste onderdeel';
 Blockly.Msg.LISTS_INDEX_OF_HELPURL =
     'https://code.google.com/p/blockly/wiki/Lists#Getting_Items_from_a_List';
 Blockly.Msg.LISTS_INDEX_OF_LAST = 'Vind laatste onderdeel';
 Blockly.Msg.LISTS_INDEX_OF_TOOLTIP =
     'Geeft de index van het eerste of laatste onderdeel in de lijst terug. Geeft 0 terug als de tekst niet is gevonden.';
-Blockly.Msg.LISTS_INLIST = 'in lijst';
 Blockly.Msg.LISTS_IS_EMPTY_HELPURL =
     'https://code.google.com/p/blockly/wiki/Lists#is_empty';
 Blockly.Msg.LISTS_IS_EMPTY_TITLE = '%1 is leeg';
@@ -223,30 +223,41 @@ Blockly.Msg.LISTS_REPEAT_TOOLTIP =
     'Maakt een lijst die bestaat uit de opgegeven waarde, het opgegeven aantal keer herhaald.';
 Blockly.Msg.LISTS_SET_INDEX_HELPURL =
     'https://code.google.com/p/blockly/wiki/Lists#in_list_..._set';
+Blockly.Msg.LISTS_SET_INDEX_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 Blockly.Msg.LISTS_SET_INDEX_INPUT_TO = 'als';
 Blockly.Msg.LISTS_SET_INDEX_INSERT = 'invoegen op';
 Blockly.Msg.LISTS_SET_INDEX_SET = 'zetten';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_FIRST =
     'Voegt het onderdeel aan het begin van de lijst in.';
-Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_FROM_END =
-    'Voegt het item op de opgegeven positie in een lijst in. Nummer 1 is het laatste item.';
-Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_FROM_START =
-    'Voegt het onderdeel op een opgegeven positie in een lijst in. Nummer 1 is het eerste onderdeel.';
+Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_FROM =
+    'Voegt het onderdeel op een opgegeven positie in een lijst in.';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_LAST =
     'Voeg het item aan het einde van een lijst toe.';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_RANDOM =
     'Voegt het item willekeurig in de lijst in.';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_FIRST =
     'Stelt het eerste onderdeel in een lijst in.';
-Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_FROM_END =
-    'Stelt het onderdeel op een opgegeven positie in de lijst in. Nummer 1 is het laatste item.';
-Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_FROM_START =
-    'Stelt het item op de opgegeven positie in de lijst in. Nummer 1 is het eerste onderdeel.';
+Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_FROM =
+    'Stelt het onderdeel op een opgegeven positie in de lijst in.';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_LAST =
     'Stelt het laatste onderdeel van een lijst in.';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_RANDOM =
     'Stelt een willekeurig onderdeel van de lijst in.';
-Blockly.Msg.LISTS_TOOLTIP = 'Geeft waar terug als de lijst leeg is.';
+Blockly.Msg.LISTS_ISEMPTY_TOOLTIP = 'Geeft waar terug als de lijst leeg is.';
+Blockly.Msg.LISTS_ISEMPTY_TITLE = '%1 is leeg';
+Blockly.Msg.LISTS_SPLIT_LIST_FROM_TEXT = 'lijst maken van tekst';
+Blockly.Msg.LISTS_SPLIT_TEXT_FROM_LIST = 'tekst maken van lijst';
+Blockly.Msg.LISTS_SPLIT_WITH_DELIMITER = 'met scheidingsteken';
+Blockly.Msg.LISTS_SPLIT_TOOLTIP_SPLIT = 'Tekst splitsen in een lijst van teksten op basis van een scheidingsteken.';
+Blockly.Msg.LISTS_SPLIT_TOOLTIP_JOIN =
+    'Lijst van tekstdelen samenvoegen in één stuk tekst, waarbij de tekstdelen gescheiden zijn door een scheidingsteken.';
+Blockly.Msg.LISTS_SORT_TITLE = 'sorteer %1 %2 %3';
+Blockly.Msg.LISTS_SORT_TOOLTIP = 'Sorteer een kopie van een lijst.';
+Blockly.Msg.LISTS_SORT_ORDER_ASCENDING = 'oplopend';
+Blockly.Msg.LISTS_SORT_ORDER_DESCENDING = 'aflopend';
+Blockly.Msg.LISTS_SORT_TYPE_NUMERIC = 'numeriek';
+Blockly.Msg.LISTS_SORT_TYPE_TEXT = 'alfabetisch';
+Blockly.Msg.LISTS_SORT_TYPE_IGNORECASE = 'alfabetisch, negeer hoofd-/kleine letters';
 Blockly.Msg.LOGIC_BOOLEAN_FALSE = 'onwaar';
 Blockly.Msg.LOGIC_BOOLEAN_HELPURL =
     'http://nl.wikipedia.org/wiki/Waarheidswaarde';
@@ -441,7 +452,7 @@ Blockly.Msg.RENAME_ALL = 'Rename all %1';
 Blockly.Msg.RENAME_PARAMETER = 'Hernoem parameter...';
 Blockly.Msg.RENAME_PARAMETER_TITLE =
     "Wijzig de naam van alle '%1' parameters naar:";
-Blockly.Msg.RENAME_THIS = 'Rename this %1';
+Blockly.Msg.RENAME_THIS = 'Hernoem dit %1';
 Blockly.Msg.RENAME_VARIABLE = 'Variabele hernoemen...';
 Blockly.Msg.RENAME_VARIABLE_TITLE = 'Alle variabelen "%1" hernoemen naar:';
 Blockly.Msg.TEXT_APPEND_TITLE = 'Naar %1 tekst toevoegen %2';
@@ -460,7 +471,7 @@ Blockly.Msg.TEXT_CHARAT_FROM_END = 'haal letter # op vanaf einde';
 Blockly.Msg.TEXT_CHARAT_FROM_START = 'haal letter # op';
 Blockly.Msg.TEXT_CHARAT_HELPURL =
     'https://code.google.com/p/blockly/wiki/Text#Extracting_text';
-Blockly.Msg.TEXT_CHARAT_INPUT_INTEXT = 'in tekst';
+Blockly.Msg.TEXT_CHARAT_TITLE = 'in tekst %1 %2';
 Blockly.Msg.TEXT_CHARAT_LAST = 'neem laatste letter';
 Blockly.Msg.TEXT_CHARAT_RANDOM = 'neem willekeurige letter';
 Blockly.Msg.TEXT_CHARAT_TAIL = '';
@@ -486,6 +497,7 @@ Blockly.Msg.TEXT_GET_SUBSTRING_TOOLTIP =
 Blockly.Msg.TEXT_INDEXOF_HELPURL =
     'https://code.google.com/p/blockly/wiki/Text#Finding_text';
 Blockly.Msg.TEXT_INDEXOF_INPUT_INTEXT = 'in tekst';
+Blockly.Msg.TEXT_INDEXOF_TITLE = 'in tekst %1 %2 %3';
 Blockly.Msg.TEXT_INDEXOF_OPERATOR_FIRST = 'vind eerste aanwezigheid van tekst';
 Blockly.Msg.TEXT_INDEXOF_OPERATOR_LAST = 'vind laatste aanwezigheid van tekst';
 Blockly.Msg.TEXT_INDEXOF_TAIL = '';

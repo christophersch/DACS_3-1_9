@@ -95,6 +95,7 @@ Blockly.Msg.DELETE_PARAMETER = 'Delete parameter...';
 Blockly.Msg.DELETE_PARAMETER_TITLE =
     "This will delete all '%1' parameter occurrences. Are you sure?";
 Blockly.Msg.DELETE_X_BLOCKS = 'Delete %1 Blocks';
+Blockly.Msg.DELETE_VARIABLE = 'Delete the "%1" variable';
 Blockly.Msg.DISABLE_BLOCK = 'Disable Block';
 Blockly.Msg.DUPLICATE_BLOCK = 'Duplicate';
 Blockly.Msg.ENABLE_BLOCK = 'Enable Block';
@@ -136,9 +137,11 @@ Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TOOLTIP =
     'Add, remove, or reorder sections to reconfigure this list block.';
 Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH = 'create list with';
 Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP = 'Add an item to the list.';
+Blockly.Msg.LISTS_INLIST = 'In list';
 Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP =
     'Create a list with any number of items.';
 Blockly.Msg.LISTS_GET_INDEX_FIRST = 'first';
+Blockly.Msg.LISTS_GET_INDEX_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 Blockly.Msg.LISTS_GET_INDEX_FROM_END = '# from end';
 Blockly.Msg.LISTS_GET_INDEX_FROM_START = '';
 Blockly.Msg.LISTS_GET_INDEX_GET = 'get';
@@ -149,20 +152,18 @@ Blockly.Msg.LISTS_GET_INDEX_REMOVE = 'remove';
 Blockly.Msg.LISTS_GET_INDEX_TAIL = '';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FIRST =
     'Returns the first item in a list.';
-Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FROM_END =
-    'Returns the item at the specified position in a list.  #1 is the last item.';
-Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FROM_START =
-    'Returns the item at the specified position in a list.  #1 is the first item.';
+Blockly.Msg.LISTS_INDEX_FROM_START_TOOLTIP = "%1 is the first item";
+Blockly.Msg.LISTS_INDEX_FROM_END_TOOLTIP = "%1 is the last item";
+Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FROM =
+    'Returns the item at the specified position in a list.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_LAST =
     'Returns the last item in a list.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_RANDOM =
     'Returns a random item in a list.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FIRST =
     'Removes and returns the first item in a list.';
-Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FROM_END =
-    'Removes and returns the item at the specified position in a list.  #1 is the last item.';
-Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FROM_START =
-    'Removes and returns the item at the specified position in a list.  #1 is the first item.';
+Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FROM =
+    'Removes and returns the item at the specified position in a list.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_LAST =
     'Removes and returns the last item in a list.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_RANDOM =
@@ -170,14 +171,13 @@ Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_RANDOM =
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_FIRST =
     'Removes the first item in a list.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_FROM_END =
-    'Removes the item at the specified position in a list.  #1 is the last item.';
-Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_FROM_START =
-    'Removes the item at the specified position in a list.  #1 is the first item.';
+    'Removes the item at the specified position in a list.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_LAST =
     'Removes the last item in a list.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_RANDOM =
     'Removes a random item in a list.';
 Blockly.Msg.LISTS_GET_SUBLIST_END_FROM_END = 'to # from end';
+Blockly.Msg.LISTS_GET_SUBLIST_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 Blockly.Msg.LISTS_GET_SUBLIST_END_FROM_START = 'to #';
 Blockly.Msg.LISTS_GET_SUBLIST_END_LAST = 'to last';
 Blockly.Msg.LISTS_GET_SUBLIST_HELPURL = '';
@@ -192,7 +192,6 @@ Blockly.Msg.LISTS_INDEX_OF_HELPURL = '';
 Blockly.Msg.LISTS_INDEX_OF_LAST = 'find last occurrence of item';
 Blockly.Msg.LISTS_INDEX_OF_TOOLTIP =
     'Returns the index of the first/last occurrence of the item in the list.  Returns 0 if text is not found.';
-Blockly.Msg.LISTS_INLIST = 'in lista';
 Blockly.Msg.LISTS_IS_EMPTY_HELPURL = '';
 Blockly.Msg.LISTS_IS_EMPTY_TITLE = '%1 is empty';
 Blockly.Msg.LISTS_LENGTH_HELPURL = '';
@@ -204,29 +203,39 @@ Blockly.Msg.LISTS_REPEAT_TITLE = 'create list with item %1 repeated %2 times';
 Blockly.Msg.LISTS_REPEAT_TOOLTIP =
     'Creates a list consisting of the given value repeated the specified number of times.';
 Blockly.Msg.LISTS_SET_INDEX_HELPURL = '';
+Blockly.Msg.LISTS_SET_INDEX_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 Blockly.Msg.LISTS_SET_INDEX_INPUT_TO = 'as';
 Blockly.Msg.LISTS_SET_INDEX_INSERT = 'insert at';
 Blockly.Msg.LISTS_SET_INDEX_SET = 'set';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_FIRST =
     'Inserts the item at the start of a list.';
-Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_FROM_END =
-    'Inserts the item at the specified position in a list.  #1 is the last item.';
-Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_FROM_START =
-    'Inserts the item at the specified position in a list.  #1 is the first item.';
+Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_FROM =
+    'Inserts the item at the specified position in a list.';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_LAST =
     'Append the item to the end of a list.';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_INSERT_RANDOM =
     'Inserts the item randomly in a list.';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_FIRST =
     'Sets the first item in a list.';
-Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_FROM_END =
-    'Sets the item at the specified position in a list.  #1 is the last item.';
-Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_FROM_START =
-    'Sets the item at the specified position in a list.  #1 is the first item.';
+Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_FROM = 'Sets the item at the specified position in a list.';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_LAST = 'Sets the last item in a list.';
 Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_RANDOM =
     'Sets a random item in a list.';
-Blockly.Msg.LISTS_TOOLTIP = 'Returns true if the list is empty.';
+Blockly.Msg.LISTS_ISEMPTY_TOOLTIP = 'Returns true if the list is empty.';
+Blockly.Msg.LISTS_ISEMPTY_TITLE = '%1 is empty';
+Blockly.Msg.LISTS_SPLIT_LIST_FROM_TEXT = 'make list from text';
+Blockly.Msg.LISTS_SPLIT_TEXT_FROM_LIST = 'make text from list';
+Blockly.Msg.LISTS_SPLIT_WITH_DELIMITER = 'with delimiter';
+Blockly.Msg.LISTS_SPLIT_TOOLTIP_SPLIT = 'Split text into a list of texts, breaking at each delimiter.';
+Blockly.Msg.LISTS_SPLIT_TOOLTIP_JOIN = 'Join a list of texts into one text, separated by a delimiter.';
+Blockly.Msg.LISTS_SORT_HELPURL = 'https://github.com/google/blockly/wiki/Lists#sorting-a-list';
+Blockly.Msg.LISTS_SORT_TITLE = 'sort %1 %2 %3';
+Blockly.Msg.LISTS_SORT_TOOLTIP = 'Sort a copy of a list.';
+Blockly.Msg.LISTS_SORT_ORDER_ASCENDING = 'ascending';
+Blockly.Msg.LISTS_SORT_ORDER_DESCENDING = 'descending';
+Blockly.Msg.LISTS_SORT_TYPE_NUMERIC = 'numeric';
+Blockly.Msg.LISTS_SORT_TYPE_TEXT = 'alphabetic';
+Blockly.Msg.LISTS_SORT_TYPE_IGNORECASE = 'alphabetic, ignore case';
 Blockly.Msg.LOGIC_BOOLEAN_FALSE = 'false';
 Blockly.Msg.LOGIC_BOOLEAN_HELPURL = '';
 Blockly.Msg.LOGIC_BOOLEAN_TOOLTIP = 'Returns either true or false.';
@@ -492,6 +501,7 @@ Blockly.Msg.VARIABLES_SET_TAIL = 'to';
 Blockly.Msg.VARIABLES_SET_TITLE = 'set';
 Blockly.Msg.VARIABLES_SET_TOOLTIP =
     'Sets this variable to be equal to the input.';
+Blockly.Msg.VARIABLE_TEXT_TITLE = "Text";
 
 // Custom blocks start here
 
