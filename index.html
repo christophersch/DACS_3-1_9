@@ -7,6 +7,7 @@
     <script src="python_compressed.js"></script>
     <script src="custom_blocks.js"></script>
     <script src="custom_code_generator.js"></script>
+    <script src="guide.js"></script>
     <script src="web_client.js"></script>
     <style>
         body {
@@ -24,10 +25,10 @@
 <body>
 <h1 style="font-family: 'Noto Sans', 'Noto Sans JP', 'Noto Sans KR', 'Noto Naskh Arabic', 'Noto Sans Thai', 'Noto Sans Hebrew', 'Noto Sans Bengali', sans-serif; font-size: 40px; margin-left: 10px;">Blockly</h1>
 <div id="language_selection">
-    <img class="lang_img" src="images/flags/en.png" alt="English" onclick="changeLanguage('en')" style="cursor: pointer; width: 60px; height: 40px; margin-left: 10px;">
-    <img class="lang_img" src="images/flags/nl.png" alt="Nederlands" onclick="changeLanguage('nl')" style="cursor: pointer; width: 60px; height: 40px; margin-left: 10px;">
-    <img class="lang_img" src="images/flags/fr.png" alt="Français" onclick="changeLanguage('fr')" style="cursor: pointer; width: 60px; height: 40px; margin-left: 10px;">
-    <img class="lang_img" src="images/flags/de.png" alt="Deutsch" onclick="changeLanguage('de')" style="cursor: pointer; width: 60px; height: 40px; margin-left: 10px;">
+    <img class="lang_img" src="images/flags/en.png" alt="English" onclick="changeLanguage('en')">
+    <img class="lang_img" src="images/flags/nl.png" alt="Nederlands" onclick="changeLanguage('nl')">
+    <img class="lang_img" src="images/flags/fr.png" alt="Français" onclick="changeLanguage('fr')">
+    <img class="lang_img" src="images/flags/de.png" alt="Deutsch" onclick="changeLanguage('de')">
 </div>
 <div id="language">
 
@@ -526,6 +527,25 @@
     <img src="images/flags/fr.png" onclick="changeLanguage('fr')" style="width: 300px; height: 200px; margin: 10px; cursor: pointer">
     <img src="images/flags/de.png" onclick="changeLanguage('de')" style="width: 300px; height: 200px; margin: 10px; cursor: pointer">
 </div>
+
+<div id="guide">
+    <p id="guideText"></p>
+    <button id="guideNext" onclick="guideNext()">Next</button>
+    <button id="guideBack" onclick="guideBack()">Back</button>
+</div>
+
+<div id="guide_intro">
+    <p>Do you want to follow the guide?</p>
+    <div class="answer" onclick="setGuide(true)">
+        Yes
+        <div class="tip">You will be guided through the tutorial.</div>
+    </div>
+    <div class="answer" onclick="setGuide(false)">
+        No
+        <div class="tip">You will be able to explore on your own.</div>
+    </div>
+</div>
+
 
 <!-- Intro screen where the user can select their skill level -->
 <div id="skill_level_selection_back">
