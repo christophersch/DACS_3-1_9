@@ -2,7 +2,10 @@ var guide_index = 0;
 
 const GUIDE_STEPS = [
     {
-        text: "Welcome to the guide!<br>This guide will help you get started with programming with blocks.<br>Click Next to continue.",
+        entext: "Welcome to the guide!<br>This guide will help you get started with programming with blocks.<br>Click \"Next\" to continue.",
+        detext: "Willkommen zum Tutorial!<br>Dieses Tutorial wird Ihnen helfen mit dem Programmieren mit Blöcken zu starten.<br>Klicken Sie \"Weiter\" um fortzufahren.",
+        nltext: "Welkom naar het tutorial!<br>Dit tutorial maakt u met de het programmeren van blokken vertrouwd.<br>Klik \"Volgende\" om verder te gaan.",
+        frtext: "Bienvenue au tutoriel!<br>Cet tutoriel va vous aider à programmer avec des blocs.<br>Cliquez \"Prochain\" pour continuer.",
         next: true,
         action: function() {
             var guide = document.getElementById("guide");
@@ -12,7 +15,10 @@ const GUIDE_STEPS = [
         }
     },
     {
-        text: "You can choose your language here.",
+        entext: "You can choose your language here.",
+        detext: "Hier können Sie die Sprache auswählen.",
+        nltext: "Hier kunt u de taal uitkiezen.",
+        frtext: "Vous pouvez choisir votre langue préférée ici.",
         next: true,
         action: function() {
             var guide = document.getElementById("guide");
@@ -32,7 +38,10 @@ const GUIDE_STEPS = [
         }
     },
     {
-        text: "You can choose blocks from the toolbox on the left.",
+        entext: "You can choose blocks from the toolbox on the left.",
+        detext: "Links können sie die Blöcke der Toolbox auswählen.",
+        nltext: "Aan de linkerkant kunt u de blokken van de toolbox uitkiezen.",
+        frtext: "À gauche, vous pouvez choisir les blocs de la boîte à outils.",
         next: true,
         action: function() {
             var guide = document.getElementById("guide");
@@ -48,7 +57,10 @@ const GUIDE_STEPS = [
         }
     },
     {
-        text: "Choose the category.",
+        entext: "Choose the category.",
+        detext: "Bitte wählen Sie eine Kategorie aus.",
+        nltext: "Kies een categorie.",
+        frtext: "Choisissez une catégorie.",
         next: false,
         action: function() {
             var guide = document.getElementById("guide");
@@ -69,7 +81,10 @@ const GUIDE_STEPS = [
         }
     },
     {
-        text: "Drag any block to the work space.",
+        entext: "Drag any block to the work space.",
+        detext: "Bitte ziehen Sie einen Block in die Arbeitsfläche.",
+        nltext: "Trek een willekeurig blok naar de werkruimte.",
+        frtext: "Faites glisser n'importe quel bloc vers l'espace de travails.",
         next: false,
         action: function() {
             var guide = document.getElementById("guide");
@@ -85,7 +100,10 @@ const GUIDE_STEPS = [
         }
     },
     {
-        text: "You can see the source code of your script on the right.",
+        entext: "You can see the source code of your script on the right.",
+        detext: "Rechts können Sie den Quellcode des Skripts sehen.",
+        nltext: "Aan de rechterkant kunt u de broncode van de script zien.",
+        frtext: "Vous pouvez voir le source code du script à droite.",
         next: true,
         action: function() {
             var guide = document.getElementById("guide");
@@ -102,7 +120,10 @@ const GUIDE_STEPS = [
         }
     },
     {
-        text: "To remove the block, you can drag it either to the trash bin or to the toolbox menu",
+        entext: "To remove the block, you can drag it either to the trash bin or to the toolbox menu",
+        detext: "Um den Block zu entfernen, können Sie ihn entweder in den Mülleimer oder zurück in das Toolboxmenü ziehen.",
+        nltext: "Om de blok te verwijderen, kunt u het in de bin vuilnisbak of terug in de toolboxmenu plaatsen.",
+        frtext: "Pour eliminer le bloc, vous pouvez le placer dans la poubelle où le replacer dans le toolboxmenu.",
         next: true,
         action: function() {
             var guide = document.getElementById("guide");
@@ -126,7 +147,10 @@ const GUIDE_STEPS = [
         }
     },
     {
-        text: "Remove the block from the working space.",
+        entext: "Remove the block from the working space.",
+        detext: "Bitte entfernen Sie den Block von der Arbeitsfläche.",
+        nltext: "Verwijder de bloc van de werkruimte.",
+        frtext: "Eliminez le bloc de l'espace de travails.",
         next: false,
         action: function() {
             var guide = document.getElementById("guide");
@@ -143,7 +167,10 @@ const GUIDE_STEPS = [
         }
     },
     {
-        text: "You can specify the renderer of the blocks, complexity level, and the server here.",
+        entext: "You can specify the renderer of the blocks, complexity level, and the server here.",
+        detext: "Sie können den Renderer der Blöcke, den Komplexitätsgrad und den Server hier ändern.",
+        nltext: "U kunt de renderer van de blokken, de complexiteitsniveau en de server hier wijzigen.",
+        frtext: "Vous pouvez changer le renderer des blocs, le niveau de complexité et le server ici.",
         next: true,
         action: function() {
             document.getElementById("renderer").style.animation = "guide_highlight_2 1s infinite ease-in-out";
@@ -167,7 +194,10 @@ const GUIDE_STEPS = [
         }
     },
     {
-        text: "To get the output of the script, you need to send the code first.",
+        entext: "To get the output of the script, you need to send the code first.",
+        detext: "Um den Output vom Skript zu bekommen, müssen Sie zuerst den Code abschicken.",
+        nltext: "Om de output van de script te ontvangen, moet u eerst de code afzenden.",
+        frtext: "Pour obtenir l'output de script, vous devez d'abord envoyez le code.",
         next: true,
         action: function() {
             document.getElementById("send_code_request").style.animation = "guide_highlight_2 1s infinite ease-in-out";
@@ -183,7 +213,10 @@ const GUIDE_STEPS = [
         }
     },
     {
-        text: "Success, now you can start coding!",
+        entext: "Success, now you can start coding!",
+        detext: "Nun können sie mit dem Programmieren beginnen. Viel Erfolg!",
+        nltext: "Nu kunt u met programmeren beginnen. Veel success!",
+        frtext: "Maintenant vous pouvez commencer à programmer. Bonne chance!",
         action: function () {
             document.getElementById("guideBack").style.display = "none"
 
@@ -194,25 +227,37 @@ const GUIDE_STEPS = [
 function setGuide(enabled) {
     document.getElementById("guide_intro").style.display = "none";
     if (enabled) {
-        beginGuide();
+        var lang = getLanguage();
+        beginGuide(lang);
     }
 }
 
-function beginGuide() {
+function beginGuide(lang) {
     document.getElementById("guide").style.display = "block";
     document.getElementById("guideBack").style.display = "none";
     document.getElementById("guideNext").style.display = "block";
     guide_index = 0;
-    showGuideStep();
+    showGuideStep(lang);
 }
 
-function showGuideStep() {
+function showGuideStep(lang) {
     var guide = document.getElementById("guide");
     var guide_back = document.getElementById("guideBack");
     var guide_next = document.getElementById("guideNext");
     var guide_text = document.getElementById("guideText");
 
-    guide_text.innerHTML = GUIDE_STEPS[guide_index].text;
+    if (lang === "en") {
+        guide_text.innerHTML = GUIDE_STEPS[guide_index].entext;
+    }
+    else if(lang === "de") {
+        guide_text.innerHTML = GUIDE_STEPS[guide_index].detext;
+    }
+    else if(lang === "nl") {
+        guide_text.innerHTML = GUIDE_STEPS[guide_index].nltext;
+    }
+    else {
+        guide_text.innerHTML = GUIDE_STEPS[guide_index].frtext;
+    }
     guide_next.style.display = (guide_index < GUIDE_STEPS.length - 1 && GUIDE_STEPS[guide_index].next) ? "block" : "none";
     guide_back.style.display = guide_index > 0 ? "block" : "none";
 
@@ -228,24 +273,24 @@ function showGuideStep() {
             }
             if (GUIDE_STEPS[guide_index].waitUntil()) {
                 clearInterval(interval);
-                guideNext();
+                guideNext(lang);
             }
         }, 30);
     }
 }
 
-function guideBack() {
+function guideBack(lang) {
     if (typeof GUIDE_STEPS[guide_index].finish === "function") {
         GUIDE_STEPS[guide_index].finish();
     }
     guide_index--;
-    showGuideStep();
+    showGuideStep(lang);
 }
 
-function guideNext() {
+function guideNext(lang) {
     if (typeof GUIDE_STEPS[guide_index].finish === "function") {
         GUIDE_STEPS[guide_index].finish();
     }
     guide_index++;
-    showGuideStep();
+    showGuideStep(lang);
 }
