@@ -1,12 +1,14 @@
-const REQUEST_URL_LOCAL = "http://localhost:5000";
-const REQUEST_URL_SERVER  = "http://blockly.ingoh.net:5000"
-
 function sendRequest() {
     var token = document.getElementById("token").value;
-    var local = document.getElementById("local").checked;
     var request = new XMLHttpRequest();
-    if (local) request.open("POST", REQUEST_URL_LOCAL + "?token=" + token, true);
-    else request.open("POST", REQUEST_URL_SERVER + "?token=" + token, true);
+    var ip = document.getElementById("ip").value === "" ? "localhost:5000" : document.getElementById("ip").value;
+    if (!ip.startsWith("http://")) {
+        ip = "http://" + ip;
+    }
+    if (!ip.includes(':') && !ip.endsWith('/')) {
+        ip += ":5000";
+    }
+    request.open("POST", ip + "?token=" + token, true);
     var workspace = Blockly.getMainWorkspace();
     var codeOrig = Blockly.Python.workspaceToCode(workspace);
     var code = workspaceToCodeDebug(workspace);
@@ -26,5 +28,16 @@ function sendRequest() {
             document.getElementById("outputText").style.color = "red";
         }
     }
+    request.onerror = function() {
+            if (request.status == 0) {
+                document.getElementById("outputText").innerHTML = "Connection refused. Please check your IP and port.";
+                document.getElementById("outputText").style.color = "red";
+            } else {
+                document.getElementById("outputText").innerHTML = "An error occured. Please try again.";
+                document.getElementById("outputText").style.color = "red";
+            }
+    }
+    document.getElementById("outputText").innerHTML = "Sending request...";
+    document.getElementById("outputText").style.color = "#3F51B5";
     request.send(code);
 }

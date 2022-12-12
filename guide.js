@@ -329,6 +329,7 @@ const GUIDE_STEPS = [
             document.getElementById("intermediate").style.animation = "guide_highlight_2 1s infinite ease-in-out";
             document.getElementById("expert").style.animation = "guide_highlight_2 1s infinite ease-in-out";
             document.getElementById("token").style.animation = "guide_highlight_2 1s infinite ease-in-out";
+            document.getElementById("ip").style.animation = "guide_highlight_2 1s infinite ease-in-out";
             var guide = document.getElementById("guide");
             guide.style.left = document.getElementById("token").getBoundingClientRect().right + 15 +"px"
             guide.style.top = document.getElementById("expert").getBoundingClientRect().top+"px"
@@ -339,7 +340,7 @@ const GUIDE_STEPS = [
             document.getElementById("intermediate").style.animation = "none";
             document.getElementById("expert").style.animation = "none";
             document.getElementById("token").style.animation = "none";
-            document.getElementById("local").style.animation = "none";
+            document.getElementById("ip").style.animation = "none";
         }
     },
     {
@@ -422,6 +423,33 @@ function showGuideStep(lang) {
     if (typeof GUIDE_STEPS[guide_index].action === "function") {
         GUIDE_STEPS[guide_index].action();
     }
+
+    var scrollX = window.scrollX;
+    var scrollY = window.scrollY;
+
+    if (guide.style.left.endsWith("px")) {
+        guide.style.left = (parseInt(guide.style.left.substring(0, guide.style.left.length - 2)) + scrollX) + "px";
+    }
+    if (guide.style.top.endsWith("px")) {
+        guide.style.top = (parseInt(guide.style.top.substring(0, guide.style.top.length - 2)) + scrollY) + "px";
+    }
+
+    if (guide.getBoundingClientRect().left < 0) {
+        window.scrollTo(scrollX + guide.getBoundingClientRect().left - 10, scrollY);
+    }
+
+    if (guide.getBoundingClientRect().top < 0) {
+        window.scrollTo(scrollX, scrollY + guide.getBoundingClientRect().top - 10);
+    }
+
+    if (guide.getBoundingClientRect().right > window.innerWidth) {
+        window.scrollTo(scrollX + guide.getBoundingClientRect().right - window.innerWidth + 10, scrollY);
+    }
+
+    if (guide.getBoundingClientRect().bottom > window.innerHeight) {
+        window.scrollTo(scrollX, scrollY + guide.getBoundingClientRect().bottom - window.innerHeight + 10);
+    }
+
 
     if (typeof GUIDE_STEPS[guide_index].waitUntil === "function") {
         var interval = setInterval(function() {

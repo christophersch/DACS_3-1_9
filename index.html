@@ -453,8 +453,42 @@
 <!--<img src="images/cs.svg" alt="CoRoSect" width="80px" height="50px">-->
 <br>
 
+<hideadvanced>
+    <script>
+        function hideAdvanced() {
+            var btn = document.getElementById("btnAdvanced");
+            var isEnabled = btn.innerHTML == "Advanced Mode: ON";
+            var all = document.getElementsByClassName("advanced");
+            for (var i = 0; i < all.length; i++) {
+                let x = all[i];
+                if (!isEnabled) {
+                    x.style.display = "block";
+                    x.style.animation = "popin 0.5s ease-in-out";
+                }
+                else {
+                    x.style.animation = "popout 0.5s ease-in-out";
+                    setTimeout(function () {
+                        x.style.display = "none";
+                    }, 500);
+                }
+            }
+            if (isEnabled) {
+                btn.classList.remove("enabled");
+                btn.classList.add("disabled");
+                btn.innerHTML = "Advanced Mode: OFF";
+            }
+            else {
+                btn.classList.remove("disabled");
+                btn.classList.add("enabled");
+                btn.innerHTML = "Advanced Mode: ON";
+            }
+        }
+    </script>
+    <button id="btnAdvanced" onclick="hideAdvanced()" class="enabled">Advanced Mode: ON</button>
+</hideadvanced>
+
 <bottom>
-<bottombox>
+<bottombox class="advanced">
 <label for="renderer">Renderer:</label>
 <select class="rendererselect" name="renderer" id="renderer" onchange="changeRenderer()">
     <option class="opt" value="zelos">zelos</option>
@@ -486,7 +520,8 @@
             }
             workspaceToCodeDebug(demoWorkspace);
         });
-        //initCategories();
+        initCategories();
+        refreshCategories();
         var blocklyMainWorkspace = document.getElementsByClassName("blocklyMainBackground")[0];
         blocklyMainWorkspace.style.fill = "#DDDDFF";
         var blocklyMainWorkspace = document.getElementsByClassName("blocklyToolboxDiv")[0];
@@ -500,16 +535,32 @@
 <button localization-key="intermediate" id="intermediate" onclick="setComplexityLevel(SKILL_LEVELS.INTERMEDIATE)">Intermediate</button>
 <button localization-key="expert" id="expert" onclick="setComplexityLevel(SKILL_LEVELS.EXPERT)">Expert</button>
 </bottombox>
-<bottombox>
+<bottombox class="advanced">
 <label for="token" style="vertical-align: middle">Token:</label>
-<textarea id="token" rows="1" cols="50" style="font-size: small; vertical-align: middle"></textarea>
+<textarea id="token" rows="1" cols="20" style="font-size: small; vertical-align: middle"></textarea>
+</bottombox>
+<bottombox class="advanced">
+    <label localization-key="ip" for="ip">IP</label>
+    <span id="prefix" style="vertical-align: middle; color: #7f7f7f">http://</span>
+    <textarea type="string" rows="1" cols="32" id="ip" name="ip" placeholder="localhost:5000" style="font-size: small; vertical-align: middle" oninput="function setIp() {
+        var ip = document.getElementById('ip').value;
+        if (!ip.includes('://')) {
+            document.getElementById('prefix').textContent = 'http://';
+        } else {
+            ip = ip.split('://')[1];
+            document.getElementById('prefix').textContent = '';
+        }
+        if (!ip.includes(':') && !ip.endsWith('/') && ip != '') {
+            document.getElementById('suffix').textContent = ':5000';
+        } else {
+            document.getElementById('suffix').textContent = '';
+        }
+    }
+    setIp()"></textarea>
+    <span id="suffix" style="vertical-align: middle; color: #7f7f7f"></span>
 </bottombox>
 <bottombox>
-<label localization-key="local" for="local">Local:</label>
-<input type="checkbox" id="local" name="local" value="local">
-</bottombox>
-<bottombox>
-<button localization-key="sendCode" id="send_code_request" onclick="sendRequest()">Send Code</button>
+<button localization-key="sendCode" class="primarybutton" id="send_code_request" onclick="sendRequest()">Send Code</button>
 </bottombox>
 <bottombox>
 <div id="output">
@@ -586,7 +637,7 @@
             beginner: "Beginner",
             intermediate: "Intermediate",
             expert: "Expert",
-            local: "local",
+            ip: "IP Address:",
             sendCode: "Send Code",
             outputText: "No output yet",
             familiarQuestion: "How familiar are you with programming?",
@@ -611,7 +662,7 @@
             beginner: "Anfänger",
             intermediate: "Fortgeschritten",
             expert: "Experte",
-            local: "lokal",
+            ip: "IP Adresse:",
             sendCode: "Code abschicken",
             outputText: "Noch keinen Output",
             familiarQuestion: "Wie gut kennst du dich mit Programmieren aus?",
@@ -636,7 +687,7 @@
             beginner: "Beginner",
             intermediate: "Geavanceerd",
             expert: "Expert",
-            local: "lokaal",
+            ip: "IP Adres:",
             sendCode: "Code verzenden",
             outputText: "Nog geen output",
             familiarQuestion: "Hoe bekend ben je met programmeren?",
@@ -661,7 +712,7 @@
             beginner: "Débutant",
             intermediate: "Intermédiaire",
             expert: "Expert",
-            local: "local",
+            local: "Adresse IP:",
             sendCode: "Envoyer le code",
             outputText: "Pas encore d'output",
             familiarQuestion: "À quel point êtes-vous familier avec la programmation?",

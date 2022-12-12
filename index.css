@@ -175,6 +175,42 @@
     }
 }
 
+@keyframes popin {
+    0% {
+        transform: scale(0);
+        height: 0;
+        padding: 0;
+    }
+    70% {
+        transform: scale(1.2);
+        height: auto;
+        padding: 10px;
+    }
+    100% {
+        transform: scale(1);
+        height: auto;
+        padding: 10px;
+    }
+}
+
+@keyframes popout {
+    0% {
+        transform: scale(1);
+        height: auto;
+        padding: 10px;
+    }
+    30% {
+        transform: scale(1.2);
+        height: auto;
+        padding: 10px;
+    }
+    100% {
+        transform: scale(0);
+        height: 0;
+        padding: 0;
+    }
+}
+
 button {
     background-color: #00AAFF;
     border: 1px solid #7F7FFF;
@@ -189,10 +225,56 @@ button {
 button:hover {
     background-color: #0088FF;
     cursor: pointer;
+    transition: 0.3s;
+    transform: scale(1.05);
 }
 
 button:active {
     background-color: #0066FF;
+    transition: 0.05s;
+    transform: scale(0.95);
+}
+
+.enabled {
+    background-color: #FFAA00;
+    border: 1px solid #FF7F00;
+    color: #7F3F00;
+}
+
+.enabled:hover {
+    background-color: #FF8800;
+}
+
+.enabled:active {
+    background-color: #FF6600;
+}
+
+.disabled {
+    background-color: #BBBBBB;
+    border: 1px solid #888888;
+    color: white;
+}
+
+.disabled:hover {
+    background-color: #888888;
+}
+
+.disabled:active {
+    background-color: #666666;
+}
+
+.primarybutton {
+    background-color: #3FFF3F;
+    border: 1px solid #007F00;
+    color: #007F00;
+}
+
+.primarybutton:hover {
+    background-color: #00FF00;
+}
+
+.primarybutton:active {
+    background-color: #00AA00;
 }
 
 .rendererselect {
@@ -209,6 +291,8 @@ button:active {
 .rendererselect:hover {
     background-color: #0088FF;
     cursor: pointer;
+    transition: 0.3s;
+    transform: scale(1.05);
 }
 
 .rendererselect:active {
@@ -238,16 +322,27 @@ textarea {
     font-family: monospace;
 }
 
+textarea:hover {
+    background-color: #BBBBFF;
+    cursor: pointer;
+    transition: 0.3s;
+    transform: scale(1.03);
+}
+
+textarea:active {
+    background-color: #9999FF;
+}
+
 bottom {
     background-color: #EEEEFF;
     width: max-content;
     vertical-align: middle;
     display: inline-block;
+    margin: 10px;
 }
 
 bottombox {
     color: #003F7F;
-    background-color: #EEEEFF;
     border: none;
     padding: 10px;
     text-align: left;
@@ -256,6 +351,13 @@ bottombox {
     width: max-content;
     display: block;
     vertical-align: middle;
+}
+
+hideadvanced {
+    padding: 2px 2px;
+    display: block;
+    width: auto;
+    margin: 10px;
 }
 
 .lang_img {

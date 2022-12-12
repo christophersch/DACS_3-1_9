@@ -23,24 +23,12 @@ let skill_level = SKILL_LEVELS.BEGINNER;
     - functions
 */
 
-/*
-    map:
-    logic: blockly-0
-    loops: blockly-1
-    math: blockly-2
-    text: blockly-3
-    lists: blockly-4
-
-    variables: blockly-5
-    functions: blockly-6
-*/
-
 let categories = new Map();
 
 class TabCategory {
-    constructor(id) {
-        this.id = id;
-        this.DOM_element = document.getElementById(id);
+    constructor(index) {
+        this.id = index;
+        this.DOM_element = document.getElementsByClassName("blocklyTreeRow")[index];
         this.DOM_element_default_height = this.DOM_element.style.height;
         this.visible = true;
     }
@@ -88,17 +76,17 @@ class TabCategory {
 function initCategories() {
 
     var cats = [
-        ["logic", "blockly-0"],
-        ["loops", "blockly-1"],
-        ["math", "blockly-2"],
-        ["text", "blockly-3"],
-        ["lists", "blockly-4"],
-        ["color", "blockly-5"],
-        ["variables", "blockly-7"],
-        ["functions", "blockly-8"],
-        ["farm_elements", "blockly-a"],
-        ["farm_funcs", "blockly-b"],
-        ["farm_complex_funcs", "blockly-c"]
+        ["logic", 0],
+        ["loops", 1],
+        ["math", 2],
+        ["text", 3],
+        ["lists", 4],
+        ["color", 5],
+        ["variables", 6],
+        ["functions", 7],
+        ["farm_elements", 8],
+        ["farm_funcs", 9],
+        ["farm_complex_funcs", 10]
     ]
 
     cats.forEach(cat => {
