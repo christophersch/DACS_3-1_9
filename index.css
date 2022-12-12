@@ -127,6 +127,30 @@
     display: none;
 }
 
+#guideFinish {
+    background-color: #00AAFF;
+    border: 1px solid #7F7FFF;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+
+    width: 150px;
+    height: 80px;
+
+    font-size:larger;
+
+    z-index: 999999;
+
+    display: none;
+}
+
 @keyframes guide_highlight {
     0% {
         background-color: #DDDDFF;

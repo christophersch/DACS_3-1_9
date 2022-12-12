@@ -88,11 +88,20 @@ const GUIDE_STEPS = [
         text: "You can see the source code of your script on the right.",
         next: true,
         action: function() {
+            var workspace = Blockly.getMainWorkspace();
+
+            if (Blockly.getMainWorkspace().getTopBlocks().length === 0) {
+                var block = workspace.newBlock("controls_forEach");
+                block.initSvg();
+                block.moveBy(30, 150);
+                block.render();
+            }
             var guide = document.getElementById("guide");
             var debug_panel = document.getElementById("debugText1");
             var debug_panel_rect = debug_panel.getBoundingClientRect();
             debug_panel.style.animation = "guide_highlight_2 1s infinite ease-in-out";
             guide.style.height = 260+"px";
+            guide.style.width = 240+"px";
             guide.style.margin = "auto";
             guide.style.left = debug_panel_rect.left - debug_panel_rect.height/3 + "px";
             guide.style.top = debug_panel_rect.top - debug_panel_rect.height/2 + "px";
@@ -102,27 +111,85 @@ const GUIDE_STEPS = [
         }
     },
     {
-        text: "To remove the block, you can drag it either to the trash bin or to the toolbox menu",
+        text: "There are three different shapes of the blocks. " +
+              "<br>Round shape represents objects," +
+              "<br>Hexagon blocks refer to boolean conditions," +
+              "<br>Quadrangle - all other.",
         next: true,
         action: function() {
             var guide = document.getElementById("guide");
-            var path = document.getElementsByClassName("blocklyToolboxDiv")[0];
-            var path_rect = path.getBoundingClientRect();
+            var path_rect = document.getElementsByClassName("blocklyToolboxDiv")[0].getBoundingClientRect();
 
-            var ws = document.getElementsByClassName("blocklyWorkspace")[0];
-            ws.parentElement.style.animation = "guide_highlight_2 1s infinite ease-in-out";
-            var child = ws.firstElementChild.cloneNode(true);
-            ws.appendChild(child);
-            child.style.height = "80%";
-            child.style.stroke = "none";
-            ws.firstElementChild.style.width = "87.5%";
-            child.style.background = "#DFDBFE";
+            guide.style.left = path_rect.right + "px";
+            guide.style.top = path_rect.bottom - path_rect.height/2 + "px";
+            guide.style.width = 450+"px";
+            // guide.style.height = 60+"px";
 
-            document.getElementsByClassName("blocklyToolboxDiv")[0].style.animation = "guide_highlight_2 1s infinite ease-in-out";
+            var workspace = Blockly.getMainWorkspace();
+            workspace.clear();
+            var block = workspace.newBlock("logic_null");
+            block.initSvg();
+            block.moveBy(30, 150);
+            block.render();
+            var block1 = workspace.newBlock("logic_ternary");
+            block1.initSvg();
+            block1.moveBy(30, 200);
+            block1.render();
+            var block2 = workspace.newBlock("logic_negate");
+            block2.initSvg();
+            block2.moveBy(300, 50);
+            block2.render();
+            var block3 = workspace.newBlock("logic_boolean");
+            block3.initSvg();
+            block3.moveBy(300, 100);
+            block3.render();
+            var block4 = workspace.newBlock("controls_if");
+            block4.initSvg()
+            block4.moveBy(500, 150);
+            block4.render();
+            var block5 = workspace.newBlock("controls_whileUntil");
+            block5.initSvg();
+            block5.moveBy(500, 300);
+            block5.render();
+            // connection working
+            // var blockConnection = block.getInput('TEXT').connection;
+            // var block1Connection = block1.outputConnection;
+            // blockConnection.connect(block1Connection);
+
+            guide.style.margin = "auto";
+        },
+        finish: function() {
+            var workspace = Blockly.getMainWorkspace();
+            workspace.clear();
+        }
+    },
+    {
+        text: "To remove the block, you can drag it either to the trash bin or to the toolbox menu",
+        next: true,
+        action: function() {
+            var workspace = Blockly.getMainWorkspace();
+            workspace.clear();
+            var block = workspace.newBlock("controls_forEach");
+            block.initSvg();
+            block.moveBy(30, 150);
+            block.render();
+            var guide = document.getElementById("guide");
+            var path_rect = document.getElementsByClassName("blocklyToolboxDiv")[0].getBoundingClientRect();
+
+            // var ws = document.getElementsByClassName("blocklyWorkspace")[0];
+            // ws.parentElement.style.animation = "guide_highlight_2 1s infinite ease-in-out";
+            // var child = ws.firstElementChild.cloneNode(true);
+            // ws.appendChild(child);
+            // child.style.height = "80%";
+            // child.style.stroke = "none";
+            // ws.firstElementChild.style.width = "87.5%";
+
+            // document.getElementsByClassName("blocklyToolboxDiv")[0].style.animation = "guide_highlight_2 1s infinite ease-in-out";
             guide.style.height = 260+"px";
+            guide.style.width = 240+"px";
             guide.style.margin = "5px";
             guide.style.left =  20 + "px";
-            guide.style.top = path_rect.bottom - path_rect.height/2.5 + "px";
+            guide.style.top = path_rect.bottom - path_rect.height/2 + "px";
         }
     },
     {
@@ -136,11 +203,11 @@ const GUIDE_STEPS = [
             return Blockly.getMainWorkspace().getTopBlocks().length === 0;
         },
 
-        finish: function(){
-            document.getElementsByClassName("blocklyToolboxDiv")[0].style.animation = "none";
-            document.getElementsByClassName("blocklyWorkspace")[0].parentElement.style.animation = "none";
-            // document.getElementsByClassName("blocklyWorkspace")[0].parentElement.style.background = rgb(199,199,255);
-        }
+        // finish: function(){
+        //     document.getElementsByClassName("blocklyToolboxDiv")[0].style.animation = "none";
+        //     document.getElementsByClassName("blocklyWorkspace")[0].parentElement.style.animation = "none";
+        //     // document.getElementsByClassName("blocklyWorkspace")[0].parentElement.style.background = rgb(199,199,255);
+        // }
     },
     {
         text: "You can specify the renderer of the blocks, complexity level, and the server here.",
@@ -185,8 +252,11 @@ const GUIDE_STEPS = [
     {
         text: "Success, now you can start coding!",
         action: function () {
-            document.getElementById("guideBack").style.display = "none"
-
+            document.getElementById("guideBack").style.display = "none";
+            document.getElementById("guideFinish").style.display = "block";
+        },
+        finish: function() {
+            document.getElementById("guide").style.display = "none";
         }
     }
 ];
@@ -212,6 +282,7 @@ function showGuideStep() {
     var guide_next = document.getElementById("guideNext");
     var guide_text = document.getElementById("guideText");
 
+    guide.style.display = (guide_index === GUIDE_STEPS.length) ? "none" : "block";
     guide_text.innerHTML = GUIDE_STEPS[guide_index].text;
     guide_next.style.display = (guide_index < GUIDE_STEPS.length - 1 && GUIDE_STEPS[guide_index].next) ? "block" : "none";
     guide_back.style.display = guide_index > 0 ? "block" : "none";
