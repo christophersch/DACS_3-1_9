@@ -30,8 +30,8 @@
     <img class="lang_img" src="images/flags/fr.png" alt="Français" onclick="changeLanguage('fr')">
     <img class="lang_img" src="images/flags/de.png" alt="Deutsch" onclick="changeLanguage('de')">
 </div>
-<a href="https://www.maastrichtuniversity.nl/"><img rel="stylesheet" src="images/um.png" alt="UM" width="350px" height="50px" style="margin: 0 30px 5px 120px;"></a>
-<a href="https://corosect.eu/"><img rel="stylesheet" src="images/cs.svg" alt="CoRoSect" width="80px" height="50px" style="margin: 0 0 5px 0;"></a>
+<a href="https://www.maastrichtuniversity.nl/" target="_blank"><img rel="stylesheet" src="images/um.png" alt="UM" width="350px" height="50px" style="margin: 0 30px 5px 120px;"></a>
+<a href="https://corosect.eu/" target="_blank"><img rel="stylesheet" src="images/cs.svg" alt="CoRoSect" width="80px" height="50px" style="margin: 0 0 5px 0;"></a>
 <div id="language">
 
 </div>
@@ -532,20 +532,19 @@
 
 <div id="guide">
     <p id="guideText"></p>
-    <button id="guideFinish" onclick="guideNext()">Start blocking</button>
-    <button id="guideNext" onclick="guideNext()">Next</button>
-    <button id="guideBack" onclick="guideBack()">Back</button>
+    <button id="guideNext" localization-key="next" onclick="guideNext(getLanguage())">Next</button>
+    <button id="guideBack" localization-key="back" onclick="guideBack(getLanguage())">Back</button>
 </div>
 
 <div id="guide_intro">
-    <p>Do you want to follow the guide?</p>
+    <p localization-key="followGuide">Do you want to follow the guide?</p>
     <div class="answer" onclick="setGuide(true)">
-        Yes
-        <div class="tip">You will be guided through the tutorial.</div>
+        <span localization-key="yes">Yes</span>
+        <div class="tip" localization-key="yesGuideTip">You will be guided through the tutorial.</div>
     </div>
     <div class="answer" onclick="setGuide(false)">
-        No
-        <div class="tip">You will be able to explore on your own.</div>
+        <span localization-key="no">No</span>
+        <div class="tip" localization-key="noGuideTip">You will be able to explore on your own.</div>
     </div>
 </div>
 
@@ -570,6 +569,13 @@
 </div>
 
 <script>
+    function getLanguage() {
+        var searchParams = new URLSearchParams(window.location.search);
+        return searchParams.get('lang');
+    }
+</script>
+
+<script>
     var language = {
         en: {
             text: "text",
@@ -587,11 +593,18 @@
             answerExpert: "I am an expert",
             beginnerTip: "Only the basics.",
             intermediateTip: "You will have access to math, text, and lists.",
-            expertTip: "You will have access to variables and functions."
+            expertTip: "You will have access to variables and functions.",
+            followGuide: "Do you want to follow the guide?",
+            yes: "Yes",
+            no: "No",
+            yesGuideTip: "You will be guided through the tutorial.",
+            noGuideTip: "You will be able to explore on your own.",
+            next: "Next",
+            back: "Back"
         },
         de: {
-            text: "text",
-            list: "liste",
+            text: "Text",
+            list: "Liste",
             complexityLevel: "Komplexitätsgrad",
             beginner: "Anfänger",
             intermediate: "Fortgeschritten",
@@ -605,25 +618,39 @@
             answerExpert: "Ich bin ein Experte",
             beginnerTip: "Nur die Grundlagen",
             intermediateTip: "Sie haben Zugriff auf Mathe, Text und Listen.",
-            expertTip: "Sie haben Zugriff auf Variablen und Funtionen."
+            expertTip: "Sie haben Zugriff auf Variablen und Funtionen.",
+            followGuide: "Möchten sie dem Tutorial folgen?",
+            yes: "Ja",
+            no: "Nein",
+            yesGuideTip: "Sie werden durch das Tutorial geleitet.",
+            noGuideTip: "Sie können direkt loslegen.",
+            next: "Weiter",
+            back: "Zurück"
         },
         nl: {
             text: "tekst",
             list: "lijst",
-            complexityLevel: "Complexiteit niveau",
+            complexityLevel: "Complexiteitsniveau",
             beginner: "Beginner",
-            intermediate: "Tussenliggend",
+            intermediate: "Geavanceerd",
             expert: "Expert",
             local: "lokaal",
             sendCode: "Code verzenden",
             outputText: "Nog geen output",
-            familiarQuestion: "Hoe bekend ben je met programmeren",
+            familiarQuestion: "Hoe bekend ben je met programmeren?",
             answerBeginner: "Ik ben een beginner",
             answerIntermediate: "Ik ben een beetje vertrouwd",
             answerExpert: "Ik ben een expert",
             beginnerTip: "Alleen de basis.",
             intermediateTip: "Je hebt toegang tot wiskunde, tekst en lijsten.",
-            expertTip: "Je hebt toegang tot variabelen en functies."
+            expertTip: "Je hebt toegang tot variabelen en functies.",
+            followGuide: "Wilt u de tutorial volgen?",
+            yes: "Ja",
+            no: "Nee",
+            yesGuideTip: "U wordt door de tutorial geleid.",
+            noGuideTip: "U kunt direct beginnen.",
+            next: "Volgende",
+            back: "Terug"
         },
         fr: {
             text: "texte",
@@ -637,11 +664,18 @@
             outputText: "Pas encore d'output",
             familiarQuestion: "À quel point êtes-vous familier avec la programmation?",
             answerBeginner: "Je suis un débutant",
-            answerIntermediate: "Je suis un peu familier",
+            answerIntermediate: "J'ai quelques connaissances",
             answerExpert: "Je suis un expert",
             beginnerTip: "Seulement les bases.",
             intermediateTip: "Vous aurez accès aux mathématiques, au texte et aux listes.",
-            expertTip: "Vous aurez accès aux variables et aux fonctions."
+            expertTip: "Vous aurez accès aux variables et aux fonctions.",
+            followGuide: "Est-ce que vous voulez suivre le tutoriel?",
+            yes: "Oui",
+            no: "Non",
+            yesGuideTip: "Vous allez suivre le tutoriel.",
+            noGuideTip: "Vous pouvez commencer directement.",
+            next: "Prochain",
+            back: "Retour"
         }
     };
     var searchParams = new URLSearchParams(window.location.search);

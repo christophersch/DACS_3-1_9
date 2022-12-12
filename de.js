@@ -1,6 +1,6 @@
 Blockly.Msg.ACTUAL = 'Aufruf';
 Blockly.Msg.ADD = 'Hinzufügen';
-Blockly.Msg.ADD_COMMENT = 'Füge einen Kommentar hinzu';
+Blockly.Msg.ADD_COMMENT = 'Füge ein Kommentar hinzu';
 Blockly.Msg.ADD_PARAMETER = 'Füge einen Parameter hinzu';
 Blockly.Msg.CANCEL = 'Abbrechen';
 Blockly.Msg.CHANGE_VALUE_TITLE = 'Wert ändern:';
