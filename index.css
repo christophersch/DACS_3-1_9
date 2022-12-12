@@ -80,9 +80,6 @@
 }
 
 #guideBack {
-    background-color: #CCEEFF;
-    border: 1px solid #BFBFFF;
-    color: #003F7F;
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
@@ -104,9 +101,6 @@
 }
 
 #guideNext {
-    background-color: #00AAFF;
-    border: 1px solid #7F7FFF;
-    color: white;
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
@@ -128,9 +122,6 @@
 }
 
 #guideFinish {
-    background-color: #00AAFF;
-    border: 1px solid #7F7FFF;
-    color: white;
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
@@ -275,6 +266,20 @@ button:active {
 
 .primarybutton:active {
     background-color: #00AA00;
+}
+
+.tertiarybutton {
+    background-color: #CCEEFF;
+    border: 1px solid #BFBFFF;
+    color: #003F7F;
+}
+
+.tertiarybutton:hover {
+    background-color: #BBDDFF;
+}
+
+.tertiarybutton:active {
+    background-color: #99BBFF;
 }
 
 .rendererselect {
