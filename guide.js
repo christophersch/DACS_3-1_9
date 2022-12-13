@@ -3,7 +3,7 @@ var guide_index = 0;
 const GUIDE_STEPS = [
     {
         entext: "Welcome to the guide!<br>This guide will help you get started with programming with blocks.<br>Click \"Next\" to continue.",
-        detext: "Willkommen zum Tutorial!<br>Dieses Tutorial wird Ihnen helfen mit dem Programmieren mit Blöcken zu starten.<br>Klicken Sie \"Weiter\" um fortzufahren.",
+        detext: "Willkommen zum Tutorial!<br>Dieses Tutorial wird dir helfen mit dem Programmieren mit Blöcken zu starten.<br>Klicke \"Weiter\" um fortzufahren.",
         nltext: "Welkom naar het tutorial!<br>Dit tutorial maakt u met de het programmeren van blokken vertrouwd.<br>Klik \"Volgende\" om verder te gaan.",
         frtext: "Bienvenue au tutoriel!<br>Cet tutoriel va vous aider à programmer avec des blocs.<br>Cliquez \"Prochain\" pour continuer.",
         next: true,
@@ -16,7 +16,7 @@ const GUIDE_STEPS = [
     },
     {
         entext: "You can choose your language here.",
-        detext: "Hier können Sie die Sprache auswählen.",
+        detext: "Hier kannst du die Sprache auswählen.",
         nltext: "Hier kunt u de taal uitkiezen.",
         frtext: "Vous pouvez choisir votre langue préférée ici.",
         next: true,
@@ -37,7 +37,7 @@ const GUIDE_STEPS = [
     },
     {
         entext: "You can choose blocks from the toolbox on the left.",
-        detext: "Links können sie die Blöcke der Toolbox auswählen.",
+        detext: "Links kannst du die Blöcke der Toolbox auswählen.",
         nltext: "Aan de linkerkant kunt u de blokken van de toolbox uitkiezen.",
         frtext: "À gauche, vous pouvez choisir les blocs de la boîte à outils.",
         next: true,
@@ -61,7 +61,7 @@ const GUIDE_STEPS = [
     },
     {
         entext: "Choose the category.",
-        detext: "Bitte wählen Sie eine Kategorie aus.",
+        detext: "Bitte wähle eine Kategorie aus.",
         nltext: "Kies een categorie.",
         frtext: "Choisissez une catégorie.",
         next: false,
@@ -86,7 +86,7 @@ const GUIDE_STEPS = [
     },
     {
         entext: "Drag any block to the work space.",
-        detext: "Bitte ziehen Sie einen Block in die Arbeitsfläche.",
+        detext: "Bitte zieh einen Block in die Arbeitsfläche.",
         nltext: "Trek een willekeurig blok naar de werkruimte.",
         frtext: "Faites glisser n'importe quel bloc vers l'espace de travails.",
         next: false,
@@ -106,7 +106,7 @@ const GUIDE_STEPS = [
     },
     {
         entext: "You can see the source code of your script on the right.",
-        detext: "Rechts können Sie den Quellcode des Skripts sehen.",
+        detext: "Rechts kannst du den Quellcode des Skripts sehen.",
         nltext: "Aan de rechterkant kunt u de broncode van de script zien.",
         frtext: "Vous pouvez voir le source code du script à droite.",
         next: true,
@@ -137,12 +137,21 @@ const GUIDE_STEPS = [
     },
     {
         entext: "There are three different shapes of the blocks. " +
-              "<br>Round shape represents objects," +
-              "<br>Hexagon blocks refer to boolean conditions," +
-              "<br>Quadrangle - all other.",
-        detext: "to do",
-        nltext: "to do",
-        frtext: "to do",
+                "<br>Round shape represents objects," +
+                "<br>Hexagon blocks refer to boolean conditions," +
+                "<br>Quadrangle - all other.",
+        detext: "Es gibt drei verschiedene Arten von Blöcken. " +
+                "<br>Runde Blöcke repräsentieren Objekte," +
+                "<br>Hexagon-Blöcke beziehen sich auf boolean Bedingungen. " +
+                "<br>Viereckige Blöcke beziehen sich auf den Rest.",
+        nltext: "Er zijn drie diverse vormen van blokken."+
+                "<br>Ronde blokken verwijzen naar objecten,"+
+                "<br>Zeshoekige blokken verwijzen naar boolean objecten. " +
+                "<br>Vierhoekige blokken verwijzen naar de rest.",
+        frtext: "Il y a trois différents types des blocs." +
+                "<br>Les blocs ronds représentent des objects " +
+                "<br>Les blocs hexagonaux représentent les conditions boolean." +
+                "<br>Les blocs carrés représentent tout le rest.",
         next: true,
         width: 450,
         height: 260,
@@ -198,9 +207,15 @@ const GUIDE_STEPS = [
     {
         entext: "Quadrangle blocks are connectable to each other, " +
                 "When the round and hexagon used to fill the spaces",
-        detext: "to do",
-        nltext: "to do",
-        frtext: "to do",
+        detext: "Viereckige Blöcke können sich miteinander verbinden, "+
+                "während die freien Plätze in diesen Blöcken von runden "+
+                "und Hexagon-Blöcken gefüllt werden können.",
+        nltext: "Vierhoekige blokken kunnen met elkaar verbinden, "+
+                "en de vrije ruimtes in deze blokken kunnen door " +
+                "ronde en zeshoekige blokken opgevuld worden.",
+        frtext: "Les blocs carrés peuvent se connecter avec des autres " +
+                "blocs carrés et les libres espaces de ces blocs " +
+                "peuvent être remplis par des blocs ronds et hexagonaux.",
         next: true,
         width: 450,
         height: 260,
@@ -256,9 +271,9 @@ const GUIDE_STEPS = [
     },
     {
         entext: "Connect the blocks.",
-        detext: "to do",
-        nltext: "to do",
-        frtext: "to do",
+        detext: "Verbinde die Blöcke.",
+        nltext: "Verbind de blokken.",
+        frtext: "Connecte les blocs.",
         next: false,
         width: 200,
         height: 160,
@@ -288,9 +303,9 @@ const GUIDE_STEPS = [
     },
     {
         entext: "To remove the block, you can drag it either to the trash bin or to the toolbox menu",
-        detext: "Um den Block zu entfernen, können Sie ihn entweder in den Mülleimer oder zurück in das Toolboxmenü ziehen.",
+        detext: "Um den Block zu entfernen, kannst du ihn entweder in den Mülleimer oder zurück in das Toolboxmenü ziehen.",
         nltext: "Om de blok te verwijderen, kunt u het in de bin vuilnisbak of terug in de toolboxmenu plaatsen.",
-        frtext: "Pour eliminer le bloc, vous pouvez le placer dans la poubelle où le replacer dans le toolboxmenu.",
+        frtext: "Pour eliminer le bloc, vous pouvez le placer dans la poubelle où le replacer dans le menu de la boîte à outils.",
         next: true,
         width: 240,
         height: 260,
@@ -311,7 +326,7 @@ const GUIDE_STEPS = [
     },
     {
         entext: "Remove the block from the working space.",
-        detext: "Bitte entfernen Sie den Block von der Arbeitsfläche.",
+        detext: "Bitte entferne den Block von der Arbeitsfläche.",
         nltext: "Verwijder de bloc van de werkruimte.",
         frtext: "Eliminez le bloc de l'espace de travails.",
         next: false,
@@ -323,7 +338,7 @@ const GUIDE_STEPS = [
     },
     {
         entext: "You can specify the renderer of the blocks, complexity level, and the server here.",
-        detext: "Sie können den Renderer der Blöcke, den Komplexitätsgrad und den Server hier ändern.",
+        detext: "Du kannst den Renderer der Blöcke, den Komplexitätsgrad und den Server hier ändern.",
         nltext: "U kunt de renderer van de blokken, de complexiteitsniveau en de server hier wijzigen.",
         frtext: "Vous pouvez changer le renderer des blocs, le niveau de complexité et le server ici.",
         next: true,
@@ -351,7 +366,7 @@ const GUIDE_STEPS = [
     },
     {
         entext: "To get the output of the script, you need to send the code first.",
-        detext: "Um den Output vom Skript zu bekommen, müssen Sie zuerst den Code abschicken.",
+        detext: "Um den Output vom Skript zu bekommen, musst du zuerst den Code abschicken.",
         nltext: "Om de output van de script te ontvangen, moet u eerst de code afzenden.",
         frtext: "Pour obtenir l'output de script, vous devez d'abord envoyez le code.",
         next: true,
@@ -373,7 +388,7 @@ const GUIDE_STEPS = [
     },
     {
         entext: "Success, now you can start coding!",
-        detext: "Nun können sie mit dem Programmieren beginnen. Viel Erfolg!",
+        detext: "Nun kannst du mit dem Programmieren beginnen. Viel Erfolg!",
         nltext: "Nu kunt u met programmeren beginnen. Veel success!",
         frtext: "Maintenant vous pouvez commencer à programmer. Bonne chance!",
         width: 240,

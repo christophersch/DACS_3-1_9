@@ -454,7 +454,17 @@
         <script>
             function hideAdvanced() {
                 var btn = document.getElementById("btnAdvanced");
-                var isEnabled = btn.innerHTML === "Advanced Mode: ON";
+                let currentLang = getLanguage();
+                var isEnabled;
+                if (currentLang === "en"){
+                    isEnabled = btn.innerHTML === "Advanced Mode: ON";
+                } else if(currentLang === "de") {
+                    isEnabled = btn.innerHTML === "Fortgeschrittener Modus: AN";
+                } else if(currentLang === "nl") {
+                    isEnabled = btn.innerHTML === "Geavanceerde modus: AAN";
+                } else {
+                    isEnabled = btn.innerHTML === "Mode avancé: ACTIVÉ";
+                }
                 var all = document.getElementsByClassName("advanced");
                 for (var i = 0; i < all.length; i++) {
                     let x = all[i];
@@ -472,16 +482,32 @@
                 if (isEnabled) {
                     btn.classList.remove("enabled");
                     btn.classList.add("disabled");
-                    btn.innerHTML = "Advanced Mode: OFF";
+                    if (currentLang === "en"){
+                        btn.innerHTML = "Advanced Mode: OFF";
+                    } else if(currentLang === "de") {
+                        btn.innerHTML = "Fortgeschrittener Modus: AUS";
+                    } else if(currentLang === "nl") {
+                        btn.innerHTML = "Geavanceerde modus: UIT";
+                    } else {
+                        btn.innerHTML = "Mode avancé: DÉSACTIVÉ";
+                    }
                 }
                 else {
                     btn.classList.remove("disabled");
                     btn.classList.add("enabled");
-                    btn.innerHTML = "Advanced Mode: ON";
+                    if (currentLang === "en"){
+                        btn.innerHTML = "Advanced Mode: ON";
+                    } else if(currentLang === "de") {
+                        btn.innerHTML = "Fortgeschrittener Modus: AN";
+                    } else if(currentLang === "nl") {
+                        btn.innerHTML = "Geavanceerde modus: AAN";
+                    } else {
+                        btn.innerHTML = "Mode avancé: ACTIVÉ";
+                    }
                 }
             }
         </script>
-        <button id="btnAdvanced" onclick="hideAdvanced()" class="enabled">Advanced Mode: ON</button>
+        <button id="btnAdvanced" localization-key="advanced" onclick="hideAdvanced()" class="enabled">Advanced Mode: ON</button>
     </hideadvanced>
     <!-- Buttons to change skill level after the intro screen -->
     <bottombox>
@@ -590,7 +616,7 @@
 <div id="guide">
     <p id="guideText"></p>
 
-    <button id="guideFinish" onclick="guideNext(getLanguage())">Start blocking</button>
+    <button id="guideFinish" localization-key="startBlocking" onclick="guideNext(getLanguage())">Start blocking</button>
     <button id="guideNext" localization-key="next" onclick="guideNext(getLanguage())">Next</button>
     <button id="guideBack" class="tertiarybutton" localization-key="back" onclick="guideBack(getLanguage())">Back</button>
 </div>
@@ -659,7 +685,9 @@
             yesGuideTip: "You will be guided through the tutorial.",
             noGuideTip: "You will be able to explore on your own.",
             next: "Next",
-            back: "Back"
+            back: "Back",
+            startBlocking: "Start Blocking",
+            advanced: "Advanced Mode: ON"
         },
         de: {
             text: "Text",
@@ -684,7 +712,9 @@
             yesGuideTip: "Sie werden durch das Tutorial geleitet.",
             noGuideTip: "Sie können direkt loslegen.",
             next: "Weiter",
-            back: "Zurück"
+            back: "Zurück",
+            startBlocking: "Los geht's!",
+            advanced: "Fortgeschrittener Modus: AN"
         },
         nl: {
             text: "tekst",
@@ -709,7 +739,9 @@
             yesGuideTip: "U wordt door de tutorial geleid.",
             noGuideTip: "U kunt direct beginnen.",
             next: "Volgende",
-            back: "Terug"
+            back: "Terug",
+            startBlocking: "Los geht's!",
+            advanced: "Geavanceerde modus: UIT"
         },
         fr: {
             text: "texte",
@@ -734,7 +766,9 @@
             yesGuideTip: "Vous allez suivre le tutoriel.",
             noGuideTip: "Vous pouvez commencer directement.",
             next: "Prochain",
-            back: "Retour"
+            back: "Retour",
+            startBlocking: "Alléz-y!",
+            advanced: "Mode avancé: ACTIVÉ"
         }
     };
     var searchParams = new URLSearchParams(window.location.search);
