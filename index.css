@@ -25,6 +25,26 @@
     padding: 5px;
 }
 
+#links {
+    display: inline-block;
+    padding: 5px;
+    /*border: 2px solid #7F7FFF;*/
+    margin-left: 10px;
+    width: 900px;
+}
+
+#debug{
+    background: #BBBBFF;  /*BFBFFF*/
+    /*padding: 20px;*/
+    height: 600px;
+    margin-left: 15px;
+    border: 2px solid #7F7FFF;
+}
+
+#debugText1{
+    margin-left: 15px;
+}
+
 .lang_img{
     width: 60px;
     height: 40px;
@@ -72,6 +92,7 @@
     font-size:larger;
 
     background-color: rgb(199, 199, 255);
+    border: 2px solid #7F7FFF;
     opacity: 100%;
 
     z-index: 999999;
@@ -258,6 +279,8 @@ button:active {
     background-color: #3FFF3F;
     border: 1px solid #007F00;
     color: #007F00;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .primarybutton:hover {
@@ -341,9 +364,23 @@ textarea:active {
 bottom {
     background-color: #EEEEFF;
     width: max-content;
+    min-height: 130px;
     vertical-align: middle;
     display: inline-block;
     margin: 10px;
+    border: 2px solid #7F7FFF;
+}
+
+console {
+    background-color: #EEEEFF;
+    vertical-align: top;
+    horiz-align: center;
+    display: inline-block;
+    margin: 10px 10px 10px 5px;
+    border: 2px solid #7F7FFF;
+    height: max-content;
+    width: 690px;
+    min-height: 130px;
 }
 
 bottombox {
@@ -382,6 +419,10 @@ body {
     border-bottom: 1px solid #7F7FFF;
 }
 
+#output {
+    padding-left: 20px;
+}
 .outputText {
     color: #007F7F;
+    padding-left: 20px;
 }

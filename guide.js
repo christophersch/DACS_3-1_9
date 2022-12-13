@@ -29,7 +29,7 @@ const GUIDE_STEPS = [
             var language_selection_rect = language_selection.getBoundingClientRect();
             guide.style.margin = "5px";
             guide.style.left = language_selection_rect.left + language_selection_rect.width + 15 + "px";
-            guide.style.top = language_selection_rect.top + "px";
+            guide.style.top = language_selection_rect.top - 200 + "px";
         },
         finish: function() {
             document.getElementById("language_selection").style.animation = "none";
@@ -49,7 +49,11 @@ const GUIDE_STEPS = [
             var toolbox = document.getElementsByClassName("blocklyToolboxDiv")[0];
             var toolbox_rect = toolbox.getBoundingClientRect();
             guide.style.left = toolbox_rect.left + toolbox_rect.width + 15 + "px";
-            guide.style.top = toolbox_rect.top + "px";
+            guide.style.top = toolbox_rect.top + 50 + "px";
+            guide.style.margin = "5px";
+
+            // guide.style.left = 350 + "px";
+            // guide.style.top = 1+"px";
         },
         finish: function() {
             document.getElementsByClassName("blocklyToolboxDiv")[0].style.animation = "none";
@@ -93,7 +97,7 @@ const GUIDE_STEPS = [
             var path = document.getElementsByClassName("blocklyPath")[0];
             var path_rect = path.getBoundingClientRect();
             guide.style.margin = "10px";
-            guide.style.left = path_rect.left + path_rect.width + 90 + "px";
+            guide.style.left = path_rect.left + path_rect.width +100 + "px";
             guide.style.top = path_rect.top + "px";
         },
         waitUntil: function() {
@@ -118,15 +122,17 @@ const GUIDE_STEPS = [
                 block.render();
             }
             var guide = document.getElementById("guide");
-            var debug_panel = document.getElementById("debugText1");
+            var debug_panel = document.getElementById("debug");
             var debug_panel_rect = debug_panel.getBoundingClientRect();
             debug_panel.style.animation = "guide_highlight_2 1s infinite ease-in-out";
             guide.style.margin = "auto";
-            guide.style.left = debug_panel_rect.left - debug_panel_rect.height/3 + "px";
-            guide.style.top = debug_panel_rect.top - debug_panel_rect.height/2 + "px";
+            guide.style.left = debug_panel_rect.left + "px";
+            guide.style.top = debug_panel_rect.top + "px";
+            // guide.style.left = debug_panel_rect.left - debug_panel_rect.height/3 + "px";
+            // guide.style.top = debug_panel_rect.top - debug_panel_rect.height/2 + "px";
         },
         finish: function() {
-            document.getElementById("debugText1").style.animation = "none";
+            document.getElementById("debug").style.animation = "none";
         }
     },
     {
@@ -163,19 +169,19 @@ const GUIDE_STEPS = [
             block2.render();
             var block3 = workspace.newBlock("logic_negate");
             block3.initSvg();
-            block3.moveBy(300, 50);
+            block3.moveBy(200, 10);
             block3.render();
             var block4 = workspace.newBlock("logic_boolean");
             block4.initSvg();
-            block4.moveBy(300, 100);
+            block4.moveBy(200, 60);
             block4.render();
             var block5 = workspace.newBlock("controls_repeat_ext");
             block5.initSvg()
-            block5.moveBy(500, 150);
+            block5.moveBy(300, 150);
             block5.render();
             var block6 = workspace.newBlock("controls_whileUntil");
             block6.initSvg();
-            block6.moveBy(500, 300);
+            block6.moveBy(300, 300);
             block6.render();
             // connection working
             // var blockConnection = block.getInput('TEXT').connection;
@@ -211,7 +217,7 @@ const GUIDE_STEPS = [
 
             var block1 = workspace.newBlock("logic_ternary");
             block1.initSvg();
-            block1.moveBy(100, 200);
+            block1.moveBy(20, 200);
             block1.render();
             var neg = workspace.newBlock("logic_boolean");
             neg.initSvg();
@@ -234,11 +240,11 @@ const GUIDE_STEPS = [
             number.render();
             var block2 = workspace.newBlock("controls_repeat_ext");
             block2.initSvg()
-            block2.moveBy(500, 150);
+            block2.moveBy(300, 150);
             block2.render();
             var block3 = workspace.newBlock("controls_whileUntil");
             block3.initSvg();
-            block3.moveBy(500, 250);
+            block3.moveBy(300, 250);
             block3.render();
             block3.getInput('BOOL').connection.connect(bool.outputConnection);
             block2.getInput('TIMES').connection.connect(number.outputConnection);
@@ -332,7 +338,7 @@ const GUIDE_STEPS = [
             document.getElementById("ip").style.animation = "guide_highlight_2 1s infinite ease-in-out";
             var guide = document.getElementById("guide");
             guide.style.left = document.getElementById("expert").getBoundingClientRect().right + 15 +"px";
-            guide.style.top = document.getElementById("expert").getBoundingClientRect().top+"px";
+            guide.style.top = document.getElementById("expert").getBoundingClientRect().top - 170 +"px";
         },
         finish: function(){
             document.getElementById("renderer").style.animation = "none";
@@ -353,8 +359,8 @@ const GUIDE_STEPS = [
         height: 260,
         action: function() {
             var guide = document.getElementById("guide");
-            guide.style.left = document.getElementById("expert").getBoundingClientRect().right + 15 +"px";
-            guide.style.top = document.getElementById("expert").getBoundingClientRect().top+"px";
+            guide.style.left = document.getElementById("send_code_request").getBoundingClientRect().right + 50 +"px";
+            guide.style.top = document.getElementById("send_code_request").getBoundingClientRect().top - 40 +"px";
             document.getElementById("send_code_request").style.animation = "guide_highlight_2 1s infinite ease-in-out";
             document.getElementById("output").style.animation = "guide_highlight_2 1s infinite ease-in-out";
             document.getElementById("outputText").style.animation = "guide_highlight_2 1s infinite ease-in-out";
@@ -374,8 +380,8 @@ const GUIDE_STEPS = [
         height: 260,
         action: function () {
             var guide = document.getElementById("guide");
-            guide.style.left = document.getElementById("expert").getBoundingClientRect().right + 15 +"px";
-            guide.style.top = document.getElementById("expert").getBoundingClientRect().top+"px";
+            guide.style.left = document.getElementById("send_code_request").getBoundingClientRect().right + 50 +"px";
+            guide.style.top = document.getElementById("send_code_request").getBoundingClientRect().top - 40 +"px";
             document.getElementById("guideBack").style.display = "none";
             document.getElementById("guideFinish").style.display = "block";
         },

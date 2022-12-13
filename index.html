@@ -20,20 +20,17 @@
         }
     </style>
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="complexity_scaling.css">
+    <link rel="stylesheet" href="complexity_scaling.css"    >
 </head>
 <body>
-<h1 style="font-family: 'Noto Sans', 'Noto Sans JP', 'Noto Sans KR', 'Noto Naskh Arabic', 'Noto Sans Thai', 'Noto Sans Hebrew', 'Noto Sans Bengali', sans-serif; font-size: 40px; margin-left: 10px;">Blockly</h1>
-<div id="language_selection">
-    <img class="lang_img" src="images/flags/en.png" alt="English" onclick="changeLanguage('en')">
-    <img class="lang_img" src="images/flags/nl.png" alt="Nederlands" onclick="changeLanguage('nl')">
-    <img class="lang_img" src="images/flags/fr.png" alt="Français" onclick="changeLanguage('fr')">
-    <img class="lang_img" src="images/flags/de.png" alt="Deutsch" onclick="changeLanguage('de')">
+<div id="links" style="display: block;height: 50px;">
+<!--    <a style="font-size: 38px;">Blockly</a>-->
+    <a style="font-family: 'Noto Sans', 'Noto Sans JP', 'Noto Sans KR', 'Noto Naskh Arabic', 'Noto Sans Thai', 'Noto Sans Hebrew', 'Noto Sans Bengali', sans-serif; font-size: 40px; margin-left: 10px;">Blockly</a>
+    <a href="https://www.maastrichtuniversity.nl/" target="_blank" style="margin-left: 150px;"><img rel="stylesheet" src="images/um.png" alt="UM" width="350px" height="50px"></img></a>
+    <a href="https://corosect.eu/" target="_blank" style="margin-left: 15px;"><img rel="stylesheet" src="images/cs.svg" alt="CoRoSect" width="80px" height="50px"></img></a>
 </div>
-<a href="https://www.maastrichtuniversity.nl/" target="_blank"><img rel="stylesheet" src="images/um.png" alt="UM" width="350px" height="50px" style="margin: 0 30px 5px 120px;"></a>
-<a href="https://corosect.eu/" target="_blank"><img rel="stylesheet" src="images/cs.svg" alt="CoRoSect" width="80px" height="50px" style="margin: 0 0 5px 0;"></a>
-<div id="language">
 
+<div id="language">
 </div>
 <script>
     function changeLanguage(value) {
@@ -52,7 +49,7 @@
     }
 </script>
 
-<div style="display:flex">
+<div style="display:flex; margin-top: 15px;">
 
     <div id="blocklyDiv" style="height: 600px; width: 60%; min-width: 900px; border: 2px solid #7F7FFF; margin-left: 10px; "></div>
 
@@ -444,133 +441,145 @@
         };
     </script>
 
-    <div id="debug" style="display: flex">
-        <p id="breakpoints", style="width: 12px; height: 550px; overflow-y: hidden" onscroll="scrollBreakpoints()"></p>
+    <div id="debug" style="display: inline">
         <p id="debugText1", style="width: 600px; height: 550px; overflow-y: auto" onscroll="scrollDebugText()"></p>
+        <a id="breakpoints", style="width: 12px; height: 550px; overflow-y: hidden" onscroll="scrollBreakpoints()"></a>
     </div>
 </div>
 <!--<img src="images/um.png" alt="UM" width="350px" height="50px"; style="margin-left: 10px; margin-right: 50px; margin-top: 10px;">-->
 <!--<img src="images/cs.svg" alt="CoRoSect" width="80px" height="50px">-->
 <br>
 
-<hideadvanced>
-    <script>
-        function hideAdvanced() {
-            var btn = document.getElementById("btnAdvanced");
-            var isEnabled = btn.innerHTML == "Advanced Mode: ON";
-            var all = document.getElementsByClassName("advanced");
-            for (var i = 0; i < all.length; i++) {
-                let x = all[i];
-                if (!isEnabled) {
-                    x.style.display = "block";
-                    x.style.animation = "popin 0.5s ease-in-out";
+<div>
+    <bottom>
+    <hideadvanced>
+        <script>
+            function hideAdvanced() {
+                var btn = document.getElementById("btnAdvanced");
+                var isEnabled = btn.innerHTML == "Advanced Mode: ON";
+                var all = document.getElementsByClassName("advanced");
+                for (var i = 0; i < all.length; i++) {
+                    let x = all[i];
+                    if (!isEnabled) {
+                        x.style.display = "block";
+                        x.style.animation = "popin 0.5s ease-in-out";
+                    }
+                    else {
+                        x.style.animation = "popout 0.5s ease-in-out";
+                        setTimeout(function () {
+                            x.style.display = "none";
+                        }, 500);
+                    }
+                }
+                if (isEnabled) {
+                    btn.classList.remove("enabled");
+                    btn.classList.add("disabled");
+                    btn.innerHTML = "Advanced Mode: OFF";
                 }
                 else {
-                    x.style.animation = "popout 0.5s ease-in-out";
-                    setTimeout(function () {
-                        x.style.display = "none";
-                    }, 500);
+                    btn.classList.remove("disabled");
+                    btn.classList.add("enabled");
+                    btn.innerHTML = "Advanced Mode: ON";
                 }
             }
-            if (isEnabled) {
-                btn.classList.remove("enabled");
-                btn.classList.add("disabled");
-                btn.innerHTML = "Advanced Mode: OFF";
+        </script>
+        <button id="btnAdvanced" onclick="hideAdvanced()" class="enabled">Advanced Mode: ON</button>
+    </hideadvanced>
+
+    <bottombox class="advanced">
+    <label for="renderer">Renderer:</label>
+    <select class="rendererselect" name="renderer" id="renderer" onchange="changeRenderer()">
+        <option class="opt" value="zelos">zelos</option>
+        <option class="opt" value="geras">geras</option>
+        <option class="opt" value="thrasos">thrasos</option>
+    </select>
+    </bottombox>
+    <script>
+        function changeRenderer() {
+            var demoWorkspace = Blockly.getMainWorkspace();
+            if (demoWorkspace.getAllBlocks().length > 0) {
+                var answer = confirm("Changing the renderer will clear your workspace. " +
+                    "Are you sure you want to continue?");
+                if (!answer) {
+                    document.getElementById('renderer').value = demoWorkspace.getRenderer().name;
+                    return;
+                }
             }
-            else {
-                btn.classList.remove("disabled");
-                btn.classList.add("enabled");
-                btn.innerHTML = "Advanced Mode: ON";
-            }
+            var renderer = document.getElementById('renderer').value;
+            demoWorkspace.dispose();
+            demoWorkspace = Blockly.inject('blocklyDiv',
+                {renderer: renderer,
+                    language: 'python',
+                    theme: 'custom',
+                    toolbox: document.getElementById('toolbox')});
+            demoWorkspace.addChangeListener(function(event) {
+                if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
+                    return;
+                }
+                workspaceToCodeDebug(demoWorkspace);
+            });
+            initCategories();
+            refreshCategories();
+            var blocklyMainWorkspace = document.getElementsByClassName("blocklyMainBackground")[0];
+            blocklyMainWorkspace.style.fill = "#DDDDFF";
+            var blocklyMainWorkspace = document.getElementsByClassName("blocklyToolboxDiv")[0];
+            blocklyMainWorkspace.style.background = "#BBBBFF";
         }
     </script>
-    <button id="btnAdvanced" onclick="hideAdvanced()" class="enabled">Advanced Mode: ON</button>
-</hideadvanced>
+    <!-- Buttons to change skill level after the intro screen -->
+    <bottombox>
+    <span localization-key="complexityLevel" class="margin_left">Complexity Level:</span>
+    <button localization-key="beginner" id="beginner" onclick="setComplexityLevel(SKILL_LEVELS.BEGINNER)">Beginner</button>
+    <button localization-key="intermediate" id="intermediate" onclick="setComplexityLevel(SKILL_LEVELS.INTERMEDIATE)">Intermediate</button>
+    <button localization-key="expert" id="expert" onclick="setComplexityLevel(SKILL_LEVELS.EXPERT)">Expert</button>
+    </bottombox>
+    <bottombox class="advanced">
+    <label for="token" style="vertical-align: middle">Token:</label>
+    <textarea id="token" rows="1" cols="20" style="font-size: small; vertical-align: middle"></textarea>
+    </bottombox>
+    <bottombox class="advanced">
+        <label localization-key="ip" for="ip">IP</label>
+        <span id="prefix" style="vertical-align: middle; color: #7f7f7f">http://</span>
+        <textarea type="string" rows="1" cols="32" id="ip" name="ip" placeholder="localhost:5000" style="font-size: small; vertical-align: middle" oninput="function setIp() {
+            var ip = document.getElementById('ip').value;
+            if (!ip.includes('://')) {
+                document.getElementById('prefix').textContent = 'http://';
+            } else {
+                ip = ip.split('://')[1];
+                document.getElementById('prefix').textContent = '';
+            }
+            if (!ip.includes(':') && !ip.endsWith('/') && ip != '') {
+                document.getElementById('suffix').textContent = ':5000';
+            } else {
+                document.getElementById('suffix').textContent = '';
+            }
+        }
+        setIp()"></textarea>
+        <span id="suffix" style="vertical-align: middle; color: #7f7f7f"></span>
+    </bottombox>
+    <bottombox>
+    </bottombox>
 
-<bottom>
-<bottombox class="advanced">
-<label for="renderer">Renderer:</label>
-<select class="rendererselect" name="renderer" id="renderer" onchange="changeRenderer()">
-    <option class="opt" value="zelos">zelos</option>
-    <option class="opt" value="geras">geras</option>
-    <option class="opt" value="thrasos">thrasos</option>
-</select>
-</bottombox>
-<script>
-    function changeRenderer() {
-        var demoWorkspace = Blockly.getMainWorkspace();
-        if (demoWorkspace.getAllBlocks().length > 0) {
-            var answer = confirm("Changing the renderer will clear your workspace. " +
-                "Are you sure you want to continue?");
-            if (!answer) {
-                document.getElementById('renderer').value = demoWorkspace.getRenderer().name;
-                return;
-            }
-        }
-        var renderer = document.getElementById('renderer').value;
-        demoWorkspace.dispose();
-        demoWorkspace = Blockly.inject('blocklyDiv',
-            {renderer: renderer,
-                language: 'python',
-                theme: 'custom',
-                toolbox: document.getElementById('toolbox')});
-        demoWorkspace.addChangeListener(function(event) {
-            if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
-                return;
-            }
-            workspaceToCodeDebug(demoWorkspace);
-        });
-        initCategories();
-        refreshCategories();
-        var blocklyMainWorkspace = document.getElementsByClassName("blocklyMainBackground")[0];
-        blocklyMainWorkspace.style.fill = "#DDDDFF";
-        var blocklyMainWorkspace = document.getElementsByClassName("blocklyToolboxDiv")[0];
-        blocklyMainWorkspace.style.background = "#BBBBFF";
-    }
-</script>
-<!-- Buttons to change skill level after the intro screen -->
-<bottombox>
-<span localization-key="complexityLevel" class="margin_left">Complexity Level:</span>
-<button localization-key="beginner" id="beginner" onclick="setComplexityLevel(SKILL_LEVELS.BEGINNER)">Beginner</button>
-<button localization-key="intermediate" id="intermediate" onclick="setComplexityLevel(SKILL_LEVELS.INTERMEDIATE)">Intermediate</button>
-<button localization-key="expert" id="expert" onclick="setComplexityLevel(SKILL_LEVELS.EXPERT)">Expert</button>
-</bottombox>
-<bottombox class="advanced">
-<label for="token" style="vertical-align: middle">Token:</label>
-<textarea id="token" rows="1" cols="20" style="font-size: small; vertical-align: middle"></textarea>
-</bottombox>
-<bottombox class="advanced">
-    <label localization-key="ip" for="ip">IP</label>
-    <span id="prefix" style="vertical-align: middle; color: #7f7f7f">http://</span>
-    <textarea type="string" rows="1" cols="32" id="ip" name="ip" placeholder="localhost:5000" style="font-size: small; vertical-align: middle" oninput="function setIp() {
-        var ip = document.getElementById('ip').value;
-        if (!ip.includes('://')) {
-            document.getElementById('prefix').textContent = 'http://';
-        } else {
-            ip = ip.split('://')[1];
-            document.getElementById('prefix').textContent = '';
-        }
-        if (!ip.includes(':') && !ip.endsWith('/') && ip != '') {
-            document.getElementById('suffix').textContent = ':5000';
-        } else {
-            document.getElementById('suffix').textContent = '';
-        }
-    }
-    setIp()"></textarea>
-    <span id="suffix" style="vertical-align: middle; color: #7f7f7f"></span>
-</bottombox>
-<bottombox>
-<button localization-key="sendCode" class="primarybutton" id="send_code_request" onclick="sendRequest()">Send Code</button>
-</bottombox>
-<bottombox>
-<div id="output">
-    Output:
-    <p localization-key="outputText" class="outputText" id="outputText">
-        No output yet.
-    </p>
+    </bottom>
+
+    <console>
+        <button localization-key="sendCode" class="primarybutton" id="send_code_request" onclick="sendRequest()">Send Code</button>
+        <bottombox>
+            <div id="output">
+                Output:
+                <p localization-key="outputText" class="outputText" id="outputText">
+                    No output yet.
+                </p>
+            </div>
+        </bottombox>
+    </console>
+    <div id="language_selection" style="vertical-align: top">
+        <img class="lang_img" src="images/flags/en.png" alt="English" onclick="changeLanguage('en')">
+        <img class="lang_img" src="images/flags/nl.png" alt="Nederlands" onclick="changeLanguage('nl')">
+        <img class="lang_img" src="images/flags/fr.png" alt="Français" onclick="changeLanguage('fr')">
+        <img class="lang_img" src="images/flags/de.png" alt="Deutsch" onclick="changeLanguage('de')">
+    </div>
 </div>
-</bottombox>
-</bottom>
 <canvas id="full_screen_canvas" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999999; pointer-events: none;"></canvas>
 
 <div id="language_selection_intro">
