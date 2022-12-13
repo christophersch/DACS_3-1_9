@@ -331,8 +331,8 @@ const GUIDE_STEPS = [
             document.getElementById("token").style.animation = "guide_highlight_2 1s infinite ease-in-out";
             document.getElementById("ip").style.animation = "guide_highlight_2 1s infinite ease-in-out";
             var guide = document.getElementById("guide");
-            guide.style.left = document.getElementById("token").getBoundingClientRect().right + 15 +"px"
-            guide.style.top = document.getElementById("expert").getBoundingClientRect().top+"px"
+            guide.style.left = document.getElementById("expert").getBoundingClientRect().right + 15 +"px";
+            guide.style.top = document.getElementById("expert").getBoundingClientRect().top+"px";
         },
         finish: function(){
             document.getElementById("renderer").style.animation = "none";
@@ -352,6 +352,9 @@ const GUIDE_STEPS = [
         width: 240,
         height: 260,
         action: function() {
+            var guide = document.getElementById("guide");
+            guide.style.left = document.getElementById("expert").getBoundingClientRect().right + 15 +"px";
+            guide.style.top = document.getElementById("expert").getBoundingClientRect().top+"px";
             document.getElementById("send_code_request").style.animation = "guide_highlight_2 1s infinite ease-in-out";
             document.getElementById("output").style.animation = "guide_highlight_2 1s infinite ease-in-out";
             document.getElementById("outputText").style.animation = "guide_highlight_2 1s infinite ease-in-out";
@@ -370,6 +373,9 @@ const GUIDE_STEPS = [
         width: 240,
         height: 260,
         action: function () {
+            var guide = document.getElementById("guide");
+            guide.style.left = document.getElementById("expert").getBoundingClientRect().right + 15 +"px";
+            guide.style.top = document.getElementById("expert").getBoundingClientRect().top+"px";
             document.getElementById("guideBack").style.display = "none";
             document.getElementById("guideFinish").style.display = "block";
         },
