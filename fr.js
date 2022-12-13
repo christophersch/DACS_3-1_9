@@ -30,7 +30,7 @@ Blockly.Msg.COLOUR_RGB_TOOLTIP =
     'Créer une couleur avec une quantité spécifique de rouge, de vert et de bleu.  Toutes les valeurs doivent être comprises entre 0 et 100.';
 Blockly.Msg.CONFIRM_CREATE_VARIABLE = 'Créer';
 Blockly.Msg.CONFIRM_DELETE_FUNCTION_MESSAGE =
-    'Attention ! Es-tu sûr de vouloir supprimer %1&#160;?';
+    'Attention ! Êtes-vous sûr de vouloir supprimer %1&#160;?';
 Blockly.Msg.CONFIRM_RENAME_VARIABLE = 'Renommer';
 Blockly.Msg.CONTRACT_EDITOR_HEADER = 'Conception de la recette';
 Blockly.Msg.CONTROLS_FLOW_STATEMENTS_HELPURL =
@@ -54,28 +54,28 @@ Blockly.Msg.CONTROLS_FOR_HELPURL =
     'https://fr.wikipedia.org/wiki/Boucle_for';
 Blockly.Msg.CONTROLS_FOR_TITLE = 'compter avec %1 de %2 à %3 par %4';
 Blockly.Msg.CONTROLS_FOR_TOOLTIP =
-    'Faire prendre successivement à la variable « %1 » les valeurs entre deux nombres de début et de fin par incrément du pas spécifié et exécuter les instructions spécifiées.';
+    'Faire prendre à la variable %1 les valeurs du premier nombre au dernier nombre, en comptant par l’intervalle spécifié, et exécuter les blocs spécifiés.';
 Blockly.Msg.CONTROLS_IF_ELSEIF_TOOLTIP =
     'Ajouter une condition au bloc «&#160;si&#160;».';
 Blockly.Msg.CONTROLS_IF_ELSE_TOOLTIP =
-    'Ajouter une condition finale fourre-tout au bloc « si ».';
+    'Ajouter une condition catch-all finale au bloc « si ».';
 Blockly.Msg.CONTROLS_IF_HELPURL =
     'http://code.google.com/p/blockly/wiki/If_Then';
 Blockly.Msg.CONTROLS_IF_IF_TOOLTIP =
     'Ajouter, supprimer ou réordonner les sections pour reconfigurer ce bloc « si ».';
-Blockly.Msg.CONTROLS_IF_MSG_ELSE = 'autre';
-Blockly.Msg.CONTROLS_IF_MSG_ELSEIF = 'autre, si';
+Blockly.Msg.CONTROLS_IF_MSG_ELSE = 'sinon';
+Blockly.Msg.CONTROLS_IF_MSG_ELSEIF = 'sinon si';
 Blockly.Msg.CONTROLS_IF_MSG_IF = 'si';
 Blockly.Msg.CONTROLS_IF_TOOLTIP_1 =
     'Si une valeur est vraie, alors exécuter certaines instructions.';
 Blockly.Msg.CONTROLS_IF_TOOLTIP_2 =
-    "Si une valeur est vraie, alors exécuter le premier bloc d’instructions. Autrement, faire le deuxième bloc d'instructions.";
+    "Si une valeur est vraie, alors exécuter le premier bloc d’instructions. Sinon, exécuter le deuxième bloc d'instructions.";
 Blockly.Msg.CONTROLS_IF_TOOLTIP_3 =
-    "Si la première valeur est vraie, alors exécuter le premier bloc d’instructions. Autrement, si la deuxième valeur est vraie, faire le deuxième bloc d'instructions.";
+    "Si la première valeur est vraie, alors exécuter le premier bloc d’instructions. Sinon, si la deuxième valeur est vraie, exécuter le deuxième bloc d'instructions.";
 Blockly.Msg.CONTROLS_IF_TOOLTIP_4 =
-    "Si la première valeur est vraie, alors exécuter le premier bloc d’instructions. Autrement, si la deuxième valeur est vraie, faire le deuxième bloc d'instructions. Si aucune des valeurs n’est vraie, alors exécuter le dernier bloc d’instructions.";
+    "Si la première valeur est vraie, alors exécuter le premier bloc d’instructions. Autrement, si la deuxième valeur est vraie, exécuter le deuxième bloc d'instructions. Si aucune des valeurs n’est vraie, alors exécuter le dernier bloc d’instructions.";
 Blockly.Msg.CONTROLS_REPEAT_HELPURL = 'http://fr.wikipedia.org/wiki/Boucle_for';
-Blockly.Msg.CONTROLS_REPEAT_INPUT_DO = 'faire';
+Blockly.Msg.CONTROLS_REPEAT_INPUT_DO = 'exécuter';
 Blockly.Msg.CONTROLS_REPEAT_TITLE = 'répéter %1 fois';
 Blockly.Msg.CONTROLS_REPEAT_TITLE_REPEAT = 'répéter';
 Blockly.Msg.CONTROLS_REPEAT_TITLE_TIMES = 'fois';
@@ -86,18 +86,18 @@ Blockly.Msg.CONTROLS_WHILEUNTIL_HELPURL =
 Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_UNTIL = 'répéter jusqu’à';
 Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = 'répéter tant que';
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL =
-    'Tant qu’une valeur est fausse, alors exécuter certaines instructions.';
+    'Tant qu’une valeur est fausse, exécuter certaines instructions.';
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE =
-    'Tant qu’une valeur est vraie, alors exécuter certaines instructions.';
+    'Tant qu’une valeur est vraie, exécuter certaines instructions.';
 Blockly.Msg.DEFINE_HEADER_DEFINITION = 'Définition';
-Blockly.Msg.DEFINE_FUNCTION_DEFINE = 'Définis';
+Blockly.Msg.DEFINE_FUNCTION_DEFINE = 'Définir';
 Blockly.Msg.DEFINE_FUNCTION_FOR_EXAMPLE =
     'Définir la fonction ci-dessous et réessayer.';
 Blockly.Msg.DELETE = 'Supprimer';
 Blockly.Msg.DELETE_BLOCK = 'Supprimer le bloc';
 Blockly.Msg.DELETE_PARAMETER = 'Supprimer le paramètre...';
 Blockly.Msg.DELETE_PARAMETER_TITLE =
-    'Ceci supprimera toutes les occurrences de paramètre « %1 ». Es-tu certain ?';
+    'Ceci supprimera toutes les apparitions du paramètre « %1 ». Êtes-vous certain ?';
 Blockly.Msg.DELETE_X_BLOCKS = 'Supprimer les blocs %1';
 Blockly.Msg.DELETE_VARIABLE = 'Supprimer la variable « %1 »';
 Blockly.Msg.DISABLE_BLOCK = 'Désactiver le bloc';
@@ -112,9 +112,9 @@ Blockly.Msg.EXPECTED = 'résultat';
 Blockly.Msg.EXTERNAL_INPUTS = 'Entrées externes';
 Blockly.Msg.FUNCTION_CREATE = 'Créer une Fonction';
 Blockly.Msg.FUNCTION_EDIT = 'modifier';
-Blockly.Msg.FUNCTION_NAME_LABEL = 'Nomme ta fonction :';
-Blockly.Msg.FUNCTION_DESCRIPTION_LABEL = 'Que doit faire ta fonction&#160;?';
-Blockly.Msg.FUNCTION_PARAMETERS_LABEL = 'Quels paramètres prend ta fonction ?';
+Blockly.Msg.FUNCTION_NAME_LABEL = 'Nommez votre fonction :';
+Blockly.Msg.FUNCTION_DESCRIPTION_LABEL = 'Que doit faire votre fonction&#160;?';
+Blockly.Msg.FUNCTION_PARAMETERS_LABEL = 'Quels paramètres prend votre fonction ?';
 Blockly.Msg.FUNCTION_HEADER = 'Fonction';
 Blockly.Msg.FUNCTIONAL_CREATE = 'Nouveau bloc';
 Blockly.Msg.FUNCTIONAL_EDIT = 'modifier';
@@ -123,7 +123,7 @@ Blockly.Msg.FUNCTIONAL_TYPE_LABEL = 'Choisir le type de...';
 Blockly.Msg.FUNCTIONAL_DESCRIPTION_LABEL = 'Description ';
 Blockly.Msg.FUNCTIONAL_DOMAIN_LABEL = 'Domaine';
 Blockly.Msg.FUNCTIONAL_PROCEDURE_DEFINE_TOOLTIP =
-    'Définis une méthode fonctionnelle';
+    'Définir une méthode fonctionnelle';
 Blockly.Msg.FUNCTIONAL_RANGE_LABEL = 'Interval';
 Blockly.Msg.FUNCTIONAL_VARIABLE_CREATE = 'Créer une variable';
 Blockly.Msg.FUNCTIONAL_VARIABLE_HEADER = 'Variable';
@@ -156,7 +156,7 @@ Blockly.Msg.LISTS_GET_INDEX_TAIL = '';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FIRST =
     "Renvoie le premier élément d'une liste.";
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FROM =
-    'Renvoie l’élément à la position indiquée dans une liste.';
+    'Renvoie l’élément situé à la position indiquée d’une liste.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_LAST =
     "Renvoie le dernier élément d'une liste.";
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_RANDOM =
@@ -164,7 +164,7 @@ Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_RANDOM =
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FIRST =
     "Supprime et renvoie le premier élément d'une liste.";
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FROM =
-    'Supprime et renvoie l’élément à la position indiquée dans une liste.';
+    'Supprime et renvoie l’élément situé à la position indiquée d’une liste.';
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_LAST =
     "Supprime et renvoie le dernier élément d'une liste.";
 Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_RANDOM =

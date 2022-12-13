@@ -60,7 +60,7 @@ const GUIDE_STEPS = [
         }
     },
     {
-        entext: "Choose the category.",
+        entext: "Choose a category.",
         detext: "Bitte wähle eine Kategorie aus.",
         nltext: "Kies een categorie.",
         frtext: "Choisissez une catégorie.",
@@ -136,10 +136,10 @@ const GUIDE_STEPS = [
         }
     },
     {
-        entext: "There are three different shapes of the blocks. " +
-                "<br>Round shape represents objects," +
+        entext: "There are three different shapes of blocks. " +
+                "<br>Round shape blocks represent objects," +
                 "<br>Hexagon blocks refer to boolean conditions," +
-                "<br>Quadrangle - all other.",
+                "<br>Rectangular blocks represent everything else.",
         detext: "Es gibt drei verschiedene Arten von Blöcken. " +
                 "<br>Runde Blöcke repräsentieren Objekte," +
                 "<br>Hexagon-Blöcke beziehen sich auf boolean Bedingungen. " +
@@ -205,8 +205,8 @@ const GUIDE_STEPS = [
         }
     },
     {
-        entext: "Quadrangle blocks are connectable to each other, " +
-                "When the round and hexagon used to fill the spaces",
+        entext: "Rectangular blocks are connectable to each other, " +
+                "and their empty spaces can be filled with round and hexagon blocks",
         detext: "Viereckige Blöcke können sich miteinander verbinden, "+
                 "während die freien Plätze in diesen Blöcken von runden "+
                 "und Hexagon-Blöcken gefüllt werden können.",
@@ -302,7 +302,7 @@ const GUIDE_STEPS = [
         },
     },
     {
-        entext: "To remove the block, you can drag it either to the trash bin or to the toolbox menu",
+        entext: "To remove a block, you can either drag it to the trash bin or to the toolbox menu",
         detext: "Um den Block zu entfernen, kannst du ihn entweder in den Mülleimer oder zurück in das Toolboxmenü ziehen.",
         nltext: "Om de blok te verwijderen, kunt u het naar vuilnisbak slepen of terug in de toolbox menu plaatsen.",
         frtext: "Pour eliminer le bloc, vous pouvez le placer dans la poubelle où le replacer dans le menu de la boîte à outils.",
@@ -337,7 +337,7 @@ const GUIDE_STEPS = [
         },
     },
     {
-        entext: "You can specify the renderer of the blocks, complexity level, and the server here.",
+        entext: "You can specify the renderer of the blocks, the complexity level, and the server here.",
         detext: "Du kannst den Renderer der Blöcke, den Komplexitätsgrad und den Server hier ändern.",
         nltext: "Hier kunt u de renderer van de blokken, de complexiteitsniveau en de server wijzigen.",
         frtext: "Vous pouvez changer le renderer des blocs, le niveau de complexité et le server ici.",
@@ -367,7 +367,7 @@ const GUIDE_STEPS = [
     {
         entext: "To get the output of the script, you need to send the code first.",
         detext: "Um den Output vom Skript zu bekommen, musst du zuerst den Code abschicken.",
-        nltext: "Om de output van het script te ontvangen, moet u eerst de code verzenden.",
+        nltext: "Om de output van de script te ontvangen, moet u eerst de code afzenden.",
         frtext: "Pour obtenir l'output de script, vous devez d'abord envoyez le code.",
         next: true,
         width: 240,
@@ -387,7 +387,7 @@ const GUIDE_STEPS = [
         }
     },
     {
-        entext: "Success, now you can start coding!",
+        entext: "Now you can start programming with blocks. Best of luck!",
         detext: "Nun kannst du mit dem Programmieren beginnen. Viel Erfolg!",
         nltext: "Nu kunt u beginnen met programmeren. Veel succes!",
         frtext: "Maintenant vous pouvez commencer à programmer. Bonne chance!",
