@@ -30,7 +30,7 @@ Blockly.Blocks['Grab'] = {
 }
 
 Blockly.Python['Grab'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'OBJECT', Blockly.Python.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, "VALUE", Blockly.Python.ORDER_ATOMIC);
     var code = 'ROS.grab(' + value_object + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
@@ -59,7 +59,7 @@ Blockly.Blocks['Drop'] = {
     }
 }
 Blockly.Python['Drop'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'OBJECT', Blockly.Python.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
     var code = 'farm.farm_data_test()\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
@@ -88,7 +88,7 @@ Blockly.Blocks['Feed'] = {
     }
 }
 Blockly.Python['Feed'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'OBJECT', Blockly.Python.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
     var code = 'ROS.feed(' + value_object + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
@@ -254,7 +254,7 @@ Blockly.Blocks['MoveToItem'] = {
 }
 
 Blockly.Python['MoveToItem'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
     var code = 'ROS.moveToItem(' + value_object + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
@@ -304,7 +304,7 @@ Blockly.Blocks['MoveItemTo'] = {
 }
 
 Blockly.Python['MoveItemTo'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
     var text_coordinates = block.getFieldValue('CX') + "," + block.getFieldValue('CY');
     var code = 'ROS.moveItemTo(' + value_object + ', ' + text_coordinates + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
@@ -340,9 +340,9 @@ Blockly.Blocks['MoveItemToItem'] = {
 }
 
 Blockly.Python['MoveItemToItem'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.moveItemToItem(' + value_object + ', ' + value_object + ')\n';
+    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
+    var value_object1 = Blockly.Python.valueToCode(block, 'VALUE1', Blockly.Python.ORDER_ATOMIC);
+    var code = 'ROS.moveItemToItem(' + value_object + ', ' + value_object1 + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }
@@ -396,9 +396,9 @@ Blockly.Blocks['Put'] = {
 }
 
 Blockly.Python['Put'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.put(' + value_object + ', ' + value_object + ')\n';
+    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
+    var value_object1 = Blockly.Python.valueToCode(block, 'VALUE1', Blockly.Python.ORDER_ATOMIC);
+    var code = 'ROS.put(' + value_object + ', ' + value_object1 + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }
@@ -432,9 +432,9 @@ Blockly.Blocks['Take'] = {
 }
 
 Blockly.Python['Take'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.take(' + value_object + ', ' + value_object + ')\n';
+    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
+    var value_object1 = Blockly.Python.valueToCode(block, 'VALUE1', Blockly.Python.ORDER_ATOMIC);
+    var code = 'ROS.take(' + value_object + ', ' + value_object1 + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }
@@ -476,10 +476,10 @@ Blockly.Blocks['ChangeBoxOfItem'] = {
 }
 
 Blockly.Python['ChangeBoxOfItem'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var value_object = Blockly.Python.valueToCode(block, 'Object', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.changeBoxOfItem(' + value_object + ', ' + value_object + ', ' + value_object + ')\n';
+    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
+    var value_object1 = Blockly.Python.valueToCode(block, 'VALUE1', Blockly.Python.ORDER_ATOMIC);
+    var value_object2 = Blockly.Python.valueToCode(block, 'VALUE2', Blockly.Python.ORDER_ATOMIC);
+    var code = 'ROS.changeBoxOfItem(' + value_object + ', ' + value_object1 + ', ' + value_object2 + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }

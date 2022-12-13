@@ -35,7 +35,7 @@
 <script>
     function changeLanguage(value) {
         if (Blockly.getMainWorkspace().getAllBlocks().length > 0) {
-            var answer = confirm("Changing the renderer will clear your workspace. " +
+            var answer = confirm("Changing the language will clear your workspace. " +
                 "Are you sure you want to continue?");
             if (!answer) {
                 var langSelector = document.getElementById('langselector');
