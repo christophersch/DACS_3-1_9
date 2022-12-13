@@ -95,6 +95,8 @@ function initCategories() {
         categories.set(cat[0], cat_object);
     });
 
+    initializeDebugCodeGenerator();
+
 }
 
 

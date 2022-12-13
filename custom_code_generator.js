@@ -1,14 +1,20 @@
 var origFuncs = {};
 
-window.onload = function () {
-    var toolbox = document.getElementById('toolbox');
-    var blocks = toolbox.getElementsByTagName('block');
-    for (var i = 0; i < blocks.length; i++) {
-        var func = Blockly.Python[blocks[i].getAttribute('type')];
-        origFuncs[blocks[i].getAttribute('type')] = func;
-        if (typeof func === 'function') {
-            Blockly.Python[blocks[i].getAttribute('type')] = withDebugCode();
+window.onload = initializeDebugCodeGenerator();
+
+function initializeDebugCodeGenerator() {
+    try {
+        var toolbox = document.getElementById('toolbox');
+        var blocks = toolbox.getElementsByTagName('block');
+        for (var i = 0; i < blocks.length; i++) {
+            var func = Blockly.Python[blocks[i].getAttribute('type')];
+            origFuncs[blocks[i].getAttribute('type')] = func;
+            if (typeof func === 'function') {
+                Blockly.Python[blocks[i].getAttribute('type')] = withDebugCode();
+            }
         }
+    } catch (e) {
+        // ignore
     }
 }
 
@@ -166,53 +172,10 @@ function highlight(index) {
             workspace.centerOnBlock(blocks[i].id);
             if (debug) {
                 debug.style.backgroundColor = brighter(blocks[i].getColour(), 2.5);
-                var rect = debug.getBoundingClientRect();
-
-                var canvas = document.getElementById("full_screen_canvas");
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                var ctx = canvas.getContext("2d");
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.beginPath();
-                ctx.rect(rect.left - 3, rect.top - 3, rect.width + 6, rect.height + 6);
-                ctx.lineWidth = 2;
-                ctx.strokeStyle = brighter(blocks[i].getColour(), 1.5);
-                ctx.stroke();
-
-                var blocklyPath = document.querySelector("path[filter^='url(#blocklyEmbossFilter']");
-                var blockRect = blocklyPath.getBoundingClientRect();
-                blockRect.left += 3;
-
-                ctx.beginPath();
-                ctx.rect(blockRect.left - 3, blockRect.top - 3, blockRect.width + 6, blockRect.height + 6);
-                ctx.stroke();
-
-                ctx.beginPath();
-                ctx.setLineDash([5, 3]);
-                ctx.strokeStyle = brighter(blocks[i].getColour(), 1.5) + "20";
-                ctx.moveTo(blockRect.left - 3, blockRect.top - 3);
-                ctx.lineTo(rect.left - 3, rect.top - 3);
-                ctx.stroke();
-
-                ctx.beginPath();
-                ctx.moveTo(blockRect.left - 3, blockRect.top + blockRect.height + 3);
-                ctx.lineTo(rect.left - 3, rect.top + rect.height + 3);
-                ctx.stroke();
-
-                ctx.beginPath();
-                ctx.moveTo(blockRect.left + blockRect.width + 3, blockRect.top - 3);
-                ctx.lineTo(rect.left + rect.width + 3, rect.top - 3);
-                ctx.stroke();
-
-                ctx.beginPath();
-                ctx.moveTo(blockRect.left + blockRect.width + 3, blockRect.top + blockRect.height + 3);
-                ctx.lineTo(rect.left + rect.width + 3, rect.top + rect.height + 3);
-                ctx.stroke();
-
             }
         } else {
             if (debug) {
-                debug.style.backgroundColor = "#ffffff";
+                debug.style.backgroundColor = "";
             }
             blocks[i].setHighlighted(false);
         }

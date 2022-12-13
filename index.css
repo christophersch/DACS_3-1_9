@@ -305,6 +305,19 @@ button:active {
     background-color: #99BBFF;
 }
 
+.clickable:hover {
+    cursor: pointer;
+    transition: 0.3s;
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.clickable:active {
+    transition: 0.05s;
+    transform: scale(0.95);
+    filter: brightness(0.8);
+}
+
 .rendererselect {
     background-color: #00AAFF;
     border: 1px solid #7F7FFF;
