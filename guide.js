@@ -4,7 +4,7 @@ const GUIDE_STEPS = [
     {
         entext: "Welcome to the guide!<br>This guide will help you get started with programming with blocks.<br>Click \"Next\" to continue.",
         detext: "Willkommen zum Tutorial!<br>Dieses Tutorial wird dir helfen mit dem Programmieren mit Blöcken zu starten.<br>Klicke \"Weiter\" um fortzufahren.",
-        nltext: "Welkom naar het tutorial!<br>Dit tutorial maakt u met de het programmeren van blokken vertrouwd.<br>Klik \"Volgende\" om verder te gaan.",
+        nltext: "Welkom bij de tutorial!<br>Dit tutorial maakt u vertrouwd met het programmeren van blokken.<br>Klik \"Volgende\" om verder te gaan.",
         frtext: "Bienvenue au tutoriel!<br>Cet tutoriel va vous aider à programmer avec des blocs.<br>Cliquez \"Prochain\" pour continuer.",
         next: true,
         width: 400,
@@ -17,7 +17,7 @@ const GUIDE_STEPS = [
     {
         entext: "You can choose your language here.",
         detext: "Hier kannst du die Sprache auswählen.",
-        nltext: "Hier kunt u de taal uitkiezen.",
+        nltext: "Hier kunt u uw taal uitkiezen.",
         frtext: "Vous pouvez choisir votre langue préférée ici.",
         next: true,
         width: 240,
@@ -38,7 +38,7 @@ const GUIDE_STEPS = [
     {
         entext: "You can choose blocks from the toolbox on the left.",
         detext: "Links kannst du die Blöcke der Toolbox auswählen.",
-        nltext: "Aan de linkerkant kunt u de blokken van de toolbox uitkiezen.",
+        nltext: "Aan de linkerkant kunt u blokken van de toolbox uitkiezen.",
         frtext: "À gauche, vous pouvez choisir les blocs de la boîte à outils.",
         next: true,
         width: 240,
@@ -87,7 +87,7 @@ const GUIDE_STEPS = [
     {
         entext: "Drag any block to the work space.",
         detext: "Bitte zieh einen Block in die Arbeitsfläche.",
-        nltext: "Trek een willekeurig blok naar de werkruimte.",
+        nltext: "Trek een blok naar de werkruimte.",
         frtext: "Faites glisser n'importe quel bloc vers l'espace de travails.",
         next: false,
         width: 240,
@@ -107,7 +107,7 @@ const GUIDE_STEPS = [
     {
         entext: "You can see the source code of your script on the right.",
         detext: "Rechts kannst du den Quellcode des Skripts sehen.",
-        nltext: "Aan de rechterkant kunt u de broncode van de script zien.",
+        nltext: "Aan de rechterkant kunt u de broncode van het script zien.",
         frtext: "Vous pouvez voir le source code du script à droite.",
         next: true,
         width: 240,
@@ -146,7 +146,7 @@ const GUIDE_STEPS = [
                 "<br>Viereckige Blöcke beziehen sich auf den Rest.",
         nltext: "Er zijn drie diverse vormen van blokken."+
                 "<br>Ronde blokken verwijzen naar objecten,"+
-                "<br>Zeshoekige blokken verwijzen naar boolean objecten. " +
+                "<br>Zeshoekige blokken verwijzen naar logische objecten. " +
                 "<br>Vierhoekige blokken verwijzen naar de rest.",
         frtext: "Il y a trois différents types des blocs." +
                 "<br>Les blocs ronds représentent des objects " +
@@ -304,7 +304,7 @@ const GUIDE_STEPS = [
     {
         entext: "To remove the block, you can drag it either to the trash bin or to the toolbox menu",
         detext: "Um den Block zu entfernen, kannst du ihn entweder in den Mülleimer oder zurück in das Toolboxmenü ziehen.",
-        nltext: "Om de blok te verwijderen, kunt u het in de bin vuilnisbak of terug in de toolboxmenu plaatsen.",
+        nltext: "Om de blok te verwijderen, kunt u het naar vuilnisbak slepen of terug in de toolbox menu plaatsen.",
         frtext: "Pour eliminer le bloc, vous pouvez le placer dans la poubelle où le replacer dans le menu de la boîte à outils.",
         next: true,
         width: 240,
@@ -327,7 +327,7 @@ const GUIDE_STEPS = [
     {
         entext: "Remove the block from the working space.",
         detext: "Bitte entferne den Block von der Arbeitsfläche.",
-        nltext: "Verwijder de bloc van de werkruimte.",
+        nltext: "Verwijder het block van de werkruimte.",
         frtext: "Eliminez le bloc de l'espace de travails.",
         next: false,
         width: 240,
@@ -339,7 +339,7 @@ const GUIDE_STEPS = [
     {
         entext: "You can specify the renderer of the blocks, complexity level, and the server here.",
         detext: "Du kannst den Renderer der Blöcke, den Komplexitätsgrad und den Server hier ändern.",
-        nltext: "U kunt de renderer van de blokken, de complexiteitsniveau en de server hier wijzigen.",
+        nltext: "Hier kunt u de renderer van de blokken, de complexiteitsniveau en de server wijzigen.",
         frtext: "Vous pouvez changer le renderer des blocs, le niveau de complexité et le server ici.",
         next: true,
         width: 240,
@@ -367,7 +367,7 @@ const GUIDE_STEPS = [
     {
         entext: "To get the output of the script, you need to send the code first.",
         detext: "Um den Output vom Skript zu bekommen, musst du zuerst den Code abschicken.",
-        nltext: "Om de output van de script te ontvangen, moet u eerst de code afzenden.",
+        nltext: "Om de output van het script te ontvangen, moet u eerst de code verzenden.",
         frtext: "Pour obtenir l'output de script, vous devez d'abord envoyez le code.",
         next: true,
         width: 240,
@@ -389,7 +389,7 @@ const GUIDE_STEPS = [
     {
         entext: "Success, now you can start coding!",
         detext: "Nun kannst du mit dem Programmieren beginnen. Viel Erfolg!",
-        nltext: "Nu kunt u met programmeren beginnen. Veel success!",
+        nltext: "Nu kunt u beginnen met programmeren. Veel succes!",
         frtext: "Maintenant vous pouvez commencer à programmer. Bonne chance!",
         width: 240,
         height: 260,
