@@ -2,10 +2,14 @@ function sendRequest() {
     var token = document.getElementById("token").value;
     var request = new XMLHttpRequest();
     var ip = document.getElementById("ip").value === "" ? "localhost:5000" : document.getElementById("ip").value;
-    if (!ip.startsWith("http://")) {
+    if (!ip.includes("://")) {
         ip = "http://" + ip;
     }
-    if (!ip.includes(':') && !ip.endsWith('/')) {
+    var strippedIp = ip;
+    if (ip.includes("://")) {
+        strippedIp = ip.split("://")[1];
+    }
+    if (!strippedIp.includes(':') && !strippedIp.endsWith('/')) {
         ip += ":5000";
     }
     request.open("POST", ip + "?token=" + token, true);
