@@ -1,5 +1,4 @@
-//Translations that are unclear in their supposed meaning to me are marked with ? in the comments
-Blockly.Msg.ACTUAL = 'aanroepen'; //?
+Blockly.Msg.ACTUAL = 'aanroepen';
 Blockly.Msg.ADD = 'Toevoegen';
 Blockly.Msg.ADD_COMMENT = 'Reactie toevoegen';
 Blockly.Msg.ADD_PARAMETER = 'Voeg een Parameter toe';
@@ -104,7 +103,7 @@ Blockly.Msg.DELETE = 'Verwijderen';
 Blockly.Msg.DELETE_BLOCK = 'Blok verwijderen';
 Blockly.Msg.DELETE_PARAMETER = 'Verwijder parameter...';
 Blockly.Msg.DELETE_PARAMETER_TITLE =
-    "Dit zal alle '%1' voorkomens van parameter wissen. Weet je het zeker?"; //?
+    "Dit zal alle '%1' voorkomens van parameter wissen. Weet je het zeker?";
 Blockly.Msg.DELETE_X_BLOCKS = 'Verwijder %1 blokken';
 Blockly.Msg.DELETE_VARIABLE = 'Verwijder de variabele "%1"';
 Blockly.Msg.DISABLE_BLOCK = 'Blok uitschakelen';
@@ -246,8 +245,8 @@ Blockly.Msg.LISTS_SET_INDEX_TOOLTIP_SET_RANDOM =
     'Zet een willekeurig onderdeel van de lijst in.';
 Blockly.Msg.LISTS_ISEMPTY_TOOLTIP = 'Geeft waar terug als de lijst leeg is.';
 Blockly.Msg.LISTS_ISEMPTY_TITLE = '%1 is leeg';
-Blockly.Msg.LISTS_SPLIT_LIST_FROM_TEXT = 'lijst maken van tekst';
-Blockly.Msg.LISTS_SPLIT_TEXT_FROM_LIST = 'tekst maken van lijst';
+Blockly.Msg.LISTS_SPLIT_LIST_FROM_TEXT = 'maak lijst van tekst';
+Blockly.Msg.LISTS_SPLIT_TEXT_FROM_LIST = 'maak tekst van lijst';
 Blockly.Msg.LISTS_SPLIT_WITH_DELIMITER = 'met scheidingsteken';
 Blockly.Msg.LISTS_SPLIT_TOOLTIP_SPLIT = 'Tekst splitsen in een lijst van teksten op basis van een scheidingsteken.';
 Blockly.Msg.LISTS_SPLIT_TOOLTIP_JOIN =
@@ -412,7 +411,7 @@ Blockly.Msg.MATH_TRIG_TOOLTIP_SIN =
 Blockly.Msg.MATH_TRIG_TOOLTIP_TAN =
     'Geeft de tangens van een graad (geen radialen).';
 Blockly.Msg.NEW_VARIABLE = 'Nieuwe variabele...';
-Blockly.Msg.NEW_VARIABLE_TITLE = 'Nieuwe naam:'; //?
+Blockly.Msg.NEW_VARIABLE_TITLE = 'Naam van variabele:';
 Blockly.Msg.ORDINAL_NUMBER_SUFFIX = '';
 Blockly.Msg.PROCEDURES_BEFORE_PARAMS = 'met:';
 Blockly.Msg.PROCEDURES_CALLNORETURN_CALL = '';
@@ -428,15 +427,15 @@ Blockly.Msg.PROCEDURES_CREATE_DO = "Maak '%1'";
 Blockly.Msg.PROCEDURES_DEFNORETURN_DO = '';
 Blockly.Msg.PROCEDURES_DEFNORETURN_HELPURL =
     'https://nl.wikipedia.org/wiki/Subprogramma';
-Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE = 'do iets';
-Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE = 'aan'; //?
+Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE = 'iets te doen';
+Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE = 'om';
 Blockly.Msg.PROCEDURES_DEFNORETURN_TOOLTIP =
     'Maakt een functie zonder uitvoer.';
 Blockly.Msg.PROCEDURES_DEFRETURN_DO = '';
 Blockly.Msg.PROCEDURES_DEFRETURN_HELPURL =
     'https://nl.wikipedia.org/wiki/Subprogramma';
-Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE = 'do iets';
-Blockly.Msg.PROCEDURES_DEFRETURN_TITLE = 'aan';
+Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE = 'iets te doen';
+Blockly.Msg.PROCEDURES_DEFRETURN_TITLE = 'om';
 Blockly.Msg.PROCEDURES_DEFRETURN_RETURN = 'uitvoer';
 Blockly.Msg.PROCEDURES_DEFRETURN_TOOLTIP = 'Maakt een functie met een uitvoer.';
 Blockly.Msg.PROCEDURES_DEF_DUPLICATE_WARNING =
@@ -456,7 +455,7 @@ Blockly.Msg.RENAME_PARAMETER_TITLE =
 Blockly.Msg.RENAME_THIS = 'Hernoem dit %1';
 Blockly.Msg.RENAME_VARIABLE = 'Hernoem variabele...';
 Blockly.Msg.RENAME_VARIABLE_TITLE = 'Alle variabelen "%1" hernoemen naar:';
-Blockly.Msg.TEXT_APPEND_TITLE = 'Naar %1 tekst toevoegen %2';
+Blockly.Msg.TEXT_APPEND_TITLE = 'Aan %1 tekst toevoegen %2';
 Blockly.Msg.TEXT_APPEND_HELPURL =
     'https://code.google.com/p/blockly/wiki/Text#Text_modification';
 Blockly.Msg.TEXT_APPEND_TOOLTIP = "Voeg tekst aan de variabele '%1' toe.";
@@ -574,18 +573,18 @@ Blockly.Msg.ADULT_TITLE = 'Volwassene';
 Blockly.Msg.ADULT_TOOLTIP = '';
 Blockly.Msg.COMPARTMENT_TITLE = 'Gedeelte';
 Blockly.Msg.COMPARTMENT_TOOLTIP = '';
-Blockly.Msg.MOVE_TO_TITLE = 'Beweg het AGV naar x%1';
-Blockly.Msg.MOVE_TO_TOOLTIP = 'Beweg het AGV naar de coördinaten';
+Blockly.Msg.MOVE_TO_TITLE = 'Beweeg het AGV naar x%1';
+Blockly.Msg.MOVE_TO_TOOLTIP = 'Beweeg het AGV naar de coördinaten';
 Blockly.Msg.MOVE_TO_ITEM_TITLE = 'Beweeg het AGV naar %1';
 Blockly.Msg.MOVE_TO_ITEM_TOOLTIP = 'Beweeg het AGV naar het item';
 Blockly.Msg.MOVE_ITEM_TO_TITLE = 'Beweeg %1';
-Blockly.Msg.MOVE_ITEM_TO_TITLE1 = 'naar %1';
+Blockly.Msg.MOVE_ITEM_TO_TITLE1 = 'naar x%1';
 Blockly.Msg.MOVE_ITEM_TO_TOOLTIP = 'Pak het item en beweeg het naar de coördinaten';
-Blockly.Msg.MOVE_ITEM_TO_ITEM_TITLE = 'Beweg %1';
+Blockly.Msg.MOVE_ITEM_TO_ITEM_TITLE = 'Beweeg %1';
 Blockly.Msg.MOVE_ITEM_TO_ITEM_TITLE1 = 'naar %1';
 Blockly.Msg.MOVE_ITEM_TO_ITEM_TOOLTIP = 'Pak het item en beweeg het naar de doos';
 Blockly.Msg.PUT_TITLE = 'Leg %1';
-Blockly.Msg.PUT_TITLE1 = 'Naar %1'; //?
+Blockly.Msg.PUT_TITLE1 = 'in %1';
 Blockly.Msg.PUT_TOOLTIP = 'Leg het item in de doos';
 Blockly.Msg.TAKE_TITLE = 'Neem %1';
 Blockly.Msg.TAKE_TITLE1 = 'van %1';
@@ -595,7 +594,7 @@ Blockly.Msg.CHANGE_BOX_OF_ITEM_TITLE1 = 'van %1';
 Blockly.Msg.CHANGE_BOX_OF_ITEM_TITLE2 = 'naar %1';
 Blockly.Msg.CHANGE_BOX_OF_ITEM_TITTOOLTIP = 'Verplaatst het item van een doos naar de andere';
 Blockly.Msg.ON_EVENT_TITLE = 'Wanneer %1';
-Blockly.Msg.ON_EVENT_TOOLTIP = 'Idk';
+Blockly.Msg.ON_EVENT_TOOLTIP = 'Wanneer een gebaar wordt gedetecteerd';
 Blockly.Msg.LOGIC_TITLE = 'Logica';
 Blockly.Msg.LOOPS_TITLE = 'Lussen';
 Blockly.Msg.MATH_TITLE = 'Wiskunde';

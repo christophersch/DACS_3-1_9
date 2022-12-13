@@ -4,7 +4,7 @@ const GUIDE_STEPS = [
     {
         entext: "Welcome to the guide!<br>This guide will help you get started with programming with blocks.<br>Click \"Next\" to continue.",
         detext: "Willkommen zum Tutorial!<br>Dieses Tutorial wird dir helfen mit dem Programmieren mit Blöcken zu starten.<br>Klicke \"Weiter\" um fortzufahren.",
-        nltext: "Welkom bij de tutorial!<br>Dit tutorial maakt u vertrouwd met het programmeren van blokken.<br>Klik \"Volgende\" om verder te gaan.",
+        nltext: "Welkom bij de tutorial!<br>Dit tutorial maakt u vertrouwd met het programmeren met blokken.<br>Klik op \"Volgende\" om verder te gaan.",
         frtext: "Bienvenue au tutoriel!<br>Cet tutoriel va vous aider à programmer avec des blocs.<br>Cliquez \"Prochain\" pour continuer.",
         next: true,
         width: 400,
@@ -144,10 +144,10 @@ const GUIDE_STEPS = [
                 "<br>Runde Blöcke repräsentieren Objekte," +
                 "<br>Hexagon-Blöcke beziehen sich auf boolean Bedingungen. " +
                 "<br>Viereckige Blöcke beziehen sich auf den Rest.",
-        nltext: "Er zijn drie diverse vormen van blokken."+
-                "<br>Ronde blokken verwijzen naar objecten,"+
-                "<br>Zeshoekige blokken verwijzen naar logische objecten. " +
-                "<br>Vierhoekige blokken verwijzen naar de rest.",
+        nltext: "Er zijn drie verschillende vormen van blokken."+
+                "<br>Ronde blokken staan voor objecten,"+
+                "<br>Zeshoekige blokken staan voor logische objecten. " +
+                "<br>Rechthoekige blokken staan voor de rest.",
         frtext: "Il y a trois différents types des blocs." +
                 "<br>Les blocs ronds représentent des objects " +
                 "<br>Les blocs hexagonaux représentent les conditions boolean." +
@@ -210,8 +210,8 @@ const GUIDE_STEPS = [
         detext: "Viereckige Blöcke können sich miteinander verbinden, "+
                 "während die freien Plätze in diesen Blöcken von runden "+
                 "und Hexagon-Blöcken gefüllt werden können.",
-        nltext: "Vierhoekige blokken kunnen met elkaar verbinden, "+
-                "en de vrije ruimtes in deze blokken kunnen door " +
+        nltext: "Rechthoekige blokken kunnen met elkaar verbinden, "+
+                "en de lege ruimtes in deze blokken kunnen door " +
                 "ronde en zeshoekige blokken opgevuld worden.",
         frtext: "Les blocs carrés peuvent se connecter avec des autres " +
                 "blocs carrés et les libres espaces de ces blocs " +
@@ -304,7 +304,7 @@ const GUIDE_STEPS = [
     {
         entext: "To remove a block, you can either drag it to the trash bin or to the toolbox menu",
         detext: "Um den Block zu entfernen, kannst du ihn entweder in den Mülleimer oder zurück in das Toolboxmenü ziehen.",
-        nltext: "Om de blok te verwijderen, kunt u het naar vuilnisbak slepen of terug in de toolbox menu plaatsen.",
+        nltext: "Om een blok te verwijderen, kunt u het naar vuilnisbak slepen of terug in de toolbox plaatsen.",
         frtext: "Pour eliminer le bloc, vous pouvez le placer dans la poubelle où le replacer dans le menu de la boîte à outils.",
         next: true,
         width: 240,
@@ -327,7 +327,7 @@ const GUIDE_STEPS = [
     {
         entext: "Remove the block from the working space.",
         detext: "Bitte entferne den Block von der Arbeitsfläche.",
-        nltext: "Verwijder het block van de werkruimte.",
+        nltext: "Verwijder het blok van de werkruimte.",
         frtext: "Eliminez le bloc de l'espace de travails.",
         next: false,
         width: 240,
@@ -339,7 +339,7 @@ const GUIDE_STEPS = [
     {
         entext: "You can specify the renderer of the blocks, the complexity level, and the server here.",
         detext: "Du kannst den Renderer der Blöcke, den Komplexitätsgrad und den Server hier ändern.",
-        nltext: "Hier kunt u de renderer van de blokken, de complexiteitsniveau en de server wijzigen.",
+        nltext: "Hier kunt u de renderer van de blokken, het complexiteitsniveau en de server wijzigen.",
         frtext: "Vous pouvez changer le renderer des blocs, le niveau de complexité et le server ici.",
         next: true,
         width: 240,
@@ -367,7 +367,7 @@ const GUIDE_STEPS = [
     {
         entext: "To get the output of the script, you need to send the code first.",
         detext: "Um den Output vom Skript zu bekommen, musst du zuerst den Code abschicken.",
-        nltext: "Om de output van de script te ontvangen, moet u eerst de code afzenden.",
+        nltext: "Om de uitvoer van de script te ontvangen, moet u eerst de code afzenden.",
         frtext: "Pour obtenir l'output de script, vous devez d'abord envoyez le code.",
         next: true,
         width: 240,
