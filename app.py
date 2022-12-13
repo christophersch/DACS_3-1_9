@@ -20,7 +20,7 @@ def catch_all(path):
                 subprocess.call([sys.executable, "_blockly.py"], stdout=f, stderr=e)
         log = open("_blockly.log", "r").read()
         if os.stat("_blockly.err").st_size != 0:
-            log = "[ERROR] An error occured while running the code."
+            log = "[ERROR] An error occurred while running the code."
         os.remove("_blockly.py")
         os.remove("_blockly.log")
         os.remove("_blockly.err")
