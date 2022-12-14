@@ -31,7 +31,7 @@ Blockly.Blocks['Grab'] = {
 
 Blockly.Python['Grab'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, "VALUE", Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.grab(' + value_object + ')\n';
+    var code = 'farm.grab' + value_object + '\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }
@@ -89,7 +89,7 @@ Blockly.Blocks['Feed'] = {
 }
 Blockly.Python['Feed'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.feed(' + value_object + ')\n';
+    var code = 'farm.feed' + value_object + '\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }
@@ -199,7 +199,7 @@ Blockly.Blocks['MoveTo'] = {
             "args0": [
                 {
                     "type": "field_number",
-                    "name": "VALUE",
+                    "name": "CX",
                     "value": 0,
                     "min": -999,
                     "max": 999,
@@ -210,7 +210,7 @@ Blockly.Blocks['MoveTo'] = {
             "args1": [
                 {
                     "type": "field_number",
-                    "name": "VALUE1",
+                    "name": "CY",
                     "value": 0,
                     "min": -999,
                     "max": 999,
@@ -228,7 +228,7 @@ Blockly.Blocks['MoveTo'] = {
 
 Blockly.Python['MoveTo'] = function(block) {
     var text_coordinates = block.getFieldValue('CX') + "," + block.getFieldValue('CY');
-    var code = 'ROS.moveTo(' + text_coordinates + ')\n';
+    var code = 'farm.move_agv_to(' + text_coordinates + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }
