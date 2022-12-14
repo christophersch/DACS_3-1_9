@@ -52,7 +52,7 @@ Group 10 (Orchestration software):
 
 # REST endpoints per group
 endpoints = {
-    "AGV": "",
+    "AGV": "http://192.168.1.35:5500",
     "Arm": "",
     "Object_Detection": "",
     "AR": "",
@@ -69,12 +69,38 @@ def get_storage_coordinates(storage_id:int):
 
 # Only want to move AGV between different storages, hence the storage_id argument
 # (assuming we know the storage ID in advance)
-def move_agv_to(storage_id:int):
-    target_position = get_storage_coordinates(storage_id)
-    req_json = {'x': target_position['x'], 'y': target_position['y']}
-    r = requests.post(endpoints['AGV'], json=req_json)
+def move_agv_to(x:int, y:int):
+    # target_position = get_storage_coordinates(storage_id)
+    # req_json = {'x': target_position['x'], 'y': target_position['y']}
 
-    return r
+    try:
+        req_json = {"text": f"Move AGV to {x}, {y}"}
+        r = requests.post(endpoints['AGV'], json=req_json)
+
+        return r
+    except:
+        print('moved')
+
+
+def grab(item:str):
+    try:
+        req_json = {"text": f"Grab {item}"}
+        r = requests.post(endpoints['AGV'], json=req_json)
+
+        return r
+    except:
+        print('grabbed')
+
+
+def feed(item:str):
+    try:
+        req_json = {"text": f"Feed {item}"}
+        r = requests.post(endpoints['AGV'], json=req_json)
+
+        return r
+    except:
+        print('fed')
+
 
 # Robot arm group
 # item: crate, insects
