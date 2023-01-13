@@ -19,6 +19,10 @@ function initializeDebugCodeGenerator() {
 }
 
 function withDebugCode() {
+    var func = origFuncs[block.type];
+    if (func === withDebugCode) {
+        return func;
+    }
     return function (block) {
         var code = origFuncs[block.type](block);
         if (typeof code === 'string') {
