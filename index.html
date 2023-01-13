@@ -5,10 +5,13 @@
     <title>Blockly</title>
     <script src="blockly.min.js"></script>
     <script src="python_compressed.js"></script>
+    <script src="utils.js"></script>
     <script src="custom_blocks.js"></script>
     <script src="custom_code_generator.js"></script>
     <script src="guide.js"></script>
     <script src="web_client.js"></script>
+    <script src="gestures.js"></script>
+<!--    <script src="debug.js"></script>-->
     <style>
         body {
             background-color: #fff;
@@ -509,6 +512,9 @@
         </script>
         <button id="btnAdvanced" localization-key="advanced" onclick="hideAdvanced()" class="enabled">Advanced Mode: ON</button>
     </hideadvanced>
+    <bottombox>
+        <button localization-key="detectGesture" onclick="onGestureDetected({type:0})">Detect Gesture</button>
+    </bottombox>
     <!-- Buttons to change skill level after the intro screen -->
     <bottombox>
         <span localization-key="complexityLevel" class="margin_left">Complexity Level:</span>
@@ -687,7 +693,8 @@
             next: "Next",
             back: "Back",
             startBlocking: "Start Blocking",
-            advanced: "Advanced Mode: ON"
+            advanced: "Advanced Mode: ON",
+            detectGesture: "Detect Gesture",
         },
         de: {
             text: "Text",
@@ -714,7 +721,8 @@
             next: "Weiter",
             back: "Zurück",
             startBlocking: "Los geht's!",
-            advanced: "Fortgeschrittener Modus: AN"
+            advanced: "Fortgeschrittener Modus: AN",
+            detectGesture: "Geste Erkennen",
         },
         nl: {
             text: "tekst",
@@ -741,7 +749,8 @@
             next: "Volgende",
             back: "Terug",
             startBlocking: "Laten we beginnen!",
-            advanced: "Geavanceerde modus: AAN"
+            advanced: "Geavanceerde modus: AAN",
+            detectGesture: "Gebaar herkennen",
         },
         fr: {
             text: "texte",
@@ -768,7 +777,8 @@
             next: "Suivant",
             back: "Précédent",
             startBlocking: "Allez-y!",
-            advanced: "Mode avancé: ACTIVÉ"
+            advanced: "Mode avancé: ACTIVÉ",
+            detectGesture: "Détection De Geste",
         }
     };
     var searchParams = new URLSearchParams(window.location.search);
@@ -777,28 +787,28 @@
         document.querySelectorAll('[localization-key]').forEach((element) => {
 
             let key = element.getAttribute('localization-key');
-            element.textContent = language.de[key];
+            element.textContent = language.de[key] ?? "🚫 Missing key for '" + lang + "': '" + key + "' 🚫";
         });
     }
-    else if(lang === "en") {
+    else if(lang === "fr") {
         document.querySelectorAll('[localization-key]').forEach((element) => {
 
             let key = element.getAttribute('localization-key');
-            element.textContent = language.en[key];
+            element.textContent = language.fr[key] ?? "🚫 Missing key for '" + lang + "': '" + key + "'  🚫";
         });
     }
     else if(lang === "nl") {
         document.querySelectorAll('[localization-key]').forEach((element) => {
 
             let key = element.getAttribute('localization-key');
-            element.textContent = language.nl[key];
+            element.textContent = language.nl[key] ?? "🚫 Missing key for '" + lang + "': '" + key + "' 🚫";
         });
     }
     else {
         document.querySelectorAll('[localization-key]').forEach((element) => {
 
             let key = element.getAttribute('localization-key');
-            element.textContent = language.fr[key];
+            element.textContent = language.en[key] ?? "🚫 Missing key for '" + lang + "': '" + key + "' 🚫";
         });
     }
 </script>
