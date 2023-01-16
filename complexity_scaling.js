@@ -78,15 +78,21 @@ function initCategories() {
     var cats = [
         ["logic", 0],
         ["loops", 1],
-        ["math", 2],
-        ["text", 3],
-        ["lists", 4],
-        ["color", 5],
-        ["variables", 6],
-        ["functions", 7],
-        ["farm_elements", 8],
-        ["farm_funcs", 9],
-        ["farm_complex_funcs", 10]
+        ["loops2", 2],
+        ["math", 3],
+        ["math2", 4],
+        ["text", 5],
+        ["text2", 6],
+        ["text3", 7],
+        ["lists", 8],
+        ["lists2", 9],
+        ["color", 10],
+        ["variables", 11],
+        ["functions", 12],
+        ["farm_funcs", 13],
+        ["farm_funcs2", 14],
+        ["farm_complex_funcs", 15],
+        ["farm_elements", 16]
     ]
 
     cats.forEach(cat => {
@@ -105,39 +111,82 @@ function refreshCategories() {
         case SKILL_LEVELS.BEGINNER:
             categories.get("logic").show();
             categories.get("loops").show();
-            categories.get("math").hide();
-            categories.get("text").hide();
+            categories.get("loops2").hide();
+            categories.get("math").show();
+            categories.get("math2").hide();
+            categories.get("text").show();
+            categories.get("text2").hide();
+            categories.get("text3").hide();
             categories.get("lists").hide();
-            categories.get("variables").hide();
+            categories.get("lists2").hide();
+            categories.get("variables").show();
             categories.get("functions").hide();
+            categories.get("farm_funcs").show();
+            categories.get("farm_funcs2").hide();
+            categories.get("farm_complex_funcs").hide();
+            var toolbox = document.getElementById('toolbox');
+            var blocks = toolbox.getElementsByTagName('block');
+            //Should also add an exit tutorial button
+            //
+            //Logic: only test if true if false, if any at all (intermediate)
+            //Loops: count with i from, for each item in list (intermediate)
+            //Math: change item by, sum of list (intermediate)
+            //Text: in text find first occurence of, in text get letter, prompt for text with message (intermediate),
+            // in text get subtring from letter to letter(expert)
+            //List: nothing in beginner, create empty list, create list with, create list repeated, length of list,
+            // in list get & set, sort list (intermediate), rest only in expert
+            //Variables: for all
+            //Functions: experts
+            //Insect functions: grab, drop, feed, move to (object) (beginner), move agv to coordinates, put to,
+            // take from(intermediate)
+            //Insect complex functions: all in intermediate
+            //Insect components: all for beginner
+            if(blocks[1].getAttribute("complexity") === "3") {
+                blocks[1].setAttribute("disabled", "true");
+                var workspace = blocks[1].workspace;
+                // Blockly.getMainWorkspace().refreshToolboxSelection();
+            }
             break;
 
         case SKILL_LEVELS.INTERMEDIATE:
             categories.get("logic").show();
-            categories.get("loops").show();
-            categories.get("math").show();
-            categories.get("text").show();
-            categories.get("lists").hide();
-            categories.get("variables").hide();
+            categories.get("loops").hide();
+            categories.get("loops2").show();
+            categories.get("math").hide();
+            categories.get("math2").show();
+            categories.get("text").hide();
+            categories.get("text2").show();
+            categories.get("text3").hide();
+            categories.get("lists").show();
+            categories.get("lists2").hide();
+            categories.get("variables").show();
             categories.get("functions").hide();
-
+            categories.get("farm_funcs").hide();
+            categories.get("farm_funcs2").show();
+            categories.get("farm_complex_funcs").show();
             break;
 
         case SKILL_LEVELS.EXPERT:
             categories.get("logic").show();
-            categories.get("loops").show();
-            categories.get("math").show();
-            categories.get("text").show();
-            categories.get("lists").show();
+            categories.get("loops").hide();
+            categories.get("loops2").show();
+            categories.get("math").hide();
+            categories.get("math2").show();
+            categories.get("text").hide();
+            categories.get("text2").hide();
+            categories.get("text3").show();
+            categories.get("lists").hide();
+            categories.get("lists2").show();
             categories.get("variables").show();
             categories.get("functions").show();
+            categories.get("farm_funcs").hide();
+            categories.get("farm_funcs2").show();
+            categories.get("farm_complex_funcs").show();
             break;
     }
 
     // Insect farm stuff will always be shown
     categories.get("farm_elements").show();
-    categories.get("farm_funcs").show();
-    categories.get("farm_complex_funcs").show();
 
     // Colors are always hidden
     categories.get("color").hide();

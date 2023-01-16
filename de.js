@@ -76,9 +76,9 @@ Blockly.Msg.CONTROLS_IF_TOOLTIP_4 =
 Blockly.Msg.CONTROLS_REPEAT_HELPURL =
     'http://de.wikipedia.org/wiki/For-Schleife';
 Blockly.Msg.CONTROLS_REPEAT_INPUT_DO = 'mach';
-Blockly.Msg.CONTROLS_REPEAT_TITLE = 'wiederhole %1 Male';
+Blockly.Msg.CONTROLS_REPEAT_TITLE = 'wiederhole %1 mal';
 Blockly.Msg.CONTROLS_REPEAT_TITLE_REPEAT = 'wiederhole';
-Blockly.Msg.CONTROLS_REPEAT_TITLE_TIMES = 'Male';
+Blockly.Msg.CONTROLS_REPEAT_TITLE_TIMES = 'mal';
 Blockly.Msg.CONTROLS_REPEAT_TOOLTIP = 'Führe eine Anweisung mehrfach aus.';
 Blockly.Msg.CONTROLS_WHILEUNTIL_HELPURL =
     'http://de.wikipedia.org/wiki/Schleife_%28Programmierung%29';
@@ -447,10 +447,10 @@ Blockly.Msg.PROCEDURES_IFRETURN_WARNING =
 Blockly.Msg.PROCEDURES_MUTATORARG_TITLE = 'Eingabename:';
 Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TITLE = 'Eingaben';
 Blockly.Msg.REMOVE_COMMENT = 'Kommentar entfernen';
-Blockly.Msg.RENAME_ALL = 'Rename all %1';
+Blockly.Msg.RENAME_ALL = 'Benenne all %1 um';
 Blockly.Msg.RENAME_PARAMETER = 'Parameter ... umbenennen';
 Blockly.Msg.RENAME_PARAMETER_TITLE = 'Alle "%1"-Parameter umbenennen in:';
-Blockly.Msg.RENAME_THIS = 'Rename this %1';
+Blockly.Msg.RENAME_THIS = '%1 umbenennen';
 Blockly.Msg.RENAME_VARIABLE = 'Variable ... umbenennen';
 Blockly.Msg.RENAME_VARIABLE_TITLE = 'Alle "%1"-Variablen umbenennen in:';
 Blockly.Msg.TEXT_APPEND_APPENDTEXT = 'Text anhängen';
