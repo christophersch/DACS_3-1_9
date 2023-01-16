@@ -124,28 +124,6 @@ function refreshCategories() {
             categories.get("farm_funcs").show();
             categories.get("farm_funcs2").hide();
             categories.get("farm_complex_funcs").hide();
-            var toolbox = document.getElementById('toolbox');
-            var blocks = toolbox.getElementsByTagName('block');
-            //Should also add an exit tutorial button
-            //
-            //Logic: only test if true if false, if any at all (intermediate)
-            //Loops: count with i from, for each item in list (intermediate)
-            //Math: change item by, sum of list (intermediate)
-            //Text: in text find first occurence of, in text get letter, prompt for text with message (intermediate),
-            // in text get subtring from letter to letter(expert)
-            //List: nothing in beginner, create empty list, create list with, create list repeated, length of list,
-            // in list get & set, sort list (intermediate), rest only in expert
-            //Variables: for all
-            //Functions: experts
-            //Insect functions: grab, drop, feed, move to (object) (beginner), move agv to coordinates, put to,
-            // take from(intermediate)
-            //Insect complex functions: all in intermediate
-            //Insect components: all for beginner
-            if(blocks[1].getAttribute("complexity") === "3") {
-                blocks[1].setAttribute("disabled", "true");
-                var workspace = blocks[1].workspace;
-                // Blockly.getMainWorkspace().refreshToolboxSelection();
-            }
             break;
 
         case SKILL_LEVELS.INTERMEDIATE:
