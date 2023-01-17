@@ -45,3 +45,14 @@ function sendRequest() {
     document.getElementById("outputText").style.color = "#3F51B5";
     request.send(code);
 }
+
+function showError() {
+    var output = document.getElementById("outputText").innerHTML;
+    if (output.includes("[ERROR]")) {
+        var index = parseInt(output.substring(29).split(":"));
+        var workspace = Blockly.getMainWorkspace();
+        var blocks = workspace.getAllBlocks();
+        alert(index)
+
+    }
+}
