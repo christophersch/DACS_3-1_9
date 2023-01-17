@@ -108,3 +108,7 @@ def feed(item:str):
 # TODO: Ask group 5 how to execute their scenario
 def move_object(item, to):
     return 0
+
+def get_state():
+    #TODO
+    return None
