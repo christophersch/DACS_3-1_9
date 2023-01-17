@@ -20,7 +20,9 @@ def catch_all(path):
                 subprocess.call([sys.executable, "_blockly.py"], stdout=f, stderr=e)
         log = open("_blockly.log", "r").read()
         if os.stat("_blockly.err").st_size != 0:
-            log = "[ERROR] An error occurred while running the code."
+            err = open("_blockly.err", "r").read().split("\n")
+            line, mistake, reason = err[-4].split(", line")[-1].split(", in")[0], err[-3], err[-2]
+            log = "[ERROR] An error occurred at {}: {}\n\nReason: {}".format(line, mistake, reason)
         os.remove("_blockly.py")
         os.remove("_blockly.log")
         os.remove("_blockly.err")
