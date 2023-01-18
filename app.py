@@ -4,21 +4,22 @@ from markupsafe import escape
 import subprocess
 import sys
 import os
-import requests
-import corosect.webhook as webhook
 
 app = Flask(__name__)
-
-webhooks = []
-
-webhook.subscribe()
 
 @app.route('/', defaults={'path': ''}, methods=['POST'])
 @app.route('/<path:path>', methods=['POST'])
 def catch_all(path):
+    print('new request')
     token = request.args.get('token', default = '', type = str)
+    correct_token = open("token.txt", "r").read()
+
+    token = token.replace("\n", "")
+    correct_token = correct_token.replace("\n", "")
+
     code = request.get_data().decode("utf-8")
-    if token == open("token.txt", "r").read():
+
+    if token == correct_token:
         with open("_blockly.py", "w") as f:
             f.write(code)
         with open("_blockly.log", "w") as f:
@@ -49,37 +50,4 @@ def catch_all(path):
         response.headers["Access-Control-Allow-Origin"] = "*"
         return response
 
-@app.route('/gesture', methods=['POST'])
-def gesture():
-    json = request.get_json()
-    gesture = json["gesture"]
-    time = json["detectedAt"]
-    context = json["context"]
-
-    for webhook in webhooks:
-        requests.post(webhook, data=gesture)
-
-    response = app.response_class(
-        response="",
-        status=200,
-        mimetype='text/plain'
-    )
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    return response
-
-@app.route('/subscribe', methods=['POST'])
-def subscribe():
-    json = request.get_json()
-    webhook = json["url"]
-    webhooks.append(webhook)
-    response = app.response_class(
-        response="",
-        status=200,
-        mimetype='text/plain'
-    )
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    return response
-
-    
-        
-serve(app, host='0.0.0.0', port=5000)
+serve(app, host='0.0.0.0', port=9000)
