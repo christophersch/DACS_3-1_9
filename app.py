@@ -4,8 +4,14 @@ from markupsafe import escape
 import subprocess
 import sys
 import os
+import requests
+import corosect.webhook as webhook
 
 app = Flask(__name__)
+
+webhooks = []
+
+webhook.subscribe()
 
 @app.route('/', defaults={'path': ''}, methods=['POST'])
 @app.route('/<path:path>', methods=['POST'])
@@ -42,5 +48,38 @@ def catch_all(path):
         )
         response.headers["Access-Control-Allow-Origin"] = "*"
         return response
+
+@app.route('/gesture', methods=['POST'])
+def gesture():
+    json = request.get_json()
+    gesture = json["gesture"]
+    time = json["detectedAt"]
+    context = json["context"]
+
+    for webhook in webhooks:
+        requests.post(webhook, data=gesture)
+
+    response = app.response_class(
+        response="",
+        status=200,
+        mimetype='text/plain'
+    )
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
+
+@app.route('/subscribe', methods=['POST'])
+def subscribe():
+    json = request.get_json()
+    webhook = json["url"]
+    webhooks.append(webhook)
+    response = app.response_class(
+        response="",
+        status=200,
+        mimetype='text/plain'
+    )
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
+
+    
         
 serve(app, host='0.0.0.0', port=5000)
