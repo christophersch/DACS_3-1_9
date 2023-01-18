@@ -72,13 +72,12 @@ Group 10 (Orchestration software):
 
 # REST endpoints per group
 endpoints = {
-    "DT" : "http://192.168.1.56:5000",
-    "AGV": "http://192.168.1.35:5500",
-    "Arm": "",
-    "Object_Detection": "",
-    "AR": "",
-    "Gestures": "",
-    "Orchestration": "",
+    "AutomaticGuidedVehicle": "http://192.168.1.35:5500",
+    "RobotArm": "",
+    "ObjectDetection": "",
+    "AugmentedReality": "",
+    "GestureControl": "",
+    "DigitalTwins": "http://192.168.1.56:5000"
 }
 
 
@@ -100,7 +99,6 @@ def send_request(task_type_id, time, value):
         ]
     }
     ip = endpoints["DT"] + '/insert/order'
-    print(payload)
     res = requests.post(ip, data=json.dumps(payload), headers={'Content-Type': 'application/json'})
     return res
 
@@ -119,46 +117,3 @@ def place_crate(value):
 
 def place_back_crate(value):
     return send_request(Task_Type['place_back_crate'], -1, value)
-
-
-
-
-def move_agv_to(x: int, y: int):
-    # target_position = get_storage_coordinates(storage_id)
-    # req_json = {'x': target_position['x'], 'y': target_position['y']}
-
-    try:
-        req_json = {"text": f"Move AGV to {x}, {y}"}
-        r = requests.post(endpoints['AGV'], json=req_json)
-
-        return r
-    except:
-        print('moved')
-
-
-def grab(item: str):
-    try:
-        req_json = {"text": f"Grab {item}"}
-        r = requests.post(endpoints['AGV'], json=req_json)
-
-        return r
-    except:
-        print('grabbed')
-
-
-def feed(item: str):
-    try:
-        req_json = {"text": f"Feed {item}"}
-        r = requests.post(endpoints['AGV'], json=req_json)
-
-        return r
-    except:
-        print('fed')
-
-
-# Robot arm group
-# item: crate, insects
-# to: crate,  
-# TODO: Ask group 5 how to execute their scenario
-def move_object(item, to):
-    return 0
