@@ -255,7 +255,7 @@ Blockly.Blocks['MoveToItem'] = {
 
 Blockly.Python['MoveToItem'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.moveToItem(' + value_object + ')\n';
+    var code = 'farm.deliver_crate([1])\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }
