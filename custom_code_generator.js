@@ -103,8 +103,18 @@ function workspaceToCodeDebug(workspace) {
 
     var regex2 = /# f: (.+?) at: (\d+?)\./g;
     code2 = code2.replaceAll(regex2, "</span></dbb>");
+    // code2 = code2.split('<br>');
+    // var cde = [];
+    // for (let i = 0; i <= code2.length; i++) {
+    //     var a = code2[i];
+    //     if (a.length > 1){
+    //         // alert(cde)
+    //         cde.push((i+1)+ "  "+ a);
+    //     }
+    // }
 
-    document.getElementById("debugText1").innerHTML = code2;
+    code2 = cde.join('<br>');
+    document.getElementById("debugText1").innerHTML = cde;
 
     var lines = code2.split('<br>');
     var code3 = "";

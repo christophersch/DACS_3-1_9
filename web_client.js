@@ -49,10 +49,33 @@ function sendRequest() {
 function showError() {
     var output = document.getElementById("outputText").innerHTML;
     if (output.includes("[ERROR]")) {
-        var index = parseInt(output.substring(29).split(":"));
-        var workspace = Blockly.getMainWorkspace();
-        var blocks = workspace.getAllBlocks();
-        alert(index)
+        var index = output.substring(29).split(":");
+        var blockCode = index[0];
+        if (parseInt(blockCode)){
+            blockCode = index[1].split("<br>")[0];
+            alert(blockCode)
+        }
+
+        try {
+            var workspace = Blockly.getMainWorkspace();
+            const blocks = workspace.getTopBlocks(true);
+            for (let i = 0, block; (block = blocks[i]); i++) {
+                var func = blockToCodeDebug(block);
+                if (Array.isArray(func)) {
+                    func = func[0];
+                }
+                alert(func)
+                var code = origFuncs[block.type](block);
+                alert("2"+code)
+                if (typeof code === 'string') {
+                    code = (getDebugPrefix(block) + code + getDebugSuffix(block));
+                }
+                alert("3"+code)
+            }
+
+        } catch (e) {
+            // ignore
+        }
 
     }
 }
