@@ -511,6 +511,12 @@ Blockly.Msg.DROP_TITLE = 'Drop %1';
 Blockly.Msg.DROP_TOOLTIP = 'Drops the item';
 Blockly.Msg.FEED_TITLE = 'Feed %1';
 Blockly.Msg.FEED_TOOLTIP = 'Feeds the box';
+Blockly.Msg.CRATE_TITLE = 'Crate';
+Blockly.Msg.CRATE_TOOLTIP = '';
+Blockly.Msg.STORAGE_TITLE = 'Storage';
+Blockly.Msg.STORAGE_TOOLTIP = '';
+Blockly.Msg.ARM_TITLE = 'Robot Arm';
+Blockly.Msg.ARM_TOOLTIP = '';
 Blockly.Msg.BOX1_TITLE = 'Box 1';
 Blockly.Msg.BOX1_TOOLTIP = '';
 Blockly.Msg.EGG_TITLE ='Egg';
@@ -534,6 +540,15 @@ Blockly.Msg.MOVE_ITEM_TO_ITEM_TOOLTIP = 'Grabs the item and moves it to the box'
 Blockly.Msg.PUT_TITLE = 'Put %1';
 Blockly.Msg.PUT_TITLE1 = 'To %1';
 Blockly.Msg.PUT_TOOLTIP = 'Puts an item in the box';
+
+Blockly.Msg.PLACE_TITLE = 'Place %1';
+Blockly.Msg.PLACE_TITLE1 = 'on %1';
+Blockly.Msg.PLACE_TOOLTIP = 'Places an item on an object';
+
+Blockly.Msg.DELIVER_TITLE = 'Bring %1';
+Blockly.Msg.DELIVER_TITLE1 = 'to %1';
+Blockly.Msg.DELIVER_TOOLTIP = 'Delivers an item to an object';
+
 Blockly.Msg.TAKE_TITLE = 'Take %1';
 Blockly.Msg.TAKE_TITLE1 = 'From %1';
 Blockly.Msg.TAKE_TOOLTIP = 'Takes an item from the box';

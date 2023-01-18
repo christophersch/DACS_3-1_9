@@ -596,26 +596,31 @@
                 </value>
             </block>
         </category>
+
         <sep></sep>
+
         <category id="catVariables" colour="330" custom="VARIABLE" name="%{BKY_VARIABLES_TITLE}"></category>
         <category id="catFunctions" colour="290" custom="PROCEDURE" name="%{BKY_FUNCTIONS_TITLE}"></category>
+
         <sep></sep>
+
         <category colour="190" name="%{BKY_INSECT_FARM_FUNCTIONS_TITLE}">
             <block type="Grab">
             </block>
             <block type="Drop">
-            </block>
             </block>
             <block type="Feed">
             </block>
             <block type="MoveToItem">
             </block>
         </category>
+
         <category colour="190" name="%{BKY_INSECT_FARM_FUNCTIONS_TITLE}">
-            <block type="Grab">
+            <block type="Place"></block>
+            <block type="Deliver"></block>
+            <!-- <block type="Grab">
             </block>
             <block type="Drop">
-            </block>
             </block>
             <block type="Feed">
             </block>
@@ -626,15 +631,14 @@
             <block type="Put">
             </block>
             <block type="Take">
-            </block>
+            </block> -->
         </category>
+
         <category colour="130" name="%{BKY_INSECT_FARM_COMPLEX_FUNCTIONS_TITLE}">
             <block type="MoveItemTo">
             </block>
             <block type="MoveItemToItem">
             </block>
-<!--            <block type="ChangePopulationOfBox">-->
-<!--            </block>-->
             <block type="ChangeBoxOfItem">
             </block>
             <block type="OnGesture">
@@ -642,7 +646,7 @@
         </category>
 
         <category colour="70" name="%{BKY_INSECT_FARM_ELEMENTS_TITLE}">
-            <block type="Box">
+            <!-- <block type="Box">
             </block>
             <block type="Egg">
             </block>
@@ -651,7 +655,19 @@
             <block type="Adult">
             </block>
             <block type="Compartment">
-            </block>
+            </block> -->
+            <block type="AGV"></block>
+            <block type="Workspace"></block>
+            <block type="Arm"></block>
+
+            <block type="Crate_1"></block>
+            <block type="Crate_2"></block>
+            <block type="Crate_3"></block>
+            <block type="Crate_4"></block>
+
+            <block type="Storage_1"></block>
+            <block type="Storage_2"></block>
+            
         </category>
     </xml>
     <script>

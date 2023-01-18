@@ -73,6 +73,17 @@ class TabCategory {
 
 }
 
+
+function showCat(x, s) {
+    if (categories.has(x)) {
+        if (s) {
+            categories.get(x).show();
+        } else {
+            categories.get(x).hide();
+        }
+    }
+}
+
 function initCategories() {
 
     var cats = [
@@ -109,66 +120,68 @@ function initCategories() {
 function refreshCategories() {
     switch (skill_level) {
         case SKILL_LEVELS.BEGINNER:
-            categories.get("logic").show();
-            categories.get("loops").show();
-            categories.get("loops2").hide();
-            categories.get("math").show();
-            categories.get("math2").hide();
-            categories.get("text").show();
-            categories.get("text2").hide();
-            categories.get("text3").hide();
-            categories.get("lists").hide();
-            categories.get("lists2").hide();
-            categories.get("variables").show();
-            categories.get("functions").hide();
-            categories.get("farm_funcs").show();
-            categories.get("farm_funcs2").hide();
-            categories.get("farm_complex_funcs").hide();
+            showCat("logic", true);
+            showCat("loops", true);
+            showCat("loops2", false);
+            showCat("math", true);
+            showCat("math2", false);
+            showCat("text", true);
+            showCat("text2", false);
+            showCat("text3", false);
+            showCat("lists", false);
+            showCat("lists2", false);
+            showCat("variables", true);
+            showCat("functions", false);
+            showCat("farm_funcs", false);
+            showCat("farm_funcs2", true);
+            showCat("farm_complex_funcs", false);
             break;
 
         case SKILL_LEVELS.INTERMEDIATE:
-            categories.get("logic").show();
-            categories.get("loops").hide();
-            categories.get("loops2").show();
-            categories.get("math").hide();
-            categories.get("math2").show();
-            categories.get("text").hide();
-            categories.get("text2").show();
-            categories.get("text3").hide();
-            categories.get("lists").show();
-            categories.get("lists2").hide();
-            categories.get("variables").show();
-            categories.get("functions").hide();
-            categories.get("farm_funcs").hide();
-            categories.get("farm_funcs2").show();
-            categories.get("farm_complex_funcs").show();
+            showCat("logic", true)
+            showCat("loops", false);
+            showCat("loops2", true);
+            showCat("math", false);
+            showCat("math2", true);
+            showCat("text", false);
+            showCat("text2", true);
+            showCat("text3", false);
+            showCat("lists", true);
+            showCat("lists2", false);
+            showCat("variables", true);
+            showCat("functions", false);
+            showCat("farm_funcs", false);
+            showCat("farm_funcs2", true);
+            showCat("farm_complex_funcs", false);
             break;
 
         case SKILL_LEVELS.EXPERT:
-            categories.get("logic").show();
-            categories.get("loops").hide();
-            categories.get("loops2").show();
-            categories.get("math").hide();
-            categories.get("math2").show();
-            categories.get("text").hide();
-            categories.get("text2").hide();
-            categories.get("text3").show();
-            categories.get("lists").hide();
-            categories.get("lists2").show();
-            categories.get("variables").show();
-            categories.get("functions").show();
-            categories.get("farm_funcs").hide();
-            categories.get("farm_funcs2").show();
-            categories.get("farm_complex_funcs").show();
+            showCat("logic", true);
+            showCat("loops", false);
+            showCat("loops2", true);
+            showCat("math", false);
+            showCat("math2", true);
+            showCat("text", false);
+            showCat("text2", false);
+            showCat("text3", true);
+            showCat("lists", false);
+            showCat("lists2", true);
+            showCat("variables", true);
+            showCat("functions", true);
+            showCat("farm_funcs", false);
+            showCat("farm_funcs2", true);
+            showCat("farm_complex_funcs", false);
             break;
     }
 
     // Insect farm stuff will always be shown
     categories.get("farm_elements").show();
+    categories.get("farm_complex_funcs").hide();
 
     // Colors are always hidden
     categories.get("color").hide();
 }
+
 
 function setComplexityLevel(level, intro_screen = false) {
     skill_level = level;
