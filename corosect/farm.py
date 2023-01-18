@@ -1,4 +1,24 @@
 import requests
+import json
+
+#DT_Ip = 'http://192.168.1.56:5000'
+
+# Group 10 stuff
+Task_Type = \
+    {
+        'sort_insects': 1,  # For coordination: Value is crate_id array
+        'move_agv': 2,  # For AGV: Value is xyz coordinates
+        'pick_up': 3,  # For AGV: Value is crate_id array
+        'deliver': 4,  # For AGV: Value is crate_id array
+        'deliver_back': 5,  # For AGV: Value is crate_id array
+        'sort': 6,
+        # For RA: Value is crate_id array, more precisely pair(first crate_id is crate with insects,second is empty in which to sort)
+        'idle_process': 7,
+        'place_crate': 8,  # Place crate on workspace
+        'place_back_crate': 9  # Put crate back on AGV
+        # pick up insect (by argument like color etc)
+
+    }
 
 '''
 First of all, a quick check of which data we need (based on the materials purchasing list)
@@ -52,24 +72,58 @@ Group 10 (Orchestration software):
 
 # REST endpoints per group
 endpoints = {
+    "DT" : "http://192.168.1.56:5000",
     "AGV": "http://192.168.1.35:5500",
     "Arm": "",
     "Object_Detection": "",
     "AR": "",
-    "Gestures" : "",
+    "Gestures": "",
     "Orchestration": "",
 }
 
 
-def get_storage_coordinates(storage_id:int):
+def get_storage_coordinates(storage_id: int):
     storage_data = requests.get(endpoints["Orchestration"] + f"storage/{str(storage_id)}").json()
     return {"x": storage_data["x"], "y": storage_data["y"]}
+
 
 # Execute specific actions
 
 # Only want to move AGV between different storages, hence the storage_id argument
 # (assuming we know the storage ID in advance)
-def move_agv_to(x:int, y:int):
+
+
+def send_request(task_type_id, time, value):
+    payload = {'orders':
+        [
+            {'task_type_id': task_type_id, 'time': time, 'value': value},
+        ]
+    }
+    ip = endpoints["DT"] + '/insert/order'
+    print(payload)
+    res = requests.post(ip, data=json.dumps(payload), headers={'Content-Type': 'application/json'})
+    return res
+
+
+def deliver_crate(value):
+    return send_request(Task_Type['deliver'], -1, value)
+
+
+def deliver_back_crate(value):
+    return send_request(Task_Type['deliver_back'], -1, value)
+
+
+def place_crate(value):
+    return send_request(Task_Type['place_crate'], -1, value)
+
+
+def place_back_crate(value):
+    return send_request(Task_Type['place_back_crate'], -1, value)
+
+
+
+
+def move_agv_to(x: int, y: int):
     # target_position = get_storage_coordinates(storage_id)
     # req_json = {'x': target_position['x'], 'y': target_position['y']}
 
@@ -82,7 +136,7 @@ def move_agv_to(x:int, y:int):
         print('moved')
 
 
-def grab(item:str):
+def grab(item: str):
     try:
         req_json = {"text": f"Grab {item}"}
         r = requests.post(endpoints['AGV'], json=req_json)
@@ -92,7 +146,7 @@ def grab(item:str):
         print('grabbed')
 
 
-def feed(item:str):
+def feed(item: str):
     try:
         req_json = {"text": f"Feed {item}"}
         r = requests.post(endpoints['AGV'], json=req_json)
