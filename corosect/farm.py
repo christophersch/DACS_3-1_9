@@ -1,7 +1,7 @@
 import requests
 import json
 
-#DT_Ip = 'http://192.168.1.56:5000'
+# DT_Ip = 'http://192.168.1.56:5000'
 
 # Group 10 stuff
 Task_Type = \
@@ -81,6 +81,7 @@ endpoints = {
 }
 
 
+# Old
 def get_storage_coordinates(storage_id: int):
     storage_data = requests.get(endpoints["Orchestration"] + f"storage/{str(storage_id)}").json()
     return {"x": storage_data["x"], "y": storage_data["y"]}
@@ -98,7 +99,7 @@ def send_request(task_type_id, time, value):
             {'task_type_id': task_type_id, 'time': time, 'value': value},
         ]
     }
-    ip = endpoints["DT"] + '/insert/order'
+    ip = endpoints["DigitalTwins"] + '/insert/order'
     res = requests.post(ip, data=json.dumps(payload), headers={'Content-Type': 'application/json'})
     return res
 
