@@ -176,7 +176,7 @@ function refreshCategories() {
 
     // Insect farm stuff will always be shown
     categories.get("farm_elements").show();
-    categories.get("farm_complex_funcs").hide();
+    categories.get("farm_complex_funcs").show();
 
     // Colors are always hidden
     categories.get("color").hide();
