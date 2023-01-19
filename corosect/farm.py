@@ -117,3 +117,18 @@ def place_crate(value):
 
 def place_back_crate(value):
     return send_request(Task_Type['place_back_crate'], -1, value)
+
+
+# Called from the Blockly blocks
+def deliver(crate_id, other):
+    if other == 'arm':
+        deliver_crate(crate_id)
+    else:
+        deliver_back_crate(crate_id)
+
+
+def place(crate_id, surface):
+    if surface == 'workspace':
+        place_crate(crate_id)
+    elif surface == 'agv':
+        place_back_crate(crate_id)
