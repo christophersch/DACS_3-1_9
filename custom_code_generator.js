@@ -113,8 +113,8 @@ function workspaceToCodeDebug(workspace) {
     //     }
     // }
 
-    code2 = cde.join('<br>');
-    document.getElementById("debugText1").innerHTML = cde;
+    // code2 = cde.join('<br>');
+    document.getElementById("debugText1").innerHTML = code2;
 
     var lines = code2.split('<br>');
     var code3 = "";

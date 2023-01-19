@@ -55,7 +55,7 @@ function showError() {
             blockCode = index[1].split("<br>")[0];
             alert(blockCode)
         }
-
+        alert(blockCode);
         try {
             var workspace = Blockly.getMainWorkspace();
             const blocks = workspace.getTopBlocks(true);
@@ -65,12 +65,12 @@ function showError() {
                     func = func[0];
                 }
                 alert(func)
-                var code = origFuncs[block.type](block);
-                alert("2"+code)
-                if (typeof code === 'string') {
-                    code = (getDebugPrefix(block) + code + getDebugSuffix(block));
-                }
-                alert("3"+code)
+                // var block4 = workspace.newBlock("logic_boolean");
+                // block4.initSvg();
+                // block4.moveBy(10, 10);
+                // block4.render();
+                // workspace.clear();
+                // workspace.render();
             }
 
         } catch (e) {
