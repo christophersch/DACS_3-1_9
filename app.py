@@ -7,6 +7,18 @@ import os
 
 app = Flask(__name__)
 
+
+@app.route('/test', methods=['GET'])
+def test():
+    response = app.response_class(
+        response="Server set-up successful!",
+        status=200,
+        mimetype='text/plain'
+    )
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
+
+
 @app.route('/', defaults={'path': ''}, methods=['POST'])
 @app.route('/<path:path>', methods=['POST'])
 def catch_all(path):
@@ -49,5 +61,6 @@ def catch_all(path):
         )
         response.headers["Access-Control-Allow-Origin"] = "*"
         return response
+
 
 serve(app, host='0.0.0.0', port=9000)
