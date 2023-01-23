@@ -18,6 +18,7 @@ ChangeBoxOfItem
 OnGesture
  */
 
+// Creates chains of blocks based on which gesture was detected
 function onGestureDetected(gesture) {
     switch (gesture.type) {
         case 0:

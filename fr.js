@@ -493,7 +493,7 @@ Blockly.Msg.TEXT_INDEXOF_OPERATOR_FIRST =
 Blockly.Msg.TEXT_INDEXOF_OPERATOR_LAST =
     'trouver la dernière apparition du texte';
 Blockly.Msg.TEXT_INDEXOF_TOOLTIP =
-    "Renvoie l'index de la première/dernière apparition du premier texte dans le deuxième texte. Renvoie 0 si la chaîne n’est pas trouvée.';
+    "Renvoie l'index de la première/dernière apparition du premier texte dans le deuxième texte. Renvoie 0 si la chaîne n’est pas trouvée.";
 Blockly.Msg.TEXT_ISEMPTY_HELPURL =
     'https://github.com/google/blockly/wiki/Text#Checking_for_empty_text';
 Blockly.Msg.TEXT_ISEMPTY_TITLE = '%1 est vide';

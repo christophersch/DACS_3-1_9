@@ -36,6 +36,8 @@
 <div id="language">
 </div>
 <script>
+    //Changes the language to the one specified by value
+    //Currently supported languages include: English(en), German(de), Dutch(nl) and French(fr)
     function changeLanguage(value) {
         if (Blockly.getMainWorkspace().getAllBlocks().length > 0) {
             var answer = confirm("Changing the language will clear your workspace. " +
@@ -52,10 +54,13 @@
     }
 </script>
 
+<!--  Displays the toolbox that includes all categories and blocks that can be worked with  -->
 <div style="display:flex; margin-top: 15px;">
 
     <div id="blocklyDiv" style="height: 600px; width: 60%; min-width: 900px; border: 2px solid #7F7FFF; margin-left: 10px; "></div>
 
+    <!--  Adds the categories to the toolbox and the blocks to different categories  -->
+    <!--  Some categories are created multiple times for the complexity scaling  -->
     <xml id="toolbox" style="display: none">
         <category id="catLogic" colour="210" name="%{BKY_LOGIC_TITLE}">
             <block type="controls_if"></block>
@@ -600,6 +605,7 @@
         <category id="catVariables" colour="330" custom="VARIABLE" name="%{BKY_VARIABLES_TITLE}"></category>
         <category id="catFunctions" colour="290" custom="PROCEDURE" name="%{BKY_FUNCTIONS_TITLE}"></category>
         <sep></sep>
+<!--    Custom blocks for the insect farm are added into their own categories here    -->
         <category colour="190" name="%{BKY_INSECT_FARM_FUNCTIONS_TITLE}">
             <block type="Grab">
             </block>
@@ -655,6 +661,7 @@
         </category>
     </xml>
     <script>
+        // Initializes the workspace and sets the user-defined language
         window.onload = function () {
             var langTag = document.getElementById("language");
             var searchParams = new URLSearchParams(window.location.search);
@@ -671,6 +678,7 @@
             langScript.src = lang + ".js";
             langTag.appendChild(langScript);
 
+            // Initializes the workspace
             setTimeout(function () {
                 Blockly.Theme.defineTheme('custom', {
                     'base': Blockly.Themes.Classic,
@@ -707,6 +715,7 @@
     <bottom>
     <hideadvanced>
         <script>
+            //Hides/Shows advanced elements of the interface, such as renderer, token and ip address
             function hideAdvanced() {
                 var btn = document.getElementById("btnAdvanced");
                 let currentLang = getLanguage();
@@ -762,6 +771,7 @@
                 }
             }
         </script>
+        <!--  Button to switch advanced mode on/off  -->
         <button id="btnAdvanced" localization-key="advanced" onclick="hideAdvanced()" class="enabled">Advanced Mode: ON</button>
     </hideadvanced>
     <bottombox>
@@ -774,6 +784,7 @@
         <button localization-key="intermediate" id="intermediate" onclick="setComplexityLevel(SKILL_LEVELS.INTERMEDIATE)">Intermediate</button>
         <button localization-key="expert" id="expert" onclick="setComplexityLevel(SKILL_LEVELS.EXPERT)">Expert</button>
     </bottombox>
+    <!--  Buttons to change the renderer of the blocks  -->
     <bottombox class="advanced">
     <label for="renderer">Renderer:</label>
     <select class="rendererselect" name="renderer" id="renderer" onchange="changeRenderer()">
@@ -783,11 +794,25 @@
     </select>
     </bottombox>
     <script>
+        //Changes the renderer of the blocks (zelos, geras or thrasos)
         function changeRenderer() {
             var demoWorkspace = Blockly.getMainWorkspace();
             if (demoWorkspace.getAllBlocks().length > 0) {
-                var answer = confirm("Changing the renderer will clear your workspace. " +
-                    "Are you sure you want to continue?");
+                let currentLang = getLanguage();
+                var answer;
+                if (currentLang === "en") {
+                    answer = confirm("Changing the renderer will clear your workspace. " +
+                        "Are you sure you want to continue?");
+                } else if (currentLang === "de") {
+                    answer = confirm("Wenn du den Renderer ändern möchtest, muss die Arbeitsfläche geleert werden." +
+                        "Bist du sicher, dass du fortfahren möchtest?");
+                } else if (currentLang === "nl") {
+                    answer = confirm("Om de renderer te wijzigen, moeten de blokken in de werkruimte verwijdert worden." +
+                        "Wilt u doorgaan?");
+                } else {
+                    answer = confirm("Si vous voulez changer le renderer, on a besoin de supprimer tous les blocs de l'espace de travail." +
+                        "Est-ce que vous voulez vraiment quitter le tutoriel?");
+                }
                 if (!answer) {
                     document.getElementById('renderer').value = demoWorkspace.getRenderer().name;
                     return;
@@ -814,6 +839,7 @@
             blocklyMainWorkspace.style.background = "#BBBBFF";
         }
     </script>
+    <!--  Adds labels for various elements, such as the token and ip address  -->
     <bottombox class="advanced">
     <label for="token" style="vertical-align: middle">Token:</label>
     <textarea id="token" rows="1" cols="20" style="font-size: small; vertical-align: middle"></textarea>
@@ -843,9 +869,9 @@
 
     </bottom>
 
+    <!--  Button for sending the code and labels  -->
     <console>
         <button localization-key="sendCode" class="primarybutton" id="send_code_request" onclick="sendRequest()">Send Code</button>
-<!--        <button localization-key="showError" class="primarybutton" id="send_error" onclick="showError()">Show Error</button>-->
         <bottombox>
             <div id="output">
                 Output:
@@ -855,7 +881,7 @@
             </div>
         </bottombox>
     </console>
-<!--    <div id="errorDiv" style="height: 200px; width: 300px; border: 2px solid #7F7FFF; margin-left: 10px; "></div>-->
+    <!--  Language buttons in the form of flags for each language  -->
     <div id="language_selection" style="vertical-align: top">
         <img class="clickable lang_img" src="images/flags/en.png" alt="English" onclick="changeLanguage('en')">
         <img class="clickable lang_img" src="images/flags/nl.png" alt="Nederlands" onclick="changeLanguage('nl')">
@@ -865,6 +891,7 @@
 </div>
 <canvas id="full_screen_canvas" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999999; pointer-events: none;"></canvas>
 
+<!--  Language selection intro scene that lets the user define the human language on startup  -->
 <div id="language_selection_intro">
     <p>Choose Language</p>
     <img class="clickable" src="images/flags/en.png" onclick="changeLanguage('en')" style="width: 300px; height: 200px; margin: 10px; cursor: pointer">
@@ -873,6 +900,7 @@
     <img class="clickable" src="images/flags/de.png" onclick="changeLanguage('de')" style="width: 300px; height: 200px; margin: 10px; cursor: pointer">
 </div>
 
+<!--  Tutorial elements such as start, next, back and close buttons-->
 <div id="guide">
     <p id="guideText"></p>
 
@@ -884,9 +912,20 @@
 
 <script>
 
+    //Closes and ends the tutorial
     function closeGuide() {
 
-        var answer = confirm("Are you sure you want to exit the tutorial?");
+        let currentLang = getLanguage();
+        var answer;
+        if (currentLang === "en") {
+            answer = confirm("Are you sure you want to exit the tutorial?");
+        } else if (currentLang === "de") {
+            answer = confirm("Bist du sicher, dass du das Tutorial verlassen willst?");
+        } else if (currentLang === "nl") {
+            answer = confirm("Bent u zeker dat u de tutoriel wilt afsluiten?");
+        } else {
+            answer = confirm("Est-ce que vous voulez vraiment quitter le tutoriel?");
+        }
         if(!answer) {
         } else {
             document.getElementById('guide').style.display = 'none';
@@ -894,10 +933,9 @@
                 GUIDE_STEPS[guide_index].finish();
             }
         }
-
     }
 </script>
-
+<!--  Tutorial intro scene that lets the user decide if they want to follow the tutorial or not  -->
 <div id="guide_intro">
     <p localization-key="followGuide">Do you want to follow the guide?</p>
     <div class="answer" onclick="setGuide(true)">
@@ -931,12 +969,14 @@
 </div>
 
 <script>
+    //Get the language that the application is currently being displayed in
     function getLanguage() {
         var searchParams = new URLSearchParams(window.location.search);
         return searchParams.get('lang');
     }
 </script>
 
+<!--  Translations for certain elements of the application  -->
 <script>
     var language = {
         en: {
@@ -948,7 +988,6 @@
             expert: "Expert",
             ip: "IP Address:",
             sendCode: "Send Code",
-            showError: "Show Error",
             outputText: "No output yet",
             familiarQuestion: "How familiar are you with programming?",
             answerBeginner: "I am a beginner",
@@ -977,7 +1016,6 @@
             expert: "Experte",
             ip: "IP Adresse:",
             sendCode: "Code abschicken",
-            showError: "",
             outputText: "Noch keinen Output",
             familiarQuestion: "Wie gut kennst du dich mit Programmieren aus?",
             answerBeginner: "Ich bin ein Anfänger",
@@ -1006,7 +1044,6 @@
             expert: "Expert",
             ip: "IP Adres:",
             sendCode: "Code verzenden",
-            showError: "",
             outputText: "Nog geen output",
             familiarQuestion: "Hoe bekend ben je met programmeren?",
             answerBeginner: "Ik ben een beginner",
@@ -1033,9 +1070,8 @@
             beginner: "Débutant",
             intermediate: "Intermédiaire",
             expert: "Expert",
-            local: "Adresse IP:",
+            ip: "Adresse IP:",
             sendCode: "Envoyer le code",
-            showError: "",
             outputText: "Pas encore de valeur de sortie",
             familiarQuestion: "À quel point maîtrisez-vous la programmation?",
             answerBeginner: "Je suis un débutant",
@@ -1056,6 +1092,7 @@
             detectGesture: "Détection De Geste",
         }
     };
+    //If the translation of a language for a certain element is missing, this will be displayed in the application
     var searchParams = new URLSearchParams(window.location.search);
     var lang = searchParams.get('lang');
     if (lang === "de") {

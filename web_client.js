@@ -1,3 +1,5 @@
+// Sends the code that was generated from the blocks that are currently in the workspace to other parts of the insect
+// farm and outputs the result on the interface
 function sendRequest() {
     var token = document.getElementById("token").value;
     var request = new XMLHttpRequest();

@@ -7,6 +7,8 @@ const OTHER_COLOR = 310;
 
 const COROSECT_FARM_IMPORT = "from corosect import farm"
 
+// Creates custom blocks for the Blockly interface
+
 // Grab item
 
 Blockly.Blocks['Grab'] = {

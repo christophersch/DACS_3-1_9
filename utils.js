@@ -1,3 +1,4 @@
+// Creates the block in the main workspace when the user drags it into it
 function createBlockInWorkspace(workspace, name, x, y, attachTo) {
     if (!name.includes(",")) {
         var block = workspace.newBlock(name);
@@ -47,10 +48,12 @@ function createBlockInWorkspace(workspace, name, x, y, attachTo) {
     return block;
 }
 
+// Creates the block in the workspace when the user drags it into it
 function createBlock(name, x, y, attachTo) {
     return createBlockInWorkspace(Blockly.getMainWorkspace(), name, x, y, attachTo);
 }
 
+// Creates chains of blocks in the main workspace when a gesture has been detected
 function createChainOfBlocksInWorkspace(workspace, names, x, y, attachTo) {
     var block = null;
     for (var i = 0; i < names.length; i++) {
@@ -60,6 +63,7 @@ function createChainOfBlocksInWorkspace(workspace, names, x, y, attachTo) {
     return block;
 }
 
+// Creates chains of blocks in the workspace when a gesture has been detected
 function createChainOfBlocks(names, x, y, attachTo) {
     return createChainOfBlocksInWorkspace(Blockly.getMainWorkspace(), names, x, y, attachTo);
 }

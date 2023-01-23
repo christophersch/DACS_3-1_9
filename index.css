@@ -1,3 +1,4 @@
+/*  Defines the style of the language selection intro  */
 #language_selection_intro {
     position: absolute;
     top:0;
@@ -20,11 +21,13 @@
     z-index: 10000000;
 }
 
+/*  Defines the style of the language selection  */
 #language_selection {
     display: inline-block;
     padding: 5px;
 }
 
+/*  Defines the style of the titles for Maastricht University and CoRoSect  */
 #links {
     display: inline-block;
     padding: 5px;
@@ -33,6 +36,7 @@
     width: 900px;
 }
 
+/*  Defines the style of the text area where the generated code is displayed */
 #debug{
     background: #BBBBFF;  /*BFBFFF*/
     /*padding: 20px;*/
@@ -41,10 +45,12 @@
     border: 2px solid #7F7FFF;
 }
 
+/*  Defines where the generated code is displayed in the text area */
 #debugText1{
     margin-left: 15px;
 }
 
+/*  Defines the style of the language images */
 .lang_img{
     width: 60px;
     height: 40px;
@@ -53,6 +59,7 @@
     cursor: pointer;
 }
 
+/*  Defines the style of the guide intro scene */
 #guide_intro {
     position: absolute;
     top:0;
@@ -75,6 +82,7 @@
     z-index: 999999;
 }
 
+/*  Defines the style of the guide */
 #guide {
     position: absolute;
     top:0;
@@ -100,6 +108,7 @@
     display: none;
 }
 
+/*  Defines the style of the guideBack button */
 #guideBack {
     padding: 5px 10px;
     text-align: center;
@@ -121,6 +130,7 @@
     display: none;
 }
 
+/*  Defines the style of the guideNext button */
 #guideNext {
     padding: 5px 10px;
     text-align: center;
@@ -142,6 +152,7 @@
     display: none;
 }
 
+/*  Defines the style of the guideFinish button */
 #guideFinish {
     padding: 5px 10px;
     text-align: center;
@@ -163,6 +174,7 @@
     display: none;
 }
 
+/*  Defines the style of the elements of the guide when highlighted */
 @keyframes guide_highlight {
     0% {
         background-color: #DDDDFF;
@@ -175,6 +187,7 @@
     }
 }
 
+/*  Defines the style of the elements of the guide when highlighted */
 @keyframes guide_highlight_2 {
     0% {
         background-color: #BBBBFF;
@@ -187,6 +200,7 @@
     }
 }
 
+/*  Makes elements pop in */
 @keyframes popin {
     0% {
         transform: scale(0);
@@ -205,6 +219,7 @@
     }
 }
 
+/*  Makes elements pop out */
 @keyframes popout {
     0% {
         transform: scale(1);
@@ -223,6 +238,7 @@
     }
 }
 
+/*  Defines the style of the buttons */
 button {
     background-color: #00AAFF;
     border: 1px solid #7F7FFF;
@@ -234,6 +250,7 @@ button {
     font-size: 16px;
 }
 
+/*  Defines the style of a button when the user is hovering over it */
 button:hover {
     background-color: #0088FF;
     cursor: pointer;
@@ -241,40 +258,48 @@ button:hover {
     transform: scale(1.05);
 }
 
+/*  Defines the style of a button when the user has clicked on it */
 button:active {
     background-color: #0066FF;
     transition: 0.05s;
     transform: scale(0.95);
 }
 
+/*  Defines the style of the advanced button when it is enabled */
 .enabled {
     background-color: #FFAA00;
     border: 1px solid #FF7F00;
     color: #7F3F00;
 }
 
+/*  Defines the style of the advanced button when it is enabled and the user is hovering over it */
 .enabled:hover {
     background-color: #FF8800;
 }
 
+/*  Defines the style of the advanced button when it is enabled and the user clicks it */
 .enabled:active {
     background-color: #FF6600;
 }
 
+/*  Defines the style of the advanced button when it is disabled */
 .disabled {
     background-color: #BBBBBB;
     border: 1px solid #888888;
     color: white;
 }
 
+/*  Defines the style of the advanced button when it is disabled and the user is hovering over it */
 .disabled:hover {
     background-color: #888888;
 }
 
+/*  Defines the style of the advanced button when it is disabled and the user clicks it */
 .disabled:active {
     background-color: #666666;
 }
 
+/*  Defines the style of the sendCode button */
 .primarybutton {
     background-color: #3FFF3F;
     border: 1px solid #007F00;
@@ -283,28 +308,34 @@ button:active {
     margin-left: 10px;
 }
 
+/*  Defines the style of the sendCode button when the user is hovering over it */
 .primarybutton:hover {
     background-color: #00FF00;
 }
 
+/*  Defines the style of the sendCode button when the user clicks on it */
 .primarybutton:active {
     background-color: #00AA00;
 }
 
+/*  Defines the style of tertiary buttons */
 .tertiarybutton {
     background-color: #CCEEFF;
     border: 1px solid #BFBFFF;
     color: #003F7F;
 }
 
+/*  Defines the style of a tertiary button when the user is hovering over it */
 .tertiarybutton:hover {
     background-color: #BBDDFF;
 }
 
+/*  Defines the style of a tertiary button when the user clicks on it */
 .tertiarybutton:active {
     background-color: #99BBFF;
 }
 
+/*  Defines the style of the cursor and button when the user is hovering over it and the button is clickable */
 .clickable:hover {
     cursor: pointer;
     transition: 0.3s;
@@ -312,12 +343,14 @@ button:active {
     filter: brightness(1.2);
 }
 
+/*  Defines the style of the button when the user clicks on it and the button is clickable */
 .clickable:active {
     transition: 0.05s;
     transform: scale(0.95);
     filter: brightness(0.8);
 }
 
+/*  Defines the style of the renderer select button */
 .rendererselect {
     background-color: #00AAFF;
     border: 1px solid #7F7FFF;
@@ -329,6 +362,7 @@ button:active {
     font-size: 16px;
 }
 
+/*  Defines the style of the renderer select button when the user is hovering over it */
 .rendererselect:hover {
     background-color: #0088FF;
     cursor: pointer;
@@ -336,10 +370,12 @@ button:active {
     transform: scale(1.05);
 }
 
+/*  Defines the style of the renderer select button when the user clicks on it */
 .rendererselect:active {
     background-color: #0066FF;
 }
 
+/*  Defines the style of something */
 .opt {
     background-color: #00AAFF;
     border: none;
@@ -351,6 +387,7 @@ button:active {
     font-size: 16px;
 }
 
+/*  Defines the style of the text area */
 textarea {
     background-color: #DDDDFF;
     border: 1px solid #7F7FFF;
@@ -363,6 +400,7 @@ textarea {
     font-family: monospace;
 }
 
+/*  Defines the style of the text area when the user is hovering over it */
 textarea:hover {
     background-color: #BBBBFF;
     cursor: pointer;
@@ -370,10 +408,12 @@ textarea:hover {
     transform: scale(1.03);
 }
 
+/*  Defines the style of the text area when the user clicks on it */
 textarea:active {
     background-color: #9999FF;
 }
 
+/*  Defines the style of the bottom left area of the interface */
 bottom {
     background-color: #EEEEFF;
     width: max-content;
@@ -384,6 +424,7 @@ bottom {
     border: 2px solid #7F7FFF;
 }
 
+/*  Defines the style of the console area */
 console {
     background-color: #EEEEFF;
     vertical-align: top;
@@ -396,6 +437,7 @@ console {
     min-height: 130px;
 }
 
+/*  Defines the style of the labels of in the box areas at the bottom */
 bottombox {
     color: #003F7F;
     border: none;
@@ -408,6 +450,7 @@ bottombox {
     vertical-align: middle;
 }
 
+/*  Defines the location of the hideAdvanced button */
 hideadvanced {
     padding: 2px 2px;
     display: block;
@@ -415,26 +458,33 @@ hideadvanced {
     margin: 10px;
 }
 
+/*  Defines the border style of the images for the languages */
 .lang_img {
     border: 2px solid #003F7F;
 }
 
+/*  Defines the color of the background */
 body {
     background-color: #DDDDFF;
     color: #003F7F;
 }
 
+/*  Fills the flyout background with a color */
 .blocklyFlyoutBackground {
     fill: #BBBBFF;
 }
 
+/*  Defines the border of the category separators */
 .blocklyTreeSeparator {
     border-bottom: 1px solid #7F7FFF;
 }
 
+/*  Defines the location of the output */
 #output {
     padding-left: 20px;
 }
+
+/*  Defines the style of the output text */
 .outputText {
     color: #007F7F;
     padding-left: 20px;

@@ -1,5 +1,6 @@
 var guide_index = 0;
 
+// Defines every step in the tutorial/guide
 const GUIDE_STEPS = [
     {
         entext: "Welcome to the guide!<br>This guide will help you get started with programming with blocks.<br>Click \"Next\" to continue.",
@@ -405,6 +406,7 @@ const GUIDE_STEPS = [
     }
 ];
 
+// Enables the guide if the user clicked "Yes" in the guide intro
 function setGuide(enabled) {
     document.getElementById("guide_intro").style.display = "none";
     if (enabled) {
@@ -413,6 +415,7 @@ function setGuide(enabled) {
     }
 }
 
+// Starts the guide if it was enabled by the user
 function beginGuide(lang) {
     document.getElementById("guide").style.display = "block";
     document.getElementById("guideBack").style.display = "none";
@@ -421,6 +424,7 @@ function beginGuide(lang) {
     showGuideStep(lang);
 }
 
+// Shows the current guide step and the guideNext and guideBack buttons if applicable
 function showGuideStep(lang) {
     var guide = document.getElementById("guide");
     var guide_back = document.getElementById("guideBack");
@@ -491,6 +495,7 @@ function showGuideStep(lang) {
     }
 }
 
+// Goes back to the previous step in the guide
 function guideBack(lang) {
     if (typeof GUIDE_STEPS[guide_index].finish === "function") {
         GUIDE_STEPS[guide_index].finish();
@@ -499,6 +504,7 @@ function guideBack(lang) {
     showGuideStep(lang);
 }
 
+// Goes to the next step in the guide
 function guideNext(lang) {
     if (typeof GUIDE_STEPS[guide_index].finish === "function") {
         GUIDE_STEPS[guide_index].finish();

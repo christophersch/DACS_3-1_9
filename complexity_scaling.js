@@ -1,4 +1,4 @@
-
+// Defines the 3 different skill levels that users can select between
 const SKILL_LEVELS = {
     BEGINNER: 0,
     INTERMEDIATE: 1,
@@ -25,6 +25,7 @@ let skill_level = SKILL_LEVELS.BEGINNER;
 
 let categories = new Map();
 
+// Class for making the block categories visible/invisible
 class TabCategory {
     constructor(index) {
         this.id = index;
@@ -33,6 +34,7 @@ class TabCategory {
         this.visible = true;
     }
 
+    // Hides a specific element/category by letting it fade away
     hide = function () {
         if (this.visible) {
             this.DOM_element.style.animation = null;
@@ -50,12 +52,14 @@ class TabCategory {
         }
     }
 
+    // Hides a specific element/category instantly
     hide_instant = function () {
         this.DOM_element.style.visibility = "hidden";
         this.DOM_element.style.height = "0px";
         this.visible = false;
     }
 
+    // Shows a specific element/category by letting it fade in
     show = function () {
         if (!this.visible) {
             this.DOM_element.style.visibility = "visible";
@@ -73,6 +77,8 @@ class TabCategory {
 
 }
 
+// Initializes all categories and hides them during the intro screens.
+// Some categories are created multiple times for the complexity scaling
 function initCategories() {
 
     var cats = [
@@ -105,7 +111,8 @@ function initCategories() {
 
 }
 
-
+// Refreshes the selection of categories based on the skill level chosen by the user by hiding those categories that are
+// not in the selected skill level and showing the ones that are
 function refreshCategories() {
     switch (skill_level) {
         case SKILL_LEVELS.BEGINNER:
@@ -170,6 +177,7 @@ function refreshCategories() {
     categories.get("color").hide();
 }
 
+// Sets the complexity level specified by the user
 function setComplexityLevel(level, intro_screen = false) {
     skill_level = level;
     refreshCategories();
@@ -179,6 +187,7 @@ function setComplexityLevel(level, intro_screen = false) {
     }
 }
 
+// Removes the skill level selection intro screen
 function removeIntroScreen() {
     var skill_level_back = document.getElementById("skill_level_selection_back");
     var skill_level = document.getElementById("skill_level_selection");
