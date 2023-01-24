@@ -639,21 +639,74 @@ Blockly.Blocks['Multi threading submit'] = {
     }
 }
 
-let executor_exists = false;
-let funIndex = 0;
+let funIndex = 0
 Blockly.Python['Multi threading submit'] = function (block){
-    let code = "";
-    if(!executor_exists){
-        executor_exists = true
-        code += "executor: ThreadPoolExecutor = ThreadPoolExecutor()\n"
+    let i = funIndex++
+    let Python = Blockly.Python, NameType = Blockly.Names, Variables = Blockly.Variables
+    const globals = [];
+    const workspace = block.workspace;
+    const usedVariables = Variables.allUsedVarModels(workspace) || [];
+    for (let i = 0, variable; (variable = usedVariables[i]); i++) {
+        const varName = variable.name;
+        if (block.getVars().indexOf(varName) === -1) {
+            globals.push(Python.nameDB_.getName(varName, NameType.VARIABLE));
+        }
     }
-    //let i = funIndex++
-    //code += "def temp_mt_"+i+"():\n"
-    //TODO insert code in function into code
-    code += "ret = executor.submit(temp_mt_"+i+")"
+    // Add developer variables.
+    const devVarList = Variables.allDeveloperVariables(workspace);
+    for (let i = 0; i < devVarList.length; i++) {
+        globals.push(
+            Python.nameDB_.getName(devVarList[i], NameType.DEVELOPER_VARIABLE));
+    }
+
+    const globalString = globals.length ?
+        Python.INDENT + 'global ' + globals.join(', ') + '\n' :
+        '';
+    const funcName = "mt_fun_"+i;
+    let xfix1 = '';
+    if (Python.STATEMENT_PREFIX) {
+        xfix1 += Python.injectId(Python.STATEMENT_PREFIX, block);
+    }
+    if (Python.STATEMENT_SUFFIX) {
+        xfix1 += Python.injectId(Python.STATEMENT_SUFFIX, block);
+    }
+    if (xfix1) {
+        xfix1 = Python.prefixLines(xfix1, Python.INDENT);
+    }
+    let loopTrap = '';
+    if (Python.INFINITE_LOOP_TRAP) {
+        loopTrap = Python.prefixLines(
+            Python.injectId(Python.INFINITE_LOOP_TRAP, block), Python.INDENT);
+    }
+    let branch = Python.statementToCode(block, 'STACK');
+    let returnValue =
+        Python.valueToCode(block, 'RETURN', Python.ORDER_NONE) || '';
+    let xfix2 = '';
+    if (branch && returnValue) {
+        // After executing the function body, revisit this block for the return.
+        xfix2 = xfix1;
+    }
+    if (returnValue) {
+        returnValue = Python.INDENT + 'return ' + returnValue + '\n';
+    } else if (!branch) {
+        branch = Python.PASS;
+    }
+    const args = [];
+    const variables = block.getVars();
+    for (let i = 0; i < variables.length; i++) {
+        args[i] = Python.nameDB_.getName(variables[i], NameType.VARIABLE);
+    }
+    let code = 'def ' + funcName + '():\n' + globalString +
+        xfix1 + loopTrap + branch + xfix2 + returnValue;
+    code = Python.scrub_(block, code);
+    // Add % so as not to collide with helper functions in definitions list.
+    Python.definitions_['%' + funcName] = code;
+
+    //TODO solve
+    code += "ret:Future = executor.submit("+funcName+")"
+    Python.definitions_['import_mt_ThreadPoolExecutor'] = "from concurrent.futures import ThreadPoolExecutor\n executor: ThreadPoolExecutor = ThreadPoolExecutor()";
     //TODO return as blockly ret as a Future
-    Blockly.Python.definitions_['import_mt_ThreadPoolExecutor'] = "from concurrent.futures import ThreadPoolExecutor";
-    return code;
+    return [code, Blockly.Python.ORDER_ATOMIC];
 }
 
 //Blockly holds Future
@@ -671,14 +724,21 @@ Blockly.Python['Multi threading Future'] = function (block){
 
 //Turns Future into actual object, if thread non yet completed, waits until completion
 //TODO implement
-Blockly.Blocks['Multi threading depackage Future'] = {
+Blockly.Blocks['Multi threading wait for'] = {
     init: function() {
         this.jsonInit({
-
+            "colour": OTHER_COLOR,
+            "name": "%{MT_WAIT_NAME}",
+            "tooltip": "%{MT_WAIT_TOOLTIP}",
+            "message0": "%{MT_WAIT_M0} %1",
+            "args0":[{"type":"input_value","check":"Future","name":"mt_future"}],
+            "nextStatement": null,
+            "previousStatement": null
         })
     }
 }
-Blockly.Python['Multi threading depackage Future'] = function (block){
+Blockly.Python['Multi threading wait for'] = function (block){
     Blockly.Python.definitions_['import_mt_Future'] = "from concurrent.futures import Future"
+    return Blockly.Python.valueToCode(block,'mt_future',Blockly.Python.ORDER_ATOMIC)+".result()"
 }
 //Exemptions
