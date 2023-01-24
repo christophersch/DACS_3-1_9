@@ -51,7 +51,11 @@ def catch_all(path):
     return response
     
 @app.route('/gesture', methods=['POST'])
-def gesture(gesture):
+def gesture():
+
+    gesture_json = request.get_json()
+    gesture = gesture_json["gesture"]
+
     global locks
     global current_gesture
 
