@@ -3,7 +3,7 @@
 function sendRequest() {
     var token = document.getElementById("token").value;
     var request = new XMLHttpRequest();
-    var ip = document.getElementById("ip").value === "" ? "localhost:5000" : document.getElementById("ip").value;
+    var ip = document.getElementById("ip").value === "" ? "localhost:9000" : document.getElementById("ip").value;
     if (!ip.includes("://")) {
         ip = "http://" + ip;
     }
@@ -12,7 +12,7 @@ function sendRequest() {
         strippedIp = ip.split("://")[1];
     }
     if (!strippedIp.includes(':') && !strippedIp.endsWith('/')) {
-        ip += ":5000";
+        ip += ":9000";
     }
     request.open("POST", ip + "?token=" + token, true);
     var workspace = Blockly.getMainWorkspace();

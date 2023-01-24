@@ -775,7 +775,7 @@
         <button id="btnAdvanced" localization-key="advanced" onclick="hideAdvanced()" class="enabled">Advanced Mode: ON</button>
     </hideadvanced>
     <bottombox>
-        <button localization-key="detectGesture" onclick="onGestureDetected({type:0})">Detect Gesture</button>
+        <button localization-key="detectGesture" onclick="waitForGesture()">Detect Gesture</button>
     </bottombox>
     <!-- Buttons to change skill level after the intro screen -->
     <bottombox>
@@ -847,7 +847,7 @@
     <bottombox class="advanced">
         <label localization-key="ip" for="ip">IP</label>
         <span id="prefix" style="vertical-align: middle; color: #7f7f7f">http://</span>
-        <textarea type="string" rows="1" cols="32" id="ip" name="ip" placeholder="localhost:5000" style="font-size: small; vertical-align: middle" oninput="function setIp() {
+        <textarea type="string" rows="1" cols="32" id="ip" name="ip" placeholder="localhost:9000" style="font-size: small; vertical-align: middle" oninput="function setIp() {
             var ip = document.getElementById('ip').value;
             if (!ip.includes('://')) {
                 document.getElementById('prefix').textContent = 'http://';
@@ -856,7 +856,7 @@
                 document.getElementById('prefix').textContent = '';
             }
             if (!ip.includes(':') && !ip.endsWith('/') && ip != '') {
-                document.getElementById('suffix').textContent = ':5000';
+                document.getElementById('suffix').textContent = ':9000';
             } else {
                 document.getElementById('suffix').textContent = '';
             }
