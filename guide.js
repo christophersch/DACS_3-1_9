@@ -40,7 +40,7 @@ const GUIDE_STEPS = [
         entext: "You can choose blocks from the toolbox on the left.",
         detext: "Links kannst du die Blöcke der Toolbox auswählen.",
         nltext: "Aan de linkerkant kunt u blokken van de toolbox uitkiezen.",
-        frtext: "À gauche, vous pouvez choisir les blocs de la boîte à outils.",
+        frtext: "À gauche, vous pouvez sélectionner les blocs depuis la boîte à outils.",
         next: true,
         width: 240,
         height: 250,
@@ -150,9 +150,9 @@ const GUIDE_STEPS = [
                 "<br>Zeshoekige blokken staan voor logische objecten. " +
                 "<br>Rechthoekige blokken staan voor de rest.",
         frtext: "Il y a trois différents types de blocs." +
-                "<br>Les blocs ronds représentent des objects " +
+                "<br>Les blocs ronds représentent des objects. " +
                 "<br>Les blocs hexagonaux représentent les conditions booléennes." +
-                "<br>Les blocs carrés représentent tout le reste.",
+                "<br>Les blocs rectangulaires représentent tout le reste.",
         next: true,
         width: 450,
         height: 260,
@@ -214,8 +214,8 @@ const GUIDE_STEPS = [
         nltext: "Rechthoekige blokken kunnen met elkaar verbinden, "+
                 "en de lege ruimtes in deze blokken kunnen door " +
                 "ronde en zeshoekige blokken opgevuld worden.",
-        frtext: "Les blocs carrés peuvent se connecter entre eux, " +
-                "et leurs espaces libres peuvent être replis avec des blocs ronds et hexagonaux.",
+        frtext: "Les blocs rectangulaires peuvent se connecter entre eux, " +
+                "et leurs espaces libres peuvent être remplis avec des blocs ronds et hexagonaux.",
         next: true,
         width: 450,
         height: 260,
@@ -273,7 +273,7 @@ const GUIDE_STEPS = [
         entext: "Connect the blocks.",
         detext: "Verbinde die Blöcke.",
         nltext: "Verbind de blokken.",
-        frtext: "Connecte les blocs.",
+        frtext: "Connectez les blocs.",
         next: false,
         width: 200,
         height: 160,

@@ -49,20 +49,20 @@ Blockly.Msg.CONTROLS_FOREACH_TITLE = 'pour chaque élément %1 dans la liste %2'
 Blockly.Msg.CONTROLS_FOREACH_HELPURL =
     'https://fr.wikipedia.org/wiki/Structure_de_contrôle#Itérateurs';
 Blockly.Msg.CONTROLS_FOREACH_TOOLTIP =
-    "Pour chaque élément d’une liste, attribuer la valeur de l’élément à la variable « %1 », puis exécuter des instructions.";
+    "Pour chaque élément d’une liste, attribuer la valeur de la variable «%1» à l'élément, puis exécuter des instructions.";
 Blockly.Msg.CONTROLS_FOR_HELPURL =
     'https://fr.wikipedia.org/wiki/Boucle_for';
 Blockly.Msg.CONTROLS_FOR_TITLE = "compter avec %1 depuis %2 jusqu'à %3 par %4";
 Blockly.Msg.CONTROLS_FOR_TOOLTIP =
-    "Faire prendre successivement à la variable « %1 » les valeurs entre le nombre initial et le nombre final, en comptant par l'intervalle spécifié, et exécuter les blocs spécifiés.";
+    "Faire prendre successivement à la variable «%1» les valeurs entre le nombre initial et le nombre final, en comptant par l'intervalle spécifié, et exécuter les blocs spécifiés.";
 Blockly.Msg.CONTROLS_IF_ELSEIF_TOOLTIP =
     'Ajouter une condition au bloc «&#160;si&#160;».';
 Blockly.Msg.CONTROLS_IF_ELSE_TOOLTIP =
-    'Ajouter une condition catch-all finale au bloc « si ».';
+    'Ajouter une condition catch-all finale au bloc «si».';
 Blockly.Msg.CONTROLS_IF_HELPURL =
     'http://code.google.com/p/blockly/wiki/If_Then';
 Blockly.Msg.CONTROLS_IF_IF_TOOLTIP =
-    'Ajouter, supprimer ou réordonner les sections pour reconfigurer ce bloc « si ».';
+    'Ajouter, supprimer ou réordonner les sections pour reconfigurer ce bloc «si».';
 Blockly.Msg.CONTROLS_IF_MSG_ELSE = 'sinon';
 Blockly.Msg.CONTROLS_IF_MSG_ELSEIF = 'sinon si';
 Blockly.Msg.CONTROLS_IF_MSG_IF = 'si';
@@ -97,9 +97,9 @@ Blockly.Msg.DELETE = 'Supprimer';
 Blockly.Msg.DELETE_BLOCK = 'Supprimer le bloc';
 Blockly.Msg.DELETE_PARAMETER = 'Supprimer le paramètre...';
 Blockly.Msg.DELETE_PARAMETER_TITLE =
-    'Ceci supprimera toutes les apparitions du paramètre « %1 ». Êtes-vous certain ?';
+    'Ceci supprimera toutes les apparitions du paramètre «%1». Êtes-vous certain ?';
 Blockly.Msg.DELETE_X_BLOCKS = 'Supprimer les blocs %1';
-Blockly.Msg.DELETE_VARIABLE = 'Supprimer la variable « %1 »';
+Blockly.Msg.DELETE_VARIABLE = 'Supprimer la variable «%1»';
 Blockly.Msg.DISABLE_BLOCK = 'Désactiver le bloc';
 Blockly.Msg.DUPLICATE_BLOCK = 'Dupliquer';
 Blockly.Msg.ENABLE_BLOCK = 'Activer le bloc';
@@ -199,11 +199,11 @@ Blockly.Msg.LISTS_INDEX_OF_HELPURL =
     'https://github.com/google/blockly/wiki/Lists#Getting_Items_from_a_List';
 Blockly.Msg.LISTS_INDEX_OF_LAST = 'trouver la dernière apparition de l’élément';
 Blockly.Msg.LISTS_INDEX_OF_TOOLTIP =
-    "Renvoie l'index de la première/dernière apparition de l’élément dans la liste. Renvoie 0 si le texte n’est pas trouvé.";
+    "Renvoie l'index de la première/dernière apparition de l’élément dans la liste. Renvoie 0 si l'élément n’est pas trouvé.";
 Blockly.Msg.LISTS_ISEMPTY_HELPURL =
     'https://github.com/google/blockly/wiki/Lists#is_empty';
 Blockly.Msg.LISTS_ISEMPTY_TITLE = '%1 est vide';
-Blockly.Msg.LISTS_ISEMPTY_TOOLTIP = 'Renvoie vrai si le texte fourni est vide.';
+Blockly.Msg.LISTS_ISEMPTY_TOOLTIP = 'Renvoie vrai si la liste fournie est vide.';
 Blockly.Msg.LISTS_INDEX_FROM_START_TOOLTIP = "%1 est le premier élément.";
 Blockly.Msg.LISTS_LENGTH_HELPURL =
     'https://github.com/google/blockly/wiki/Lists#length_of';
@@ -254,41 +254,41 @@ Blockly.Msg.LISTS_SORT_TYPE_TEXT = 'alphabétique';
 Blockly.Msg.LISTS_SORT_TYPE_IGNORECASE = 'alphabétique, sans différencier les majuscules des minuscules';
 Blockly.Msg.LOGIC_BOOLEAN_FALSE = 'faux';
 Blockly.Msg.LOGIC_BOOLEAN_HELPURL = '';
-Blockly.Msg.LOGIC_BOOLEAN_TOOLTIP = 'Renvoie soit « vrai », soit « faux ».';
+Blockly.Msg.LOGIC_BOOLEAN_TOOLTIP = 'Renvoie soit «vrai», soit «faux».';
 Blockly.Msg.LOGIC_BOOLEAN_TRUE = 'vrai';
 Blockly.Msg.LOGIC_COMPARE_HELPURL = '';
 Blockly.Msg.LOGIC_COMPARE_TOOLTIP_EQ =
-    'Renvoyer «&#160;vrai&#160;» si les deux entrées sont égales.';
+    'Renvoyer «vrai» si les deux entrées sont égales.';
 Blockly.Msg.LOGIC_COMPARE_TOOLTIP_GT =
-    'Renvoyer «&#160;vrai&#160;» si la première entrée est supérieure à la seconde entrée.';
+    'Renvoyer «vrai» si la première entrée est supérieure à la seconde entrée.';
 Blockly.Msg.LOGIC_COMPARE_TOOLTIP_GTE =
-    'Renvoyer «&#160;vrai&#160;» si la première entrée est supérieure ou égale à la seconde entrée.';
+    'Renvoyer «vrai» si la première entrée est supérieure ou égale à la seconde entrée.';
 Blockly.Msg.LOGIC_COMPARE_TOOLTIP_LT =
-    'Renvoyer «&#160;vrai&#160;» si la première entrée est inférieure à la seconde entrée.';
+    'Renvoyer «vrai» si la première entrée est inférieure à la seconde entrée.';
 Blockly.Msg.LOGIC_COMPARE_TOOLTIP_LTE =
-    'Renvoyer «&#160;vrai&#160;» si la première entrée est inférieure ou égale à la seconde entrée.';
+    'Renvoyer «vrai» si la première entrée est inférieure ou égale à la seconde entrée.';
 Blockly.Msg.LOGIC_COMPARE_TOOLTIP_NEQ =
-    'Renvoyer «&#160;vrai&#160;» si les deux entrées sont différentes.';
+    'Renvoyer «vrai» si les deux entrées sont différentes.';
 Blockly.Msg.LOGIC_NEGATE_HELPURL = '';
 Blockly.Msg.LOGIC_NEGATE_TITLE = 'pas %1';
 Blockly.Msg.LOGIC_NEGATE_TOOLTIP =
-    'Renvoie « vrai » si l’entrée est fausse. Renvoie « faux » si l’entrée est vraie.';
-Blockly.Msg.LOGIC_NULL = 'invalide';
+    'Renvoie «vrai» si l’entrée est fausse. Renvoie «faux» si l’entrée est vraie.';
+Blockly.Msg.LOGIC_NULL = 'nulle';
 Blockly.Msg.LOGIC_NULL_HELPURL = '';
 Blockly.Msg.LOGIC_NULL_TOOLTIP = 'Renvoie une valeur nulle.';
 Blockly.Msg.LOGIC_OPERATION_AND = 'et';
 Blockly.Msg.LOGIC_OPERATION_HELPURL = '';
 Blockly.Msg.LOGIC_OPERATION_OR = 'ou';
 Blockly.Msg.LOGIC_OPERATION_TOOLTIP_AND =
-    'Renvoyer « vrai » si les deux entrées sont vraies.';
+    'Renvoyer «vrai» si les deux entrées sont vraies.';
 Blockly.Msg.LOGIC_OPERATION_TOOLTIP_OR =
-    'Renvoyer « vrai » si au moins une des entrées est vraie.';
+    'Renvoyer «vrai» si au moins une des entrées est vraie.';
 Blockly.Msg.LOGIC_TERNARY_CONDITION = 'tester';
 Blockly.Msg.LOGIC_TERNARY_HELPURL = '';
 Blockly.Msg.LOGIC_TERNARY_IF_FALSE = 'si faux';
 Blockly.Msg.LOGIC_TERNARY_IF_TRUE = 'si vrai';
 Blockly.Msg.LOGIC_TERNARY_TOOLTIP =
-    'Vérifier la condition dans « test ». Si la condition est vraie, alors renvoie la valeur « si vrai »; sinon renvoie la valeur « si faux ».';
+    'Vérifier la condition dans «tester». Si la condition est vraie, alors renvoie la valeur de «si vrai»; sinon renvoie la valeur de «si faux».';
 Blockly.Msg.MATH_ADDITION_SYMBOL = '+';
 Blockly.Msg.MATH_ARITHMETIC_HELPURL =
     'http://fr.wikipedia.org/wiki/Arithm%C3%A9tique';
@@ -303,7 +303,7 @@ Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_POWER =
     'Renvoyer le premier nombre élevé au second nombre.';
 Blockly.Msg.MATH_CHANGE_HELPURL = 'https://fr.wikipedia.org/wiki/Idiome_de_programmation';
 Blockly.Msg.MATH_CHANGE_TITLE = 'remplacer %1 de %2';
-Blockly.Msg.MATH_CHANGE_TOOLTIP = 'Ajouter un nombre à la variable « %1 ».';
+Blockly.Msg.MATH_CHANGE_TOOLTIP = 'Ajouter un nombre à la variable «%1».';
 Blockly.Msg.MATH_CONSTANT_HELPURL = '';
 Blockly.Msg.MATH_CONSTANT_TOOLTIP =
     'Renvoyer une des constantes courantes : π (3.141…), e (2.718…), φ (1.618…), sqrt(2) (1.414…), sqrt(½) (0.707…), ou ∞ (infini).';
@@ -319,10 +319,10 @@ Blockly.Msg.MATH_IS_ODD = 'est impair';
 Blockly.Msg.MATH_IS_POSITIVE = 'est positif';
 Blockly.Msg.MATH_IS_PRIME = 'est un nombre premier';
 Blockly.Msg.MATH_IS_TOOLTIP =
-    'Vérifier si un nombre est pair, impair, premier, entier, positif, négatif, ou s’il est divisible par un certain nombre. Renvoie « vrai » ou «&#160;faux&#160;».';
+    'Vérifier si un nombre est pair, impair, premier, entier, positif, négatif, ou s’il est divisible par un certain nombre. Renvoie «vrai» ou «faux».';
 Blockly.Msg.MATH_IS_WHOLE = 'est un nombre entier';
 Blockly.Msg.MATH_MODULO_HELPURL = '';
-Blockly.Msg.MATH_MODULO_TITLE = 'reste de %1 est ÷ par %2';
+Blockly.Msg.MATH_MODULO_TITLE = 'reste de %1 ÷ %2';
 Blockly.Msg.MATH_MODULO_TOOLTIP =
     'Renvoyer le reste de la division des deux nombres.';
 Blockly.Msg.MATH_MULTIPLICATION_SYMBOL = '×';
@@ -367,11 +367,11 @@ Blockly.Msg.MATH_ROUND_HELPURL =
     'http://fr.wikipedia.org/wiki/Arrondi_(math%C3%A9matiques)';
 Blockly.Msg.MATH_ROUND_OPERATOR_ROUND = 'arrondir';
 Blockly.Msg.MATH_ROUND_OPERATOR_ROUNDDOWN = 'arrondir à la valeur inférieure';
-Blockly.Msg.MATH_ROUND_OPERATOR_ROUNDUP = 'arrondir à la valeur supérieur';
+Blockly.Msg.MATH_ROUND_OPERATOR_ROUNDUP = 'arrondir à la valeur supérieure';
 Blockly.Msg.MATH_ROUND_TOOLTIP =
     'Arrondir à un nombre supérieur ou inférieur.';
 Blockly.Msg.MATH_SINGLE_HELPURL = '';
-Blockly.Msg.MATH_SINGLE_OP_ABSOLUTE = 'absolu';
+Blockly.Msg.MATH_SINGLE_OP_ABSOLUTE = 'valeur absolue';
 Blockly.Msg.MATH_SINGLE_OP_ROOT = 'racine carrée';
 Blockly.Msg.MATH_SINGLE_TOOLTIP_ABS = 'Renvoyer la valeur absolue d’un nombre.';
 Blockly.Msg.MATH_SINGLE_TOOLTIP_EXP = 'Renvoyer e à la puissance d’un nombre.';
@@ -408,12 +408,12 @@ Blockly.Msg.PROCEDURES_CALLNORETURN_CALL = '';
 Blockly.Msg.PROCEDURES_CALLNORETURN_HELPURL =
     'http://en.wikipedia.org/wiki/Procedure_%28computer_science%29';
 Blockly.Msg.PROCEDURES_CALLNORETURN_TOOLTIP =
-    'Exécuter la fonction « %1 » définie par l’utilisateur.';
+    'Exécuter la fonction «%1» définie par l’utilisateur.';
 Blockly.Msg.PROCEDURES_CALLRETURN_HELPURL =
     'http://en.wikipedia.org/wiki/Procedure_%28computer_science%29';
 Blockly.Msg.PROCEDURES_CALLRETURN_TOOLTIP =
-    'Exécuter la fonction « %1 » définie par l’utilisateur et utiliser son résultat.';
-Blockly.Msg.PROCEDURES_CREATE_DO = 'Créer « %1 »';
+    'Exécuter la fonction %1» définie par l’utilisateur et utiliser son résultat.';
+Blockly.Msg.PROCEDURES_CREATE_DO = 'Créer «%1»';
 Blockly.Msg.PROCEDURES_DEFNORETURN_DO = '';
 Blockly.Msg.PROCEDURES_DEFNORETURN_HELPURL =
     'http://en.wikipedia.org/wiki/Procedure_%28computer_science%29';
@@ -440,14 +440,14 @@ Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TITLE = 'entrées';
 Blockly.Msg.REMOVE_COMMENT = 'Supprimer le commentaire';
 Blockly.Msg.RENAME_ALL = 'Renommer tout %1';
 Blockly.Msg.RENAME_PARAMETER = 'Renommer le paramètre…';
-Blockly.Msg.RENAME_PARAMETER_TITLE = 'Renommer tous les paramètres « %1 » en :';
+Blockly.Msg.RENAME_PARAMETER_TITLE = 'Renommer tous les paramètres «%1» en :';
 Blockly.Msg.RENAME_THIS = 'Renommer ce %1';
 Blockly.Msg.RENAME_VARIABLE = 'Renommer la variable…';
-Blockly.Msg.RENAME_VARIABLE_TITLE = 'Renommer toutes les variables « %1 » en :';
+Blockly.Msg.RENAME_VARIABLE_TITLE = 'Renommer toutes les variables «%1» en :';
 Blockly.Msg.TEXT_APPEND_HELPURL =
     'https://code.google.com/p/blockly/wiki/Text#Text_modification';
 Blockly.Msg.TEXT_APPEND_TITLE = 'ajouter le texte %2 à %1';
-Blockly.Msg.TEXT_APPEND_TOOLTIP = 'Ajouter du texte à la variable « %1 ».';
+Blockly.Msg.TEXT_APPEND_TOOLTIP = 'Ajouter du texte à la variable «%1».';
 Blockly.Msg.TEXT_CHANGECASE_HELPURL =
     'https://github.com/google/blockly/wiki/Text#Adjusting_text_case';
 Blockly.Msg.TEXT_CHANGECASE_OPERATOR_LOWERCASE = 'en minuscules';
@@ -493,15 +493,15 @@ Blockly.Msg.TEXT_INDEXOF_OPERATOR_FIRST =
 Blockly.Msg.TEXT_INDEXOF_OPERATOR_LAST =
     'trouver la dernière apparition du texte';
 Blockly.Msg.TEXT_INDEXOF_TOOLTIP =
-    "Renvoie l'index de la première/dernière apparition du premier texte dans le deuxième texte. Renvoie 0 si la chaîne n’est pas trouvée.";
+    "Renvoie l'index de la première/dernière apparition du premier texte dans le deuxième texte. Renvoie 0 si le texte n’est pas trouvée.";
 Blockly.Msg.TEXT_ISEMPTY_HELPURL =
     'https://github.com/google/blockly/wiki/Text#Checking_for_empty_text';
 Blockly.Msg.TEXT_ISEMPTY_TITLE = '%1 est vide';
 Blockly.Msg.TEXT_ISEMPTY_TOOLTIP =
-    'Renvoie « vrai » si le texte fourni est vide.';
+    'Renvoie «vrai» si le texte fourni est vide.';
 Blockly.Msg.TEXT_JOIN_HELPURL =
     'https://github.com/google/blockly/wiki/Text#Text_creation';
-Blockly.Msg.TEXT_JOIN_TITLE_CREATEWITH = 'créer le texte avec';
+Blockly.Msg.TEXT_JOIN_TITLE_CREATEWITH = 'créer un texte avec';
 Blockly.Msg.TEXT_JOIN_TOOLTIP =
     'Créer un morceau de texte en joignant un nombre quelconque d’éléments.';
 Blockly.Msg.TEXT_LENGTH_HELPURL =

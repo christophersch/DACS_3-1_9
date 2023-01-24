@@ -191,7 +191,7 @@ Blockly.Msg.LISTS_INDEX_OF_FIRST = 'find first occurrence of item';
 Blockly.Msg.LISTS_INDEX_OF_HELPURL = '';
 Blockly.Msg.LISTS_INDEX_OF_LAST = 'find last occurrence of item';
 Blockly.Msg.LISTS_INDEX_OF_TOOLTIP =
-    'Returns the index of the first/last occurrence of the item in the list.  Returns 0 if text is not found.';
+    'Returns the index of the first/last occurrence of the item in the list.  Returns 0 if item is not found.';
 Blockly.Msg.LISTS_IS_EMPTY_HELPURL = '';
 Blockly.Msg.LISTS_IS_EMPTY_TITLE = '%1 is empty';
 Blockly.Msg.LISTS_LENGTH_HELPURL = '';
