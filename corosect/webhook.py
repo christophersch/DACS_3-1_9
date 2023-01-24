@@ -4,7 +4,7 @@ import json
 def subscribe():
 
     WEBHOOK_URL = "http://localhost:5000/subscribe"
-    TARGET_URL = "http://localhost:5000/gesture"
+    TARGET_URL = "http://localhost:9000/gesture"
 
     print("Subscribing to gestures")
     try:
