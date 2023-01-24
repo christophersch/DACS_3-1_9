@@ -5,21 +5,29 @@ import subprocess
 import sys
 import os
 import time
-import requests
 import corosect.webhook as webhook
 
 app = Flask(__name__)
 
-webhooks = []
 
 locks = 0
 current_gesture = ""
 
 webhook.subscribe()
+@app.route('/test', methods=['GET'])
+def test():
+    response = app.response_class(
+        response="Server set-up successful!",
+        status=200,
+        mimetype='text/plain'
+    )
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
 
 @app.route('/', defaults={'path': ''}, methods=['POST'])
 @app.route('/<path:path>', methods=['POST'])
 def catch_all(path):
+    print('new request')
     code = request.get_data().decode("utf-8")
     with open("_blockly.py", "w") as f:
         f.write(code)
@@ -41,14 +49,9 @@ def catch_all(path):
     )
     response.headers["Access-Control-Allow-Origin"] = "*"
     return response
-
+    
 @app.route('/gesture', methods=['POST'])
-def gesture():
-    json = request.get_json()
-    gesture = json["gesture"]
-    time = json["detectedAt"]
-    context = json["context"]
-
+def gesture(gesture):
     global locks
     global current_gesture
 
@@ -59,22 +62,6 @@ def gesture():
 
     current_gesture = ""
 
-    for webhook in webhooks:
-        requests.post(webhook, data=gesture)
-
-    response = app.response_class(
-        response="",
-        status=200,
-        mimetype='text/plain'
-    )
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    return response
-
-@app.route('/subscribe', methods=['POST'])
-def subscribe():
-    json = request.get_json()
-    webhook = json["url"]
-    webhooks.append(webhook)
     response = app.response_class(
         response="",
         status=200,
@@ -103,5 +90,5 @@ def nextgesture():
     )
     response.headers["Access-Control-Allow-Origin"] = "*"
     return response
-       
-serve(app, host='0.0.0.0', port=5000)
+
+serve(app, host='0.0.0.0', port=9000)
