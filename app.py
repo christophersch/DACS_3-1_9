@@ -61,6 +61,8 @@ def gesture():
 
     current_gesture = gesture
 
+    print("Gesture detected: {}".format(gesture))
+
     while locks > 0:
         pass
 
