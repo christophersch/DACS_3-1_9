@@ -7,5 +7,9 @@ def subscribe():
     TARGET_URL = "http://localhost:5000/gesture"
 
     print("Subscribing to gestures")
-    r = requests.post(WEBHOOK_URL, data=json.dumps({"url": TARGET_URL}))
+    try:
+        r = requests.post(WEBHOOK_URL, data=json.dumps({"url": TARGET_URL}))
+    except:
+        print("Error subscribing to gestures!")
+        return
     print(r.text)
