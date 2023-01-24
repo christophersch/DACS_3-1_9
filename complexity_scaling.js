@@ -95,10 +95,11 @@ function initCategories() {
         ["color", 10],
         ["variables", 11],
         ["functions", 12],
-        ["farm_funcs", 13],
-        ["farm_funcs2", 14],
-        ["farm_complex_funcs", 15],
-        ["farm_elements", 16]
+        ["MultiThreading",13],
+        ["farm_funcs", 14],
+        ["farm_funcs2", 15],
+        ["farm_complex_funcs", 16],
+        ["farm_elements", 17]
     ]
 
     cats.forEach(cat => {
@@ -128,6 +129,7 @@ function refreshCategories() {
             categories.get("lists2").hide();
             categories.get("variables").show();
             categories.get("functions").hide();
+            categories.get("MultiThreading").hide();
             categories.get("farm_funcs").show();
             categories.get("farm_funcs2").hide();
             categories.get("farm_complex_funcs").hide();
@@ -146,6 +148,7 @@ function refreshCategories() {
             categories.get("lists2").hide();
             categories.get("variables").show();
             categories.get("functions").hide();
+            categories.get("MultiThreading").hide();
             categories.get("farm_funcs").hide();
             categories.get("farm_funcs2").show();
             categories.get("farm_complex_funcs").show();
@@ -164,6 +167,7 @@ function refreshCategories() {
             categories.get("lists2").show();
             categories.get("variables").show();
             categories.get("functions").show();
+            categories.get("MultiThreading").show();
             categories.get("farm_funcs").hide();
             categories.get("farm_funcs2").show();
             categories.get("farm_complex_funcs").show();

@@ -619,3 +619,66 @@ Blockly.Python['OnGesture'] = function(block) {
 //     var code = "round(" + value_name + ")";
 //     return [code, Blockly.Python.ORDER_NONE];
 // }
+
+//Multi threading
+
+//creates a value representing the future return of several commands
+Blockly.Blocks['Multi threading submit'] = {
+    //TODO check format
+    init: function() {
+        this.jsonInit({
+            "colour": OTHER_COLOR,
+            "output": 'Future',
+            "args0": [
+                {"type": "input_statement", "name":"mt_code_input_field"}
+            ],
+            "name": "%{MT_SUBMIT_NAME}",
+            "tooltip": "%{MT_SUBMIT_TOOLTIP}",
+            "message0": "%{MT_SUBMIT_M0} %1"
+        });
+    }
+}
+
+let executor_exists = false;
+let funIndex = 0;
+Blockly.Python['Multi threading submit'] = function (block){
+    let code = "";
+    if(!executor_exists){
+        executor_exists = true
+        code += "executor: ThreadPoolExecutor = ThreadPoolExecutor()\n"
+    }
+    //let i = funIndex++
+    //code += "def temp_mt_"+i+"():\n"
+    //TODO insert code in function into code
+    code += "ret = executor.submit(temp_mt_"+i+")"
+    //TODO return as blockly ret as a Future
+    Blockly.Python.definitions_['import_mt_ThreadPoolExecutor'] = "from concurrent.futures import ThreadPoolExecutor";
+    return code;
+}
+
+//Blockly holds Future
+//TODO implement
+Blockly.Blocks['Multi threading Future'] = {
+    init: function() {
+        this.jsonInit({
+
+        })
+    }
+}
+Blockly.Python['Multi threading Future'] = function (block){
+    Blockly.Python.definitions_['import_mt_Future'] = "from concurrent.futures import Future"
+}
+
+//Turns Future into actual object, if thread non yet completed, waits until completion
+//TODO implement
+Blockly.Blocks['Multi threading depackage Future'] = {
+    init: function() {
+        this.jsonInit({
+
+        })
+    }
+}
+Blockly.Python['Multi threading depackage Future'] = function (block){
+    Blockly.Python.definitions_['import_mt_Future'] = "from concurrent.futures import Future"
+}
+//Exemptions
