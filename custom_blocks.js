@@ -519,6 +519,170 @@ Blockly.Python['OnGesture'] = function(block) {
     return code;
 }
 
+
+// PHASE 3 INSECT FARM INTEGRATIONS
+Blockly.Blocks['Place'] = {
+    init: function() {
+        this.jsonInit({
+            "type": "Take",
+            "message0": '%{BKY_PLACE_TITLE}',
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": "Crate"
+                }
+            ],
+            "message1": '%{BKY_PLACE_TITLE1}',
+            "args1": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE1",
+                    "check": "Surface"
+                }
+            ],
+            "colour": ITEM_INTERACTION_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "tooltip": "%{BKY_PLACE_TOOLTIP}"
+        });
+    }
+}
+Blockly.Python['Place'] = function(block) {
+    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_NONE);
+    var value_object1 = Blockly.Python.valueToCode(block, 'VALUE1', Blockly.Python.ORDER_NONE);
+    var code = 'farm.place(' + value_object + ',' + value_object1 + ')\n';
+    Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
+    return code;
+}
+
+
+Blockly.Blocks['Deliver'] = {
+    init: function() {
+        this.jsonInit({
+            "type": "Deliver",
+            "message0": '%{BKY_DELIVER_TITLE}',
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": "Crate"
+                }
+            ],
+            "message1": '%{BKY_DELIVER_TITLE1}',
+            "args1": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE1",
+                    "check": "Storage"
+                }
+            ],
+            "colour": ITEM_INTERACTION_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "tooltip": "%{BKY_DELIVER_TOOLTIP}"
+        });
+    }
+}
+Blockly.Python['Deliver'] = function(block) {
+    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_NONE);
+    var value_object1 = Blockly.Python.valueToCode(block, 'VALUE1', Blockly.Python.ORDER_NONE);
+    var code = 'farm.deliver(' + value_object + ',' + value_object1 + ')\n';
+    Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
+    return code;
+}
+
+// PHASE 3 INTEGRATION ITEMS
+let numCrates = 10;
+for(let i = 0; i < numCrates; i++) {
+    Blockly.Blocks['Crate_' + i] = {
+        init: function() {
+            this.jsonInit({
+                "type": "Crate",
+                "message0": '%{BKY_CRATE_TITLE} ' + i,
+                "output": "Crate",
+                "colour": VARIABLE_COLOR,
+                "tooltip": "%{BKY_CRATE_TOOLTIP}"
+            });
+        }
+    }
+    Blockly.Python['Crate_' + i] = function(block) {
+        var code = '\'' + i + '\'';
+        return [code, Blockly.Python.ORDER_NONE];
+    }
+}
+
+// PHASE 3 INTEGRATION ITEMS
+let numStorages = 10;
+for(let i = 0; i < numStorages; i++) {
+    Blockly.Blocks['Storage_' + i] = {
+        init: function() {
+            this.jsonInit({
+                "type": "Storage",
+                "message0": '%{BKY_STORAGE_TITLE} ' + i,
+                "output": "Storage",
+                "colour": VARIABLE_COLOR,
+                "tooltip": "%{BKY_STORAGE_TOOLTIP}"
+            });
+        }
+    }
+    Blockly.Python['Storage_' + i] = function(block) {
+        var code = '\'' + i + '\'';
+        return [code, Blockly.Python.ORDER_NONE];
+    }
+}
+
+Blockly.Blocks['Arm'] = {
+    init: function() {
+        this.jsonInit({
+            "type": "Storage",
+            "message0": '%{BKY_ARM_TITLE}',
+            "output": "Storage",
+            "colour": VARIABLE_COLOR,
+            "tooltip": "%{BKY_ARM_TOOLTIP}"
+        });
+    }
+}
+Blockly.Python['Arm'] = function(block) {
+    var code = '\'arm\'';
+    return [code, Blockly.Python.ORDER_NONE];
+}
+
+Blockly.Blocks['Workspace'] = {
+    init: function() {
+        this.jsonInit({
+            "type": "Surface",
+            "message0": 'Workspace',
+            "output": "Surface",
+            "colour": VARIABLE_COLOR,
+            "tooltip": "%{BKY_BOX1_TOOLTIP}"
+        });
+    }
+}
+Blockly.Python['Workspace'] = function(block) {
+    var code = '\'workspace\'';
+    return [code, Blockly.Python.ORDER_NONE];
+}
+
+Blockly.Blocks['AGV'] = {
+    init: function() {
+        this.jsonInit({
+            "type": "Surface",
+            "message0": '%{BKY_AGV_TITLE}',
+            "output": "Surface",
+            "colour": VARIABLE_COLOR,
+            "tooltip": "%{BKY_AGV_TOOLTIP}"
+        });
+    }
+}
+Blockly.Python['AGV'] = function(block) {
+    var code = '\'agv\'';
+    return [code, Blockly.Python.ORDER_NONE];
+}
+
+
+
+
 // Blockly.Blocks['print'] = {
 //     init: function() {
 //         this.appendValueInput("VALUE")
