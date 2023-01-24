@@ -42,7 +42,7 @@ function waitForGesture() {
 
     // FAKE GESTURE
     var request2 = new XMLHttpRequest();
-    request2.open("POST", "http://localhost:9000/nextgesture", true);
+    request2.open("POST", "http://localhost:9000/gesture", true);
     request2.responseType = "text";
     var json = JSON.stringify({
         "gesture": "test"
