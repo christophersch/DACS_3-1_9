@@ -1,9 +1,7 @@
 # Modification and expansion guide
 This project is largely based on Google's open source Blockly project, this means that for example defining a new block one should refer to the blockly documentation.
-To make sure this is always available, included is a HTTTrack project of the website containing the guides from Blockly.
 
 Blockly version = v8.0.5
-
 ## Adding new blocks
 Blocks are added in the file *custom_blocks.js* including the Python code that a block represents.
 Every block must have a name, a description of its external features, and a definition of its internals.  
