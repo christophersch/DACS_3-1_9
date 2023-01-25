@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS
 from waitress import serve
 from markupsafe import escape
 import subprocess
@@ -8,12 +9,14 @@ import time
 import corosect.webhook as webhook
 
 app = Flask(__name__)
-
+CORS(app)
 
 locks = 0
 current_gesture = ""
 
 webhook.subscribe()
+
+
 @app.route('/test', methods=['GET'])
 def test():
     response = app.response_class(
@@ -23,6 +26,7 @@ def test():
     )
     response.headers["Access-Control-Allow-Origin"] = "*"
     return response
+
 
 @app.route('/', defaults={'path': ''}, methods=['POST'])
 @app.route('/<path:path>', methods=['POST'])
@@ -49,12 +53,15 @@ def catch_all(path):
     )
     response.headers["Access-Control-Allow-Origin"] = "*"
     return response
-    
+
+
 @app.route('/gesture', methods=['POST'])
 def gesture():
 
     gesture_json = request.get_json()
     gesture = gesture_json["gesture"]
+
+    print(f"GESTURE {gesture}")
 
     global locks
     global current_gesture
@@ -73,10 +80,13 @@ def gesture():
         status=200,
         mimetype='text/plain'
     )
-    response.headers["Access-Control-Allow-Origin"] = "*"
+
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
-NEXTGESTURE_TIMEOUT = 10
+
+NEXTGESTURE_TIMEOUT = 300
+
 
 @app.route('/nextgesture', methods=['GET'])
 def nextgesture():
@@ -84,17 +94,16 @@ def nextgesture():
     global current_gesture
     locks += 1
     start_time = time.time()
+
     while current_gesture == "":
         if time.time() - start_time > NEXTGESTURE_TIMEOUT:
             locks -= 1
             return "No gesture detected, timed out."
     locks -= 1
-    response = app.response_class(
-        response=current_gesture,
-        status=200,
-        mimetype='text/plain'
-    )
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    return response
+
+    g = current_gesture
+
+    return str(g)
+
 
 serve(app, host='0.0.0.0', port=9000)
