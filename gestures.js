@@ -38,9 +38,10 @@ function onGestureDetected(gesture) {
 function waitForGesture() {
     //createChainOfBlocks(["MoveTo,#0,#0", "Grab,Box", "MoveTo,#5,#10", "Drop,Box", "MoveTo,#0,#0", "MoveToItem,Box", "Grab,$Box2", "MoveTo,#0,#0", "Drop,$Box2"], 0, 0, null);
 
+    let BACKEND_IP = '192.168.1.56'
 
     var request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:9000/nextgesture", true);
+    request.open("GET", "http://" + BACKEND_IP + ":9000/nextgesture", true);
     request.responseType = "text";
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
