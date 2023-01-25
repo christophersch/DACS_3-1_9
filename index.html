@@ -705,7 +705,7 @@
                         theme: 'custom',
                         toolbox: document.getElementById('toolbox')});
                 demoWorkspace.addChangeListener(function(event) {
-                    if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
+                    if (event.type === Blockly.Events.VIEWPORT_CHANGE) {
                         return;
                     }
                     workspaceToCodeDebug(demoWorkspace);
@@ -841,7 +841,7 @@
                     theme: 'custom',
                     toolbox: document.getElementById('toolbox')});
             demoWorkspace.addChangeListener(function(event) {
-                if (event.type == Blockly.Events.VIEWPORT_CHANGE) {
+                if (event.type === Blockly.Events.VIEWPORT_CHANGE) {
                     return;
                 }
                 workspaceToCodeDebug(demoWorkspace);
@@ -870,7 +870,7 @@
                 ip = ip.split('://')[1];
                 document.getElementById('prefix').textContent = '';
             }
-            if (!ip.includes(':') && !ip.endsWith('/') && ip != '') {
+            if (!ip.includes(':') && !ip.endsWith('/') && ip !== '') {
                 document.getElementById('suffix').textContent = ':9000';
             } else {
                 document.getElementById('suffix').textContent = '';
@@ -1138,6 +1138,17 @@
             element.textContent = language.en[key] ?? "🚫 Missing key for '" + lang + "': '" + key + "' 🚫";
         });
     }
+    Object.keys(language.en).forEach((key) => {
+        if (language.de[key] === undefined) {
+            console.warn("Missing key for 'de': '" + key + "'");
+        }
+        if (language.fr[key] === undefined) {
+            console.warn("Missing key for 'fr': '" + key + "'");
+        }
+        if (language.nl[key] === undefined) {
+            console.warn("Missing key for 'nl': '" + key + "'");
+        }
+    });
 </script>
 
 <script src="complexity_scaling.js"></script>

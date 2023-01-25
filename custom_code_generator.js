@@ -139,7 +139,7 @@ function workspaceToCodeDebug(workspace) {
             currentLengths.pop();
         }
         if (currentBlockStack.length > 0 && lines[i].replace(/\u00A0/g," ").trim().length > 0) {
-            if (currentLengths[currentBlockStack.length-1] == 0) {
+            if (currentLengths[currentBlockStack.length-1] === 0) {
                 code3 += "<br><breakpoint style='color: black'" + currentBlockStack.length + " id='breakpoint" + currentBlockStack[currentBlockStack.length-1] + "'><span title='" + currentBlockNames[currentBlockStack.length-1] + "'  onclick='toggleBreakpoint(" + currentBlockStack[currentBlockStack.length-1] + ")' onmouseover='this.style.cursor=\"pointer\"' onmouseout='this.style.cursor=\"default\"'>\u25CF</span>";
             } else {
                 code3 += "<br>";
@@ -180,13 +180,12 @@ var blocked = false;
 // Highlights the block with the specified index in the main workspace
 function highlight(index) {
     if (blocked && index !== -1) return;
-    if (index !== -1) blocked = true;
-    else blocked = false;
+    blocked = index !== -1;
     var workspace = Blockly.getMainWorkspace();
     var blocks = workspace.getAllBlocks();
     for (var i = blocks.length - 1; i >= 0; i--) {
         var debug = document.getElementById("debug" + i);
-        if (i == index) {
+        if (i === index) {
             blocks[i].setHighlighted(true);
             workspace.centerOnBlock(blocks[i].id);
             if (debug) {
@@ -212,7 +211,7 @@ function highlight(index) {
 function getColor(workspace, block) {
     var blocks = workspace.getAllBlocks();
     for (var i = 0; i < blocks.length; i++) {
-        if (blocks[i].type == block) {
+        if (blocks[i].type === block) {
             return blocks[i].getColour();
         }
     }
@@ -233,9 +232,9 @@ function brighter(color, multiplier) {
     var rr = r.toString(16);
     var gg = g.toString(16);
     var bb = b.toString(16);
-    if (rr.length == 1) rr = "0" + rr;
-    if (gg.length == 1) gg = "0" + gg;
-    if (bb.length == 1) bb = "0" + bb;
+    if (rr.length === 1) rr = "0" + rr;
+    if (gg.length === 1) gg = "0" + gg;
+    if (bb.length === 1) bb = "0" + bb;
     return "#" + rr + gg + bb;
 }
 
