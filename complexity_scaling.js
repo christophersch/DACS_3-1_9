@@ -106,10 +106,12 @@ function initCategories() {
         ["color", 10],
         ["variables", 11],
         ["functions", 12],
-        ["farm_funcs", 13],
-        ["farm_funcs2", 14],
-        ["farm_complex_funcs", 15],
-        ["farm_elements", 16]
+        ["parallel_programming",13],
+        ["error_handling",14],
+        ["farm_funcs", 15],
+        ["farm_funcs2", 16],
+        ["farm_complex_funcs", 17],
+        ["farm_elements", 18]
     ]
 
     cats.forEach(cat => {
@@ -139,6 +141,8 @@ function refreshCategories() {
             showCat("lists2", false);
             showCat("variables", true);
             showCat("functions", false);
+            showCat("parallel_programming",false);
+            showCat("error_handling",false);
             showCat("farm_funcs", false);
             showCat("farm_funcs2", true);
             showCat("farm_complex_funcs", false);
@@ -157,6 +161,8 @@ function refreshCategories() {
             showCat("lists2", false);
             showCat("variables", true);
             showCat("functions", false);
+            showCat("parallel_programming",false);
+            showCat("error_handling",false);
             showCat("farm_funcs", false);
             showCat("farm_funcs2", true);
             showCat("farm_complex_funcs", false);
@@ -175,6 +181,8 @@ function refreshCategories() {
             showCat("lists2", true);
             showCat("variables", true);
             showCat("functions", true);
+            showCat("parallel_programming",true);
+            showCat("error_handling",true);
             showCat("farm_funcs", false);
             showCat("farm_funcs2", true);
             showCat("farm_complex_funcs", false);

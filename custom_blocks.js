@@ -783,3 +783,102 @@ Blockly.Python['AGV'] = function(block) {
 //     var code = "round(" + value_name + ")";
 //     return [code, Blockly.Python.ORDER_NONE];
 // }
+
+//Math constants and random
+
+//Multi threading
+//Goal: present for every function defined using blockly, provide an object constructor for a future of this function as by https://docs.python.org/3/library/concurrent.futures.html considering args
+//and a method to execute .result() on it, considering returns
+const PARALLEL_PROGRAMMING_COLOR = 310
+Blockly.Blocks['future_of_procedures'] = {
+    init: function (){
+        this.jsonInit({
+            'type': 'future',
+            'message0': '%1 %2', //TODO
+            'args0': [
+                {'type': 'field_label', 'name': 'NAME', 'text': '%{BKY_UNNAMED_KEY}'},
+                {
+                    'type': 'input_dummy',
+                    'name': 'TOPROW',
+                },
+            ],
+            'output': 'Future',
+            "colour": PARALLEL_PROGRAMMING_COLOR,
+            'extensions': [ //?
+                'procedure_caller_get_def_mixin',
+                'procedure_caller_update_shape_mixin',
+                'procedure_caller_context_menu_mixin',
+                'procedure_caller_onchange_mixin',
+                'procedure_callerreturn_get_def_block_mixin',
+            ],
+            'mutator': 'procedure_caller_mutator', //?
+        })
+    }
+}
+
+Blockly.Python['future_of_procedures'] = function(block) {
+    // submit a procedure with a return value to the executor.
+    Blockly.Python.definitions_['import_executor'] = "from concurrent.futures import ThreadPoolExecutor"
+    Blockly.Python.definitions_['x_construct_executor'] = "executor: ThreadPoolExecutor = ThreadPoolExecutor()"
+    const funcName =
+        Blockly.Python.nameDB_.getName(block.getFieldValue('NAME'), Blockly.Names.PROCEDURE);
+    const args = [];
+    const variables = block.getVars();
+    for (let i = 0; i < variables.length; i++) {
+        args[i] = Python.valueToCode(block, 'ARG' + i, Python.ORDER_NONE) || 'None';
+    }
+    let code = "executor.submit("+funcName
+    if(args.length > 0) code += ',' + args.join(', ')
+    code += ')';
+    return [code, Blockly.Python.ORDER_FUNCTION_CALL];
+};
+
+
+Blockly.Blocks['result'] = {
+    init: function (){
+        this.jsonInit({
+            "type":"result",
+            "message0": "%{BKY_RESULT_MESSAGE0}",
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": "Future"
+                }
+            ],
+            "output": null,
+            "colour": PARALLEL_PROGRAMMING_COLOR,
+            "tooltip": "%{BKY_RESULT_TOOLTIP}"
+        })
+    }
+}
+
+Blockly.Python['result'] = function(block){
+    return [Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_FUNCTION_CALL)+".result()",Blockly.Python.ORDER_ATOMIC]
+}
+
+Blockly.Blocks['wait_for_future'] = {
+    init: function (){
+        this.jsonInit({
+            "type":"result",
+            "message0": "%{BKY_WAIT_FOR_MESSAGE0}",
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": "Future"
+                }
+            ],
+            "colour": PARALLEL_PROGRAMMING_COLOR,
+            "previousStatement": "",
+            "nextStatement": "",
+            "tooltip": "%{BKY_WAIT_FOR_TOOLTIP}"
+        })
+    }
+}
+Blockly.Python['wait_for_future'] = function(block){
+    return Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_FUNCTION_CALL)+".result()"
+}
+
+//TODO Try-catch
+//Goal: an if-else like (without the if condition) implementation of a try-catch block, where if it catches is determent by if the type of the examption matches a string, or its cause
