@@ -244,7 +244,7 @@ Blockly.Blocks['MoveToItem'] = {
                 {
                     "type": "input_value",
                     "name": "VALUE",
-                    "check": ["Item", "Box"]
+                    "check": ["Storage", "Storage"]
                 }
             ],
             "colour": MOVEMENT_COLOR,
@@ -271,7 +271,7 @@ Blockly.Blocks['MoveItemTo'] = {
                 {
                     "type": "input_value",
                     "name": "VALUE",
-                    "check": "Item"
+                    "check": "Storage"
                 }
             ],
             "message1": '%{BKY_MOVE_ITEM_TO_TITLE1}',
@@ -308,7 +308,7 @@ Blockly.Blocks['MoveItemTo'] = {
 Blockly.Python['MoveItemTo'] = function(block) {
     var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
     var text_coordinates = block.getFieldValue('CX') + "," + block.getFieldValue('CY');
-    var code = 'ROS.moveItemTo(' + value_object + ', ' + text_coordinates + ')\n';
+    var code = 'farm.moveItemTo(' + value_object + ', ' + text_coordinates + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }
@@ -322,7 +322,7 @@ Blockly.Blocks['MoveItemToItem'] = {
                 {
                     "type": "input_value",
                     "name": "VALUE",
-                    "check": "Item"
+                    "check": "Storage"
                 }
             ],
             "message1": '%{BKY_MOVE_ITEM_TO_ITEM_TITLE1}',
@@ -330,7 +330,7 @@ Blockly.Blocks['MoveItemToItem'] = {
                 {
                     "type": "input_value",
                     "name": "VALUE1",
-                    "check": "Box"
+                    "check": ["Storage", "Crate"]
                 }
             ],
             "colour": ITEM_MOVEMENT_COLOR,
@@ -342,9 +342,9 @@ Blockly.Blocks['MoveItemToItem'] = {
 }
 
 Blockly.Python['MoveItemToItem'] = function(block) {
-    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC);
-    var value_object1 = Blockly.Python.valueToCode(block, 'VALUE1', Blockly.Python.ORDER_ATOMIC);
-    var code = 'ROS.moveItemToItem(' + value_object + ', ' + value_object1 + ')\n';
+    var value_object = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_NONE);
+    var value_object1 = Blockly.Python.valueToCode(block, 'VALUE1', Blockly.Python.ORDER_NONE);
+    var code = 'farm.moveItemToItem(' + value_object + ', ' + value_object1 + ')\n';
     Blockly.Python.definitions_['import_farm'] = COROSECT_FARM_IMPORT;
     return code;
 }
@@ -538,7 +538,7 @@ Blockly.Blocks['Place'] = {
                 {
                     "type": "input_value",
                     "name": "VALUE1",
-                    "check": "Surface"
+                    "check": "Storage"
                 }
             ],
             "colour": ITEM_INTERACTION_COLOR,
@@ -651,9 +651,9 @@ Blockly.Python['Arm'] = function(block) {
 Blockly.Blocks['Workspace'] = {
     init: function() {
         this.jsonInit({
-            "type": "Surface",
+            "type": "Storage",
             "message0": 'Workspace',
-            "output": "Surface",
+            "output": "Storage",
             "colour": VARIABLE_COLOR,
             "tooltip": "%{BKY_BOX1_TOOLTIP}"
         });
@@ -667,9 +667,9 @@ Blockly.Python['Workspace'] = function(block) {
 Blockly.Blocks['AGV'] = {
     init: function() {
         this.jsonInit({
-            "type": "Surface",
+            "type": "Storage",
             "message0": '%{BKY_AGV_TITLE}',
-            "output": "Surface",
+            "output": "Storage",
             "colour": VARIABLE_COLOR,
             "tooltip": "%{BKY_AGV_TOOLTIP}"
         });
