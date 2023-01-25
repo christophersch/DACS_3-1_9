@@ -569,3 +569,10 @@ Blockly.Msg.FUNCTIONS_TITLE = 'Functions';
 Blockly.Msg.INSECT_FARM_ELEMENTS_TITLE = 'Insect Farm Elements';
 Blockly.Msg.INSECT_FARM_FUNCTIONS_TITLE = 'Insect Farm Functions';
 Blockly.Msg.INSECT_FARM_COMPLEX_FUNCTIONS_TITLE = 'Insect Farm Complex Functions';
+
+//Parallel programming
+Blockly.Msg.PARALLEL_PROGRAMMING_TITLE = "Parallel Programming";
+Blockly.Msg.RESULT_MESSAGE0 = "Get the result of %1 after completion"
+Blockly.Msg.RESULT_TOOLTIP = "If the related function call has not yet bin completed, waits for that, than returns the return of the related function"
+Blockly.Msg.WAIT_FOR_MESSAGE0 = "Wait for completion of %1"
+Blockly.Msg.WAIT_FOR_TOOLTIP = "If the related function call has not yet bin completed, waits for that"
