@@ -14,9 +14,12 @@ CORS(app)
 locks = 0
 current_gesture = ""
 
+PORT = 9000
+NEXTGESTURE_TIMEOUT = 10
+
 webhook.subscribe()
 
-
+# Basic test to see if the server is running
 @app.route('/test', methods=['GET'])
 def test():
     response = app.response_class(
@@ -27,7 +30,7 @@ def test():
     response.headers["Access-Control-Allow-Origin"] = "*"
     return response
 
-
+# Runs the code sent by the Blockly frontend and returns the output
 @app.route('/', defaults={'path': ''}, methods=['POST'])
 @app.route('/<path:path>', methods=['POST'])
 def catch_all(path):
@@ -54,7 +57,7 @@ def catch_all(path):
     response.headers["Access-Control-Allow-Origin"] = "*"
     return response
 
-
+# Sets the current gesture to the gesture detected (intended to be called by the gesture detection server)
 @app.route('/gesture', methods=['POST'])
 def gesture():
 
@@ -84,10 +87,7 @@ def gesture():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
-
 NEXTGESTURE_TIMEOUT = 300
-
-
 @app.route('/nextgesture', methods=['GET'])
 def nextgesture():
     global locks
@@ -98,12 +98,17 @@ def nextgesture():
     while current_gesture == "":
         if time.time() - start_time > NEXTGESTURE_TIMEOUT:
             locks -= 1
-            return "No gesture detected, timed out."
+            response = app.response_class(
+                response="",
+                status=200,
+                mimetype='text/plain'
+            )
+            response.headers["Access-Control-Allow-Origin"] = "*"
+            return response
     locks -= 1
 
     g = current_gesture
 
     return str(g)
 
-
-serve(app, host='0.0.0.0', port=9000)
+serve(app, host='0.0.0.0', port=PORT)
