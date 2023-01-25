@@ -38,7 +38,7 @@ Blockly.Python['Grab'] = function(block) {
 ```
 We used the json format for defining the external features of our blocks.
 
-For more details regarding block definitions, please use the guide at [developers.google.com/blockly/guides/overview](https://developers.google.com/blockly/guides/overview), or the included download
+For more details regarding block definitions, please use the guide at [developers.google.com/blockly/guides/overview](https://developers.google.com/blockly/guides/overview), or the included download.
 
 Once a block is defined, it can be added by including it in a category in the file *index.html*, for example the block ``Grab`` is included in the category ``%{BKY_INSECT_FARM_FUNCTIONS_TITLE}`` as follows:
 ```html
@@ -48,12 +48,14 @@ Once a block is defined, it can be added by including it in a category in the fi
         </category>
 ```
 Note: ``%{BKY_INSECT_FARM_FUNCTIONS_TITLE}`` is used to give this category a language appropriate title.
+
 ## Adding new categories
 Categories are defined in *index.html* and must at least contain a colour and a name, see section *Adding new blocks* for an example.  
 Further more for a category to be visible it must be set to visible in *complexity_scaling.js*. 
 This is done by giving it a name to reference by 
 (in method ``initCategories()`` variable ``cats``, where the number refer to when it is mentioned, from the top down, in *index.html*),
 and giving it for each difficulty level a visibility state (in method ``refreshCategories()``, using for each case the ``showCat(x, s)`` method).
+
 ## Languages
 Currently, implement are Dutch (nl), German (de), English (en), and French (fr).  
 *de.js*, *en.js*, *fr.js*, and *nl.js* contain category titles, and other block related texts for each language. Note that for example ``%{BKY_GRAB_TOOLTIP}`` in the example in section *Adding new blocks* is replaced by the value of ``Blockly.Msg.GRAB_TOOLTIP`` in *en.js* (if english is the selected language).   
