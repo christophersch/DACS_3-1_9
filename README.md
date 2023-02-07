@@ -6,6 +6,8 @@ Third-year Bsc DS&AI project, developed as part of [CoRoSect](https://corosect.e
 
 The goal of this project was to develop a programming interface which could be used by people without programming experience to control a model/demo insect farm, using [Google’s open-source Blockly project](https://developers.google.com/blockly) as a basis.
 
+## Implementation
+
 ![The front-end programming interface](./img/interface.png)
 
 The front-end of the programming interface (i.e., what the user actually uses) can be found in the [/blockly](https://github.com/cjphs/DACS_3-1_9/tree/blockly) branch.
@@ -21,7 +23,12 @@ The back-end, which can be found in the [/python-server](https://github.com/cjph
 
 ![](./img/interface_farm.png)
 
+## Relevant guides
+
 - [Installation guide](https://github.com/cjphs/DACS_3-1_9/blob/blockly_doc/guides/Installation%20guide.md)
 - [Modifying & expanding the programming interface](https://github.com/cjphs/DACS_3-1_9/blob/blockly_doc/guides/Modification%20and%20expansion%20guide.md) (i.e., by adding new blocks)
+
+
+
 
 ![](https://cjphs.github.io/DACS_3-1_9/images/cs.svg)
