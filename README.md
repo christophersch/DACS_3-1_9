@@ -28,7 +28,3 @@ The back-end, which can be found in the [/python-server](https://github.com/cjph
 - [Installation guide](https://github.com/cjphs/DACS_3-1_9/blob/blockly_doc/guides/Installation%20guide.md)
 - [Modifying & expanding the programming interface](https://github.com/cjphs/DACS_3-1_9/blob/blockly_doc/guides/Modification%20and%20expansion%20guide.md) (i.e., by adding new blocks)
 
-
-
-
-![](https://cjphs.github.io/DACS_3-1_9/images/cs.svg)
