@@ -8,6 +8,4 @@ The goal of this project was to develop a programming interface which could be u
 
 ![The front-end programming interface](./img/interface.png)
 
-![](./img/farm1.png)
-
-![](./img/farm2.png)
+![](./img/farm.png)
