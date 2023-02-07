@@ -8,4 +8,15 @@ The goal of this project was to develop a programming interface which could be u
 
 ![The front-end programming interface](./img/interface.png)
 
+The front-end of the programming interface (i.e., what the user actually uses) can be found in the [/blockly](./tree/blockly) branch.
+
+Due to Blockly's open-source nature & licensing, we were able to take it and modify it to suit our needs. Our modifications to the core Blockly project include:
+
+- Code blocks for functions within the model insect farm
+- Language switching (with support for English, Dutch, German, & French)
+- Hiding/showing features based on user proficiency with programming
+- A tutorial mode that guides the user through their first experience with the interface
+
+The back-end, which can be found in the [/python-server](./tree/python-server) branch, interacts with other components of the model insect farm in order to execute specific actions. The right side of the following figure shows an example of such a procedure, where the Blockly interface (front-end) communicates with the server (back-end) and goes back and forth between the farm's orchestration software & AGV software in order to move the AGV (automatically-guided vehicle).
+
 ![](./img/interface_farm.png)
