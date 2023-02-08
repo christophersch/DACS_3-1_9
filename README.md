@@ -6,9 +6,10 @@ Third-year Bsc DS&AI project, developed as part of [CoRoSect](https://corosect.e
 
 The goal of this project was to develop a programming interface which could be used by people without programming experience to control a model/demo insect farm, using [Google’s open-source Blockly project](https://developers.google.com/blockly) as a basis.
 
-## Implementation
 
 ![The front-end programming interface](./img/interface.png)
+
+## Implementation
 
 The front-end of the programming interface (i.e., what the user actually uses) can be found in the [/blockly](https://github.com/cjphs/DACS_3-1_9/tree/blockly) branch.
 
