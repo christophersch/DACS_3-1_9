@@ -1,6 +1,6 @@
 # Programming interfaces for non-experts
 
-*Authors: Christophe Raso, Christopher Schiffmann, Gevorg Chakrian, Ingo Heijnens, Janis Eicher, Pepijn van der Meer*
+*Authors: [Christophe Raso](https://github.com/c-raso), [Christopher Schiffmann](https://github.com/cjphs), [Gevorg Chakrian](https://github.com/Gevorg-Chakrian), [Ingo Heijnens](https://github.com/IngoHHacks), [Janis Eicher](https://github.com/JanisEicher), [Pepijn van der Meer](https://github.com/Dimonor)*
 
 Third-year Bsc DS&AI project, developed as part of [CoRoSect](https://corosect.eu/), a research collaboration between Maastricht University and [Field Lab Robotics](https://www.fieldlabrobotics.com/) aiming toward developing insect farms for sustainable food production. 
 
