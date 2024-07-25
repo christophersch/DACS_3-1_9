@@ -1,4 +1,4 @@
-# Programming interfaces for non-experts
+# Programming Interfaces for Non-Experts
 
 *Authors: [Christophe Raso](https://github.com/c-raso), [Christopher Schiffmann](https://github.com/cjphs), [Gevorg Chakrian](https://github.com/Gevorg-Chakrian), [Ingo Heijnens](https://github.com/IngoHHacks), [Janis Eicher](https://github.com/JanisEicher), [Pepijn van der Meer](https://github.com/Dimonor)*
 
