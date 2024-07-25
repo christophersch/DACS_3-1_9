@@ -2,7 +2,7 @@
 
 *Authors: [Christophe Raso](https://github.com/c-raso), [Christopher Schiffmann](https://github.com/cjphs), [Gevorg Chakrian](https://github.com/Gevorg-Chakrian), [Ingo Heijnens](https://github.com/IngoHHacks), [Janis Eicher](https://github.com/JanisEicher), [Pepijn van der Meer](https://github.com/Dimonor)*
 
-Third-year Bsc DS&AI project, developed as part of [CoRoSect](https://corosect.eu/), a research collaboration between Maastricht University and [Field Lab Robotics](https://www.fieldlabrobotics.com/) aiming toward developing insect farms for sustainable food production. 
+Third-year B.Sc. DS&AI project, developed as part of [CoRoSect](https://corosect.eu/), a research collaboration between Maastricht University and [Field Lab Robotics](https://www.fieldlabrobotics.com/) aiming toward developing insect farms for sustainable food production. 
 
 The goal of this project was to develop a programming interface which could be used by people without programming experience to control a model/demo insect farm, using [Google’s open-source Blockly project](https://developers.google.com/blockly) as a basis.
 
